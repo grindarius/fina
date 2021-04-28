@@ -3,17 +3,24 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
+    "start": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "buefy": "^0.9.7",
+    "d3": "^6.7.0",
+    "mathjax": "^3.1.4",
+    "mathjs": "^9.3.2",
     "vue": "^2.6.11",
     "vue-class-component": "^7.2.3",
     "vue-property-decorator": "^9.1.2",
     "vue-router": "^3.2.0"
   },
   "devDependencies": {
+    "@types/d3": "^6.3.0",
+    "@types/mathjax": "0.0.36",
+    "@types/mathjs": "^6.0.11",
     "@typescript-eslint/eslint-plugin": "^4.18.0",
     "@typescript-eslint/parser": "^4.18.0",
     "@vue/cli-plugin-eslint": "~4.5.0",
