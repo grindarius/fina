@@ -1,0 +1,106 @@
+@import '~bulma/sass/utilities/_all';
+
+$purple: #A45EE5;
+$purple-invert: findColorInvert($purple);
+
+$sailor-blue: #161B40;
+$light-blue: #43BEE5;
+$bright-red: #F40058;
+$pale-yellow: #EFA500;
+$pale-green: #41B853;
+
+$mint: #98ded9;
+$light-mint: #c7ffd8;
+
+$colors: mergeColorMaps(
+  (
+    'white': (
+      $white,
+      $black,
+    ),
+    'black': (
+      $black,
+      $white,
+    ),
+    'light': (
+      $light,
+      $light-invert,
+    ),
+    'dark': (
+      $dark,
+      $dark-invert,
+    ),
+    'primary': (
+      $primary,
+      $primary-invert,
+      $primary-light,
+      $primary-dark,
+    ),
+    'link': (
+      $link,
+      $link-invert,
+      $link-light,
+      $link-dark,
+    ),
+    'info': (
+      $info,
+      $info-invert,
+      $info-light,
+      $info-dark,
+    ),
+    'success': (
+      $success,
+      $success-invert,
+      $success-light,
+      $success-dark,
+    ),
+    'warning': (
+      $warning,
+      $warning-invert,
+      $warning-light,
+      $warning-dark,
+    ),
+    'danger': (
+      $danger,
+      $danger-invert,
+      $danger-light,
+      $danger-dark,
+    ),
+    'purple': (
+      $purple,
+      $white
+    ),
+    'sailor-blue': (
+      $sailor-blue,
+      $white
+    ),
+    'mint': (
+      $mint,
+      #000000
+    ),
+    'light-mint': (
+      $light-mint,
+      $white
+    ),
+    'light-blue': (
+      $light-blue,
+      $white
+    ),
+    'bright-red': (
+      $bright-red,
+      $white
+    ),
+    'pale-yellow': (
+      $pale-yellow,
+      $white
+    ),
+    'pale-green': (
+      $pale-green,
+      $white
+    )
+  ),
+  $custom-colors
+);
+
+@import '~bulma';
+@import '~buefy/src/scss/buefy';
