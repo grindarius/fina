@@ -1,4 +1,4 @@
-import { Vue, Component } from 'vue-property-decorator'
+import { Vue, Component, Prop } from 'vue-property-decorator'
 import * as d3 from 'd3'
 import { Coordinate } from '@/types'
 import * as helper from '@/services'
@@ -9,22 +9,24 @@ const height = 700 - margins.top - margins.bottom
 
 @Component
 export default class IndexGraph extends Vue {
+  @Prop({ default: 'x^2' })
+  private expression: string
+
+  @Prop({ default: [] })
+  private points: Array<Coordinate>
+
   private data: Array<Coordinate> = []
   private timeFactor = 100
-  private divider = 1
-  private previousX = -5
-  private previousY = 5
 
-  private svg: d3.Selection<SVGGElement, unknown, HTMLElement, any>
-  private line: d3.Selection<SVGGElement, unknown, HTMLElement, any>
+  private svg: d3.Selection<SVGGElement, unknown, HTMLElement, unknown>
+  private line: d3.Selection<SVGGElement, unknown, HTMLElement, unknown>
   private x: d3.ScaleLinear<number, number, never>
   private y: d3.ScaleLinear<number, number, never>
-  private xAxis: d3.Selection<SVGGElement, unknown, HTMLElement, any>
-  private yAxis: d3.Selection<SVGGElement, unknown, HTMLElement, any>
+  private xAxis: d3.Selection<SVGGElement, unknown, HTMLElement, unknown>
+  private yAxis: d3.Selection<SVGGElement, unknown, HTMLElement, unknown>
 
   private mounted () {
     this.data = this.calculateData(-5, 5)
-    console.log(this.data)
     this.generateChart()
   }
 
@@ -108,7 +110,6 @@ export default class IndexGraph extends Vue {
     const [start, end] = newX.domain()
 
     this.data = this.calculateData(start, end)
-    console.log(this.data)
 
     this.line.append('path')
       .datum(this.data)
@@ -132,22 +133,20 @@ export default class IndexGraph extends Vue {
     else if (1 <= delta && delta < 5) this.timeFactor = 1000
     else if (delta < 1) this.timeFactor = 10000
 
-    console.log(this.timeFactor)
-
     const multipliedLeft = helper.round(left, 5) * this.timeFactor
     const multipliedRight = helper.round(right, 5) * this.timeFactor
 
     const dummyArray = Array.from<number, number>({ length: (multipliedRight - multipliedLeft + 1) }, (_, i) => multipliedLeft + i)
 
     return dummyArray.map((element) => {
-        const x = element / this.timeFactor
+      const x = element / this.timeFactor
 
-        const coordinate: Coordinate = {
-          x: x,
-          y: Math.sin(Math.exp(x))
-        }
+      const coordinate: Coordinate = {
+        x: x,
+        y: helper.evaluateFunction(this.expression, x)
+      }
 
-        return coordinate
+      return coordinate
     })
   }
 }

@@ -1,9 +1,9 @@
-import IndexGraph from '@/components/index-graph/index-graph.vue'
+import Grapher from '@/components/grapher/grapher.vue'
 import { Vue, Component } from 'vue-property-decorator'
 
 @Component({
   components: {
-    'index-graph': IndexGraph
+    'grapher': Grapher
   }
 })
 export default class Home extends Vue {}

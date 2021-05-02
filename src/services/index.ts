@@ -1,5 +1,6 @@
-import { round } from './helpers.service'
+import { round, evaluateFunction } from './helpers.service'
 
 export {
-  round
+  round,
+  evaluateFunction
 }
