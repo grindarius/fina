@@ -12,14 +12,15 @@ export default class IndexGraph extends Vue {
   @Prop({ default: 'x^2' })
   private expression: string
 
-  @Prop({ default: [] })
-  private points: Array<Coordinate>
+  @Prop({ default: () => [] })
+  private pointsData: Array<Coordinate>
 
   private data: Array<Coordinate> = []
   private timeFactor = 100
 
   private svg: d3.Selection<SVGGElement, unknown, HTMLElement, unknown>
   private line: d3.Selection<SVGGElement, unknown, HTMLElement, unknown>
+  private dots: d3.Selection<SVGGElement, unknown, HTMLElement, unknown>
   private x: d3.ScaleLinear<number, number, never>
   private y: d3.ScaleLinear<number, number, never>
   private xAxis: d3.Selection<SVGGElement, unknown, HTMLElement, unknown>
@@ -28,6 +29,7 @@ export default class IndexGraph extends Vue {
   private mounted () {
     this.data = this.calculateData(-5, 5)
     this.generateChart()
+    console.log(this.pointsData)
   }
 
   private generateChart () {
@@ -62,16 +64,14 @@ export default class IndexGraph extends Vue {
     this.line = this.svg.append('g')
       .attr('clip-path', 'url(#clip)')
 
-    this.line.append('path')
-      .datum(this.data)
-      .classed('data-line', true)
-      .attr('fill', 'none')
-      .attr('stroke', 'steelblue')
-      .attr('stroke-width', 1.5)
-      .attr('d', d3.line<Coordinate>()
-        .x(d => this.x(d.x))
-        .y(d => this.y(d.y))
-      )
+    this.drawLine()
+
+    if (this.pointsData !== []) {
+      this.dots = this.svg.append('g')
+        .attr('clip-path', 'url(#clip)')
+  
+      this.drawDots()
+    }
 
     const zoom = d3.zoom<SVGRectElement, unknown>()
       .scaleExtent([1, 100])
@@ -88,6 +88,33 @@ export default class IndexGraph extends Vue {
       .call(zoom)
   }
 
+  private drawDots () {
+    this.dots
+      .selectAll()
+      .data(this.pointsData)
+      .enter()
+      .append('circle')
+      .classed('point', true)
+      .attr('cx', (d) => this.x(d.x))
+      .attr('cy', (d) => this.y(d.y))
+      .attr('r', 3)
+      .style('fill', '#240743')
+  }
+
+  private drawLine () {
+    this.line
+      .append('path')
+      .datum(this.data)
+      .classed('data-line', true)
+      .attr('fill', 'none')
+      .attr('stroke', 'steelblue')
+      .attr('stroke-width', 1.5)
+      .attr('d', d3.line<Coordinate>()
+        .x(d => this.x(d.x))
+        .y(d => this.y(d.y))
+      )
+  }
+
   private zoomed (event: any) {
     const newX = event.transform.rescaleX(this.x)
     const newY = event.transform.rescaleY(this.y)
@@ -95,11 +122,18 @@ export default class IndexGraph extends Vue {
     this.xAxis.call(d3.axisBottom(newX))
     this.yAxis.call(d3.axisLeft(newY))
 
-    const redrawLine: d3.Selection<d3.BaseType, Array<Coordinate>, SVGGElement, unknown> = this.line.selectAll('.data-line')
-    redrawLine.attr('d', d3.line<Coordinate>()
+    const redrawline: d3.Selection<d3.BaseType, Array<Coordinate>, SVGGElement, unknown> = this.line.selectAll('.data-line')
+    redrawline.attr('d', d3.line<Coordinate>()
       .x(d => newX(d.x))
       .y(d => newY(d.y))
     )
+
+    if (this.pointsData !== []) {
+      const redrawDots: d3.Selection<d3.BaseType, Array<Coordinate>, SVGGElement, unknown> = this.dots.selectAll('.point')
+      redrawDots.data(this.pointsData)
+        .attr('cx', (d) => newX(d.x))
+        .attr('cy', (d) => newY(d.y))
+    }
   }
 
   private zoomEnded (event: any) {
