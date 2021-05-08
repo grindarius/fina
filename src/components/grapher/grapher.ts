@@ -13,7 +13,7 @@ export default class IndexGraph extends Vue {
   private expression: string
 
   @Prop({ default: () => [] })
-  private pointsData: Array<Coordinate>
+  private points: Array<Coordinate>
 
   private data: Array<Coordinate> = []
   private timeFactor = 100
@@ -29,7 +29,6 @@ export default class IndexGraph extends Vue {
   private mounted () {
     this.data = this.calculateData(-5, 5)
     this.generateChart()
-    console.log(this.pointsData)
   }
 
   private generateChart () {
@@ -65,8 +64,9 @@ export default class IndexGraph extends Vue {
       .attr('clip-path', 'url(#clip)')
 
     this.drawLine()
+    this.drawGridline()
 
-    if (this.pointsData !== []) {
+    if (this.points !== []) {
       this.dots = this.svg.append('g')
         .attr('clip-path', 'url(#clip)')
   
@@ -74,7 +74,7 @@ export default class IndexGraph extends Vue {
     }
 
     const zoom = d3.zoom<SVGRectElement, unknown>()
-      .scaleExtent([1, 100])
+      .scaleExtent([1, 200])
       .extent([[0, 0], [width, height]])
       .on('zoom', this.zoomed)
       .on('end', this.zoomEnded)
@@ -91,7 +91,7 @@ export default class IndexGraph extends Vue {
   private drawDots () {
     this.dots
       .selectAll()
-      .data(this.pointsData)
+      .data(this.points)
       .enter()
       .append('circle')
       .classed('point', true)
@@ -99,6 +99,30 @@ export default class IndexGraph extends Vue {
       .attr('cy', (d) => this.y(d.y))
       .attr('r', 3)
       .style('fill', '#240743')
+  }
+
+  private drawGridline () {
+    d3.selectAll('g.x-axis g.tick')
+      .append('line')
+      .classed('gridline', true)
+      .attr('stroke', '#0A0A0A')
+      .attr('x1', 0)
+      .attr('x2', 0)
+      .attr('y1', -height)
+      .attr('y2', 0)
+      .style('shape-rendering', 'crispEdges')
+      .style('stroke-opacity', d => d === 0 ? 0.5 : 0)
+
+    d3.selectAll('g.y-axis g.tick')
+      .append('line')
+      .classed('gridline', true)
+      .attr('stroke', '#0A0A0A')
+      .attr('x1', 0)
+      .attr('x2', width)
+      .attr('y1', 0)
+      .attr('y2', 0)
+      .style('shape-rendering', 'crispEdges')
+      .style('stroke-opacity', d => d === 0 ? 0.5 : 0)
   }
 
   private drawLine () {
@@ -116,11 +140,15 @@ export default class IndexGraph extends Vue {
   }
 
   private zoomed (event: any) {
+    d3.selectAll('.gridline').remove()
+
     const newX = event.transform.rescaleX(this.x)
     const newY = event.transform.rescaleY(this.y)
 
     this.xAxis.call(d3.axisBottom(newX))
     this.yAxis.call(d3.axisLeft(newY))
+
+    this.drawGridline()
 
     const redrawline: d3.Selection<d3.BaseType, Array<Coordinate>, SVGGElement, unknown> = this.line.selectAll('.data-line')
     redrawline.attr('d', d3.line<Coordinate>()
@@ -128,9 +156,9 @@ export default class IndexGraph extends Vue {
       .y(d => newY(d.y))
     )
 
-    if (this.pointsData !== []) {
+    if (this.points !== []) {
       const redrawDots: d3.Selection<d3.BaseType, Array<Coordinate>, SVGGElement, unknown> = this.dots.selectAll('.point')
-      redrawDots.data(this.pointsData)
+      redrawDots.data(this.points)
         .attr('cx', (d) => newX(d.x))
         .attr('cy', (d) => newY(d.y))
     }

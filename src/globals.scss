@@ -1,16 +1,16 @@
 @import '~bulma/sass/utilities/_all';
 
-$purple: #A45EE5;
-$purple-invert: findColorInvert($purple);
+$purple: rgb(164, 94, 229);
+$purple-invert: rgb(91, 161, 126);
 
-$sailor-blue: #161B40;
-$light-blue: #43BEE5;
-$bright-red: #F40058;
-$pale-yellow: #EFA500;
-$pale-green: #41B853;
+$sailor-blue: rgb(22, 27, 64);
+$light-blue: rgb(67, 190, 229);
+$bright-red: rgb(244, 0, 88);
+$pale-yellow: rgb(239, 165, 0);
+$pale-green: rgb(65, 184, 83);
 
-$mint: #98ded9;
-$light-mint: #c7ffd8;
+$mint: rgb(152, 222, 217);
+$light-mint: rgb(199, 255, 216);
 
 $colors: mergeColorMaps(
   (
@@ -76,7 +76,7 @@ $colors: mergeColorMaps(
     ),
     'mint': (
       $mint,
-      #000000
+      black
     ),
     'light-mint': (
       $light-mint,
@@ -98,8 +98,7 @@ $colors: mergeColorMaps(
       $pale-green,
       $white
     )
-  ),
-  $custom-colors
+  ), $custom-colors
 );
 
 @import '~bulma';

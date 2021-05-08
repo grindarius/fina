@@ -26,9 +26,13 @@
         </h3>
         <h3 class="subtitle is-3 has-text-centered">
           Find the root value of a function
-          <katex-element expression="sin(e^x)"></katex-element>
+          <katex-element :expression="expression" />
+          where the root lies between
+          <katex-element expression="1" />
+          and
+          <katex-element expression="2" />
         </h3>
-        <grapher expression="x^3" :pointsData="points" />
+        <grapher :expression="expression" :points="points" />
       </div>
     </div>
   </section>
