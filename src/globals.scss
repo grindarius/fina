@@ -98,7 +98,8 @@ $colors: mergeColorMaps(
       $pale-green,
       $white
     )
-  ), $custom-colors
+  ),
+  $custom-colors
 );
 
 @import '~bulma';

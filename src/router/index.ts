@@ -14,6 +14,16 @@ const routes: Array<RouteConfig> = [
     path: '/about',
     name: 'About',
     component: Pages.About
+  },
+  {
+    path: '/sources',
+    name: 'Sources',
+    component: Pages.Sources
+  },
+  {
+    path: '/significant-digits',
+    name: 'Significant Digits',
+    component: Pages.SignificantDigits
   }
 ]
 

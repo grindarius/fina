@@ -4,12 +4,12 @@ import { Vue, Component } from 'vue-property-decorator'
 
 @Component({
   components: {
-    'grapher': Grapher
+    grapher: Grapher
   }
 })
 export default class Home extends Vue {
-  private expression = 'x^3 - x - 1'
-  private points: Array<Coordinate> = [
+  private readonly expression = 'x^3 - x - 1'
+  private readonly points: Array<Coordinate> = [
     {
       x: 1.5,
       y: 0.875
