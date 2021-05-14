@@ -24,6 +24,15 @@ const routes: Array<RouteConfig> = [
     path: '/significant-digits',
     name: 'Significant Digits',
     component: Pages.SignificantDigits
+  },
+  {
+    path: '/decimal-points',
+    name: 'Decimal Points',
+    component: Pages.DecimalPoints
+  },
+  {
+    path: '*',
+    redirect: '/'
   }
 ]
 

@@ -10,10 +10,10 @@ const height = 700 - margins.top - margins.bottom
 @Component
 export default class IndexGraph extends Vue {
   @Prop({ default: 'x^2' })
-  private readonly expression: string
+  private expression: string
 
   @Prop({ default: () => [] })
-  private readonly points: Array<Coordinate>
+  private points: Array<Coordinate>
 
   private data: Array<Coordinate> = []
   private timeFactor = 100

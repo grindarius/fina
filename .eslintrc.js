@@ -36,9 +36,7 @@ module.exports = {
         default: 'generic',
         readonly: 'generic'
       }],
-      '@typescript-eslint/prefer-readonly': ['error', {
-        onlyInlineLambdas: true
-      }]
+      '@typescript-eslint/prefer-readonly': 'off'
     }
   }]
 }
