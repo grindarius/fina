@@ -2,6 +2,10 @@
   "name": "fina",
   "version": "0.1.0",
   "private": true,
+  "description": "Fabulous and Interactive Numerical Analysis calculator",
+  "repository": "https://github.com/grindarius/fina.git",
+  "author": "Bhattarapong Somwong <numbbutt34685@gmail.com>",
+  "license": "MIT",
   "scripts": {
     "start": "vue-cli-service serve",
     "build": "vue-cli-service build",

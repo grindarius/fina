@@ -10,10 +10,10 @@ const height = 700 - margins.top - margins.bottom
 @Component
 export default class IndexGraph extends Vue {
   @Prop({ default: 'x^2' })
-  private expression: string
+  private readonly expression: string
 
   @Prop({ default: () => [] })
-  private points: Array<Coordinate>
+  private readonly points: Array<Coordinate>
 
   private data: Array<Coordinate> = []
   private timeFactor = 100
@@ -26,12 +26,12 @@ export default class IndexGraph extends Vue {
   private xAxis: d3.Selection<SVGGElement, unknown, HTMLElement, unknown>
   private yAxis: d3.Selection<SVGGElement, unknown, HTMLElement, unknown>
 
-  private mounted () {
+  private mounted (): void {
     this.data = this.calculateData(-5, 5)
     this.generateChart()
   }
 
-  private generateChart () {
+  private generateChart (): void {
     this.svg = d3.select('#graph')
       .append('svg')
       .attr('width', width + margins.left + margins.right)
@@ -69,7 +69,7 @@ export default class IndexGraph extends Vue {
     if (this.points !== []) {
       this.dots = this.svg.append('g')
         .attr('clip-path', 'url(#clip)')
-  
+
       this.drawDots()
     }
 
@@ -88,7 +88,7 @@ export default class IndexGraph extends Vue {
       .call(zoom)
   }
 
-  private drawDots () {
+  private drawDots (): void {
     this.dots
       .selectAll()
       .data(this.points)
@@ -101,7 +101,7 @@ export default class IndexGraph extends Vue {
       .style('fill', '#240743')
   }
 
-  private drawGridline () {
+  private drawGridline (): void {
     d3.selectAll('g.x-axis g.tick')
       .append('line')
       .classed('gridline', true)
@@ -125,7 +125,7 @@ export default class IndexGraph extends Vue {
       .style('stroke-opacity', d => d === 0 ? 0.5 : 0)
   }
 
-  private drawLine () {
+  private drawLine (): void {
     this.line
       .append('path')
       .datum(this.data)
@@ -139,7 +139,8 @@ export default class IndexGraph extends Vue {
       )
   }
 
-  private zoomed (event: any) {
+  /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
+  private zoomed (event: any): void {
     d3.selectAll('.gridline').remove()
 
     const newX = event.transform.rescaleX(this.x)
@@ -164,7 +165,8 @@ export default class IndexGraph extends Vue {
     }
   }
 
-  private zoomEnded (event: any) {
+  /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
+  private zoomEnded (event: any): void {
     d3.select('.data-line').remove()
     const newX = event.transform.rescaleX(this.x)
     const newY = event.transform.rescaleY(this.y)
@@ -185,14 +187,14 @@ export default class IndexGraph extends Vue {
       )
   }
 
-  private calculateData (left: number, right: number) {
+  private calculateData (left: number, right: number): Array<Coordinate> {
     if (left > right) throw new Error('Error: left is greater than right')
 
     const delta = right - left
 
     if (delta >= 10) this.timeFactor = 100
-    else if (5 <= delta && delta < 10) this.timeFactor = 500
-    else if (1 <= delta && delta < 5) this.timeFactor = 1000
+    else if (delta >= 5 && delta < 10) this.timeFactor = 500
+    else if (delta >= 1 && delta < 5) this.timeFactor = 1000
     else if (delta < 1) this.timeFactor = 10000
 
     const multipliedLeft = helper.round(left, 5) * this.timeFactor

@@ -8,73 +8,73 @@
       </template>
       <template #start>
         <b-navbar-dropdown label="First Semester">
-          <b-navbar-item href="/significant-digits">
+          <b-navbar-item tag="router-link" :to="{ path: '/significant-digits' }">
             Significant Digits
           </b-navbar-item>
-          <b-navbar-item href="/decimal-points">
+          <b-navbar-item tag="router-link" :to="{ path: '/decimal-points' }">
             Decimal Points
           </b-navbar-item>
-          <b-navbar-item href="/bisection">
+          <b-navbar-item tag="router-link" :to="{ path: '/bisection' }">
             Bisection Method
           </b-navbar-item>
-          <b-navbar-item href="/false-position">
+          <b-navbar-item tag="router-link" :to="{ path: '/false-position' }">
             False Position Method
           </b-navbar-item>
-          <b-navbar-item href="/fixed-point-iteration">
+          <b-navbar-item tag="router-link" :to="{ path: '/fixed-point-iteration' }">
             Fixed Point Iteration Method
           </b-navbar-item>
-          <b-navbar-item href="/newton">
+          <b-navbar-item tag="router-link" :to="{ path: '/newton' }">
             Newton's Method
           </b-navbar-item>
-          <b-navbar-item href="/secant">
+          <b-navbar-item tag="router-link" :to="{ path: '/secant' }">
             Secant Method
           </b-navbar-item>
-          <b-navbar-item href="/gauss-seidel">
+          <b-navbar-item tag="router-link" :to="{ path: '/gauss-seidel' }">
             Gauss Seidel Method
           </b-navbar-item>
         </b-navbar-dropdown>
         <b-navbar-dropdown label="Second Semester">
-          <b-navbar-item href="/jacobi">
+          <b-navbar-item tag="router-link" :to="{ path: '/jacobi' }">
             Jacobi Method
           </b-navbar-item>
-          <b-navbar-item href="/divided-difference">
+          <b-navbar-item tag="router-link" :to="{ path: '/divided-difference' }">
             Newton's Divided Difference
           </b-navbar-item>
-          <b-navbar-item href="/forward-difference">
+          <b-navbar-item tag="router-link" :to="{ path: '/forward-difference' }">
             Newton's Forward Difference
           </b-navbar-item>
-          <b-navbar-item href="/backward-difference">
+          <b-navbar-item tag="router-link" :to="{ path: '/backward-difference' }">
             Newton's Backward Difference
           </b-navbar-item>
-          <b-navbar-item href="/lagrange">
+          <b-navbar-item tag="router-link" :to="{ path: '/lagrange' }">
             Lagrange Polynomial
           </b-navbar-item>
-          <b-navbar-item href="/regression">
+          <b-navbar-item tag="router-link" :to="{ path: '/regression' }">
             Regression Equation
           </b-navbar-item>
-          <b-navbar-item href="/trapezoidal">
+          <b-navbar-item tag="router-link" :to="{ path: '/trapezoidal' }">
             Trapezoidal Rule
           </b-navbar-item>
-          <b-navbar-item href="/simpson-one-third">
+          <b-navbar-item tag="router-link" :to="{ path: '/simpson-one-third' }">
             Simpson's 1/3 Rule
           </b-navbar-item>
-          <b-navbar-item href="/simpson-three-eights">
+          <b-navbar-item tag="router-link" :to="{ path: '/simpson-three-eights' }">
             Simpson's 3/8 Rule
           </b-navbar-item>
-          <b-navbar-item href="/romberg">
+          <b-navbar-item tag="router-link" :to="{ path: '/romberg' }">
             Romberg's Method
           </b-navbar-item>
-          <b-navbar-item href="/euler">
+          <b-navbar-item tag="router-link" :to="{ path: '/euler' }">
             Euler's Method
           </b-navbar-item>
         </b-navbar-dropdown>
       </template>
 
       <template #end>
-        <b-navbar-item href="/about">
+        <b-navbar-item tag="router-link" :to="{ path: '/about' }">
           About
         </b-navbar-item>
-        <b-navbar-item href="/sources">
+        <b-navbar-item tag="router-link" :to="{ path: '/sources' }">
           Sources
         </b-navbar-item>
       </template>
