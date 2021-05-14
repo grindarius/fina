@@ -32,6 +32,8 @@ module.exports = {
       '@typescript-eslint'
     ],
     rules: {
+      'quotes': ['error', 'single', { allowTemplateLiterals: true }],
+      'quote-props': ['error', 'consistent'],
       '@typescript-eslint/array-type': ['error', {
         default: 'generic',
         readonly: 'generic'

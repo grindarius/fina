@@ -1,0 +1,120 @@
+<div class="bisection-page">
+  <section class="hero is-sailor-blue is-medium">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title is-1 has-text-light-blue">
+          Bisection
+        </h1>
+        <h3 class="subtitle is-3">
+          A root-finding algorithm that slice every interval by half.
+        </h3>
+      </div>
+    </div>
+  </section>
+  <section class="hero is-medium">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title is-1">
+          Description
+        </h1>
+        <p class="subtitle is-4 is-indented">
+          Bisection method is a root-finding method that for every interval happens,
+          it will slice each section by half towards the side that the root will be.
+          It is very simple but really slow, so it is mostly used to find rough approximation
+          before using faster method to find the root.
+        </p>
+      </div>
+    </div>
+  </section>
+  <section class="hero is-sailor-blue is-medium">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title is-1 has-text-light-blue">
+          Input Constraints
+        </h1>
+        <div class="content">
+          <ul>
+            <li>
+              <p class="subtitle is-4">
+                Both starting value <katex-element expression="f(a)" /> and <katex-element expression="f(b)" /> must have opposing signs.
+              </p>
+            </li>
+            <li>
+              <p class="subtitle is-4">
+                Between the starting value <katex-element expression="a" /> and <katex-element expression="b" /> must have the root value.
+              </p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="hero is-medium">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title is-1">
+          Steps to Reproduce
+        </h1>
+        <div class="content">
+          <ol>
+            <li class="subtitle is-4">
+              <p class="subtitle is-4">
+                Starts with an <katex-element expression="expression" />, starting value of the interval <katex-element expression="a" />
+                and the end of the interval <katex-element expression="b" />.
+              </p>
+            </li>
+            <li class="subtitle is-4">
+              <p class="subtitle is-4">
+                Find the next interval point <katex-element expression="c" /> using the formula <katex-element expression="\frac{a + b}{2}" :display-mode="true" />
+              </p>
+            </li>
+            <li class="subtitle is-4">
+              <p class="subtitle is-4">
+                Check the value of <katex-element expression="f(c)" />
+              <ul>
+                <li>
+                  <p class="subtitle is-4">
+                    If the value of <katex-element expression="f(a) \cdot f(c)" /> is greater than <katex-element expression="0" />, then the next
+                    interval to calculate is between <katex-element expression="c" /> and <katex-element expression="b" />.
+                  </p>
+                </li>
+                <li>
+                  <p class="subtitle is-4">
+                    If the value of <katex-element expression="f(a) \cdot f(c)" /> is less than <katex-element expression="0" />, then the next
+                    interval to calculate is between <katex-element expression="a" /> and <katex-element expression="c" />.
+                  </p>
+                </li>
+                <li>
+                  <p class="subtitle is-4">
+                    If the value of <katex-element expression="f(a) \cdot f(c)" /> equals <katex-element expression="0" />, then you've found
+                    the root value of the <katex-element expression="expression" />.
+                  </p>
+                </li>
+              </ul>
+              </p>
+            </li>
+            <li class="subtitle is-4">
+              <p class="subtitle is-4">
+                repeat step 2. to 4. until you've found the root value or it's under your acceptable
+                error. The root value or the answer is going to be the last <katex-element expression="c" /> that you can find
+                when <katex-element expression="f(c)" /> equals <katex-element expression="0" />.
+              </p>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="hero is-medium is-sailor-blue">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title is-1 has-text-light-blue">
+          Example
+        </h1>
+        <h3 class="subtitle is-3">
+          Find the root value of <katex-element expression="f(x) = sin(x)" />
+        </h3>
+      </div>
+    </div>
+  </section>
+</div>

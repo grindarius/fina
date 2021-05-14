@@ -4,11 +4,13 @@ import Sources from './globals/sources/sources.vue'
 
 import SignificantDigits from './first-semester/significant-digits/significant-digits.vue'
 import DecimalPoints from './first-semester/decimal-points/decimal-points.vue'
+import Bisection from './first-semester/bisection/bisection.vue'
 
 export {
   Home,
   About,
   Sources,
   SignificantDigits,
-  DecimalPoints
+  DecimalPoints,
+  Bisection
 }

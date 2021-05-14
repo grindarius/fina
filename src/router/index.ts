@@ -31,6 +31,11 @@ const routes: Array<RouteConfig> = [
     component: Pages.DecimalPoints
   },
   {
+    path: '/bisection',
+    name: 'Bisection Method',
+    component: Pages.Bisection
+  },
+  {
     path: '*',
     redirect: '/'
   }
