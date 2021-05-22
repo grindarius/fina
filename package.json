@@ -7,7 +7,7 @@
   "author": "Bhattarapong Somwong <numbbutt34685@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "vue-cli-service serve",
+    "serve": "node egg.js && vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint && npx stylelint \"**/*.scss\""
   },
@@ -27,6 +27,7 @@
   "devDependencies": {
     "@types/d3": "^6.3.0",
     "@types/mathjs": "^6.0.12",
+    "@types/node": "^15.3.0",
     "@typescript-eslint/eslint-plugin": "^4.22.1",
     "@typescript-eslint/parser": "^4.22.1",
     "@vue/cli-plugin-eslint": "^4.5.13",
