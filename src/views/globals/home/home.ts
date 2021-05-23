@@ -9,6 +9,7 @@ import { Vue, Component } from 'vue-property-decorator'
 })
 export default class Home extends Vue {
   private readonly expression = 'x^3 - x - 1'
+
   private readonly points: Array<Coordinate> = [
     {
       x: 1.5,
