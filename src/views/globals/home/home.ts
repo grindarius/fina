@@ -1,6 +1,7 @@
 import Grapher from '@/components/grapher/grapher.vue'
 import { Coordinate } from '@/types'
-import { Vue, Component } from 'vue-property-decorator'
+import { Vue, Component, Watch } from 'vue-property-decorator'
+import dayjs from 'dayjs'
 
 @Component({
   components: {
@@ -9,6 +10,7 @@ import { Vue, Component } from 'vue-property-decorator'
 })
 export default class Home extends Vue {
   private readonly expression = 'x^3 - x - 1'
+  private init = dayjs().subtract(1, 'months').startOf('month').toDate()
 
   private readonly points: Array<Coordinate> = [
     {
@@ -44,4 +46,14 @@ export default class Home extends Vue {
       y: -0.00621
     }
   ]
+
+  private mounted (): void {
+    console.log(this.init.toISOString())
+  }
+
+  @Watch('init')
+  private onInitChange (): void {
+    this.init.setUTCHours(0, 0, 0, 0)
+    console.log(this.init.toISOString())
+  }
 }
