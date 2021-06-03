@@ -3,11 +3,12 @@ import { Coordinate } from '@/types'
 import { Vue, Component } from 'vue-property-decorator'
 
 @Component({
+  name: 'Home',
   components: {
     grapher: Grapher
   }
 })
-export default class Home extends Vue {
+export default class HomePage extends Vue {
   private readonly expression = 'x^3 - x - 1'
 
   private readonly points: Array<Coordinate> = [

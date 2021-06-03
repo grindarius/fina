@@ -8,7 +8,7 @@ interface CardData {
 }
 
 @Component
-export default class SignificantDigits extends Vue {
+export default class SignificantDigitsPage extends Vue {
   private cardDescription: Array<CardData> = [
     {
       fullNumber: '3650',
