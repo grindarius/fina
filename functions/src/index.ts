@@ -21,4 +21,4 @@ const createServer = async (): Promise<void> => {
   })
 }
 
-createServer().then(() => {}).catch(e => { console.error(e.message as string) })
+createServer().catch(e => { console.error(e.message as string) })
