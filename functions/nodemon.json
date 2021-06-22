@@ -6,5 +6,5 @@
   "ignore": [
     "node_modules"
   ],
-  "exec": "yarn build && yarn serve"
+  "exec": "npm run build && npm run serve"
 }

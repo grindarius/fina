@@ -1,9 +1,10 @@
-import { FastifyInstance, FastifyReply, FastifyPluginOptions } from 'fastify'
+import { FastifyInstance, FastifyPluginOptions } from 'fastify'
 
-export default async function (fastify: FastifyInstance, options: FastifyPluginOptions, done: (err?: Error | undefined) => void): Promise<void> {
-  fastify.get('/', options, async (_, rep: FastifyReply) => {
-    return await rep.send('lmao from routes')
+export default async function (instance: FastifyInstance, _: FastifyPluginOptions): Promise<void> {
+  instance.get('/', async () => {
+    return {
+      author: 'Bhattarapong Somwong',
+      description: 'Please contact bhattarapongs62@nu.ac.th for contrubition.'
+    }
   })
-
-  done()
 }

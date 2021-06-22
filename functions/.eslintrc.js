@@ -4,6 +4,9 @@ module.exports = {
     es2021: true,
     node: true
   },
+  rules: {
+    'no-void': ['error', { allowAsStatement: true }]
+  },
   overrides: [
     {
       files: ['*.ts'],

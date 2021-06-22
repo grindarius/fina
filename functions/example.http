@@ -1,0 +1,14 @@
+@host = http://127.0.0.1:3000
+
+GET {{ host }} HTTP/1.1
+Content-Type: application/json
+
+###
+
+GET {{ host }}/significant-difference?input=4250 HTTP/1.1
+Content-Type: application/json
+
+###
+
+GET {{ host }}/bisection?expression=x^3 - x - 1&start=1&end=3 HTTP/1.1
+Content-Type: application/json

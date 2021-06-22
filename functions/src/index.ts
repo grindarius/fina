@@ -1,24 +1,24 @@
-import Fastify from 'fastify'
+import Fastify, { FastifyInstance } from 'fastify'
 import path from 'path'
 import autoload from 'fastify-autoload'
 import cors from 'fastify-cors'
 
 const PORT = 3000
 
-const createServer = async (): Promise<void> => {
+const createServer = (): FastifyInstance => {
   const fastify = Fastify()
 
-  await fastify.register(cors)
+  void fastify.register(cors)
 
-  await fastify.register(autoload, {
+  void fastify.register(autoload, {
     dir: path.join(__dirname, 'routes')
   })
 
-  await fastify.listen(PORT).then((address) => {
-    console.log(`server is running at ${address}`)
-  }).catch(e => {
-    console.error(e.message as string)
-  })
+  return fastify
 }
 
-createServer().catch(e => { console.error(e.message as string) })
+createServer().listen(PORT).then((address) => {
+  console.log(`Server is running at ${address}`)
+}).catch((e) => {
+  console.error(e.message as string)
+})

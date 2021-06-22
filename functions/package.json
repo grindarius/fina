@@ -13,9 +13,11 @@
     "serve:watch": "nodemon"
   },
   "dependencies": {
+    "@sinclair/typebox": "^0.16.7",
     "fastify": "^3.16.2",
     "fastify-autoload": "^3.7.1",
-    "fastify-cors": "^6.0.1"
+    "fastify-cors": "^6.0.1",
+    "fastify-helmet": "^5.3.1"
   },
   "devDependencies": {
     "@types/node": "^15.6.1",
@@ -26,6 +28,6 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^5.1.0",
     "nodemon": "^2.0.7",
-    "typescript": "^4.3.2"
+    "typescript": "^4.2.4"
   }
 }

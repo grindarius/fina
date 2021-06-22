@@ -1,9 +1,21 @@
-import { FastifyInstance, FastifyReply, FastifyPluginOptions } from 'fastify'
+import { FastifyInstance, FastifySchema, FastifyPluginOptions } from 'fastify'
+import { Answer, BisectionQuerystring, BaseQuerystringSchema } from '../../types'
+import * as bisection from '../../services/bisection'
 
-export default async function (fastify: FastifyInstance, options: FastifyPluginOptions, done: (err?: Error | undefined) => void): Promise<void> {
-  fastify.get('/', options, async (_, rep: FastifyReply) => {
-    return await rep.send('lmao from bisection')
+const schema: FastifySchema = {
+  querystring: BaseQuerystringSchema
+}
+
+export default async function (instance: FastifyInstance, _: FastifyPluginOptions): Promise<void> {
+  instance.get<{ Querystring: BisectionQuerystring }>('/', { schema }, async (request, _) => {
+    const expression = request.query.expression
+    const a = request.query.start
+    const b = request.query.end
+    const iteration = request.query.iteration ?? 5
+    const decimalPoint = request.query.decimalPoint ?? 4
+
+    const answer: Array<Answer> = bisection.iteration(expression, a, b, iteration, decimalPoint)
+
+    return answer
   })
-
-  done()
 }

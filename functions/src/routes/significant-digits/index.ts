@@ -1,9 +1,17 @@
-import { FastifyInstance, FastifyReply, FastifyPluginOptions } from 'fastify'
+import { FastifyInstance, FastifyPluginOptions, FastifySchema } from 'fastify'
+import { SignificantDifferenceSchema, SignificantDifferenceQuerystring } from '../../types'
+import * as significantDifference from '../../services/significant-difference'
 
-export default async function (fastify: FastifyInstance, options: FastifyPluginOptions, done: (err?: Error | undefined) => void): Promise<void> {
-  fastify.get('/', options, async (_, rep: FastifyReply) => {
-    return await rep.send('lmao from sig')
+const schema: FastifySchema = {
+  querystring: SignificantDifferenceSchema
+}
+
+export default async function (fastify: FastifyInstance, _: FastifyPluginOptions): Promise<void> {
+  fastify.get<{ Querystring: SignificantDifferenceQuerystring }>('/', { schema }, async (request) => {
+    const input = request.query.input
+
+    const answer = significantDifference.calculate(input)
+
+    return answer
   })
-
-  done()
 }
