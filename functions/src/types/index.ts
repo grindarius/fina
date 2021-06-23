@@ -12,10 +12,10 @@ interface BaseAnswerObject {
   error: number
 }
 
-export const SignificantDifferenceSchema = Type.Object({
+export const SignificantDigitsSchema = Type.Object({
   input: Type.String()
 })
-export type SignificantDifferenceQuerystring = Static<typeof SignificantDifferenceSchema>
+export type SignificantDigitsQuerystring = Static<typeof SignificantDigitsSchema>
 
 export const BaseQuerystringSchema = Type.Object({
   expression: Type.String(),

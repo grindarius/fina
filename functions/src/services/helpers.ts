@@ -5,7 +5,6 @@ import * as math from 'mathjs'
  *
  * @param expression an expression to be calculated
  * @param x an x value to put in
- *
  * @return a calculated value
  */
 export function evaluateFunction (expression: string, x: number): number {
@@ -17,7 +16,6 @@ export function evaluateFunction (expression: string, x: number): number {
  *
  * @param current current value
  * @param approximated your desired or approximated value
- *
  * @return absolute error in percent form.
  */
 export function absoluteError (current: number, approximated: number): number {
@@ -29,7 +27,6 @@ export function absoluteError (current: number, approximated: number): number {
  *
  * @param current current value that you can calculate
  * @param previous last value
- *
  * @return relative error in percent form.
  */
 export function relativeError (current: number, previous: number): number {
@@ -41,7 +38,6 @@ export function relativeError (current: number, previous: number): number {
  *
  * @param numberToRound a number that you want to round
  * @param decimalPoint a desired decimal points, 0 if you don't want any rounding
- *
  * @return a rounded number to your desired decimal points
  */
 export function round (numberToRound: number, decimalPoint: number): number {
