@@ -4,16 +4,16 @@
       <p class="docs-label">
         MENU
       </p>
-      <ul v-for="(item, i) in mainKeys" :key="'Docs item ' + i" class="docs-list">
+      <ul v-for="(item, index) in mainKeys" :key="'Docs item ' + index" class="docs-list">
         <li class="docs-list-item">
-          <a class="docs-link">
-            {{ item }}
+          <a :href="item.link" class="docs-link">
+            {{ item.name }}
           </a>
         </li>
         <ul class="docs-inner-list">
-          <li v-for="(header, i) in listItems[item]" :key="'Docs inner item ' + i" class="docs-inner-list-item">
-            <a class="docs-link">
-              {{ header }}
+          <li v-for="(header, index) in getNestedKeys(index)" :key="'Docs inner item ' + index" class="docs-inner-list-item">
+            <a :href="header.link" class="docs-link">
+              {{ header.name }}
             </a>
           </li>
         </ul>

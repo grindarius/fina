@@ -1,5 +1,5 @@
 <div class="significant-digits-page">
-  <section class="hero">
+  <section id="significant-digits" class="hero">
     <div class="hero-body">
       <div class="container">
         <h1 class="title is-1">
@@ -11,10 +11,10 @@
       </div>
     </div>
   </section>
-  <section class="hero">
+  <section id="description" class="hero">
     <div class="hero-body">
       <div class="container">
-        <h1 class="title is-1">
+        <h1 class="title is-2">
           Description
         </h1>
         <p class="subtitle is-indented">
@@ -28,10 +28,10 @@
       </div>
     </div>
   </section>
-  <section class="hero">
+  <section id="rules" class="hero">
     <div class="hero-body">
       <div class="container">
-        <h1 class="title is-1">
+        <h1 class="title is-2">
           Rules
         </h1>
         <div class="content">
@@ -107,35 +107,28 @@
       </div>
     </div>
   </section>
-  <section class="hero is-white">
+  <section id="examples" class="hero is-white">
     <div class="hero-body">
       <div class="container">
-        <h1 class="title is-1">
-          Example
+        <h1 class="title is-2">
+          Examples
         </h1>
-        <h3 class="subtitle is-3">
-          Find the significant digits in these numbers.
+        <h3 class="subtitle">
+          Find the significant digits in these numbers. Click on each box to display the answer :)
         </h3>
         <div class="columns">
           <div class="column">
 
-            <div class="card" v-for="(card, index) in cardDescription" :key="index">
+            <div class="card" v-for="(card, index) in cardDescription" @click="toggleCard(index)" :key="index">
               <div class="card-content">
-                <div class="level">
-                  <div class="level-left">
-                    <p class="title is-4 has-text-black" v-show="!card.show">{{ card.fullNumber }}</p>
-                    <div class="answer" v-show="card.show">
-                      <p class="title has-text-black">
-                        {{ card.answer[0] }}<span class="has-text-info">{{ card.answer[1] }}</span>{{ card.answer[2] }}
-                      </p>
-                      <p class="subtitle is-6 has-text-black is-indented">
-                        {{ card.answerDescription }}
-                      </p>
-                    </div>
-                  </div>
-                  <div class="level-right">
-                    <b-button type="is-info" @click="toggleCard(index)">Show Answer</b-button>
-                  </div>
+                <p class="title is-4 has-text-black" v-show="!card.show">{{ card.fullNumber }}</p>
+                <div class="answer" v-show="card.show">
+                  <p class="title has-text-black">
+                    <span class="title is-4 has-text-info">{{ card.answer[0] }}</span><span class="title is-4 has-text-info">{{ card.answer[1] }}</span><span class="title is-4 has-text-info">{{ card.answer[2] }}</span>
+                  </p>
+                  <p class="subtitle is-6 has-text-black is-indented">
+                    {{ card.answerDescription }}
+                  </p>
                 </div>
               </div>
             </div>

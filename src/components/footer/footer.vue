@@ -30,3 +30,12 @@ import { Component, Vue } from 'vue-property-decorator'
 @Component
 export default class FooterComponent extends Vue {}
 </script>
+
+<style scoped lang="scss">
+$gray-border: rgb(230, 230, 230);
+
+.footer {
+  background-color: rgb(255, 255, 255);
+  border-top: 2px solid $gray-border;
+}
+</style>
