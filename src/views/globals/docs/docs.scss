@@ -15,8 +15,16 @@ main {
 .docs-sidebar {
   width: 20rem;
   position: fixed;
-  min-height: 100vh;
+  height: 100vh;
   background-color: rgb(255, 255, 255);
+  overflow-y: scroll;
+  padding-bottom: 3rem;
+}
+
+.docs-inner-list {
+  padding-left: 0.75em;
+  border-left: 1px solid rgb(219, 219, 219);
+  margin: 0.75em;
 }
 
 .docs-sidebar-wrapper {
@@ -26,6 +34,13 @@ main {
 .docs-list {
   line-height: 1.25;
   padding: 0.5em 0.75em;
+
+  a {
+    border-radius: 2px;
+    color: rgb(74, 74, 74);
+    display: block;
+    padding: 0.5em 0.75em;
+  }
 }
 
 .docs-sidebar-list {

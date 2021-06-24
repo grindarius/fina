@@ -10,28 +10,28 @@ const height = 700 - margins.top - margins.bottom
 @Component
 export default class IndexGraph extends Vue {
   @Prop({ default: 'x^2' })
-  private expression: string
+  expression: string
 
   @Prop({ default: () => [] })
-  private points: Array<Coordinate>
+  points: Array<Coordinate>
 
-  private data: Array<Coordinate> = []
-  private timeFactor = 100
+  data: Array<Coordinate> = []
+  timeFactor = 100
 
-  private svg: d3.Selection<SVGGElement, unknown, HTMLElement, unknown>
-  private line: d3.Selection<SVGGElement, unknown, HTMLElement, unknown>
-  private dots: d3.Selection<SVGGElement, unknown, HTMLElement, unknown>
-  private x: d3.ScaleLinear<number, number, never>
-  private y: d3.ScaleLinear<number, number, never>
-  private xAxis: d3.Selection<SVGGElement, unknown, HTMLElement, unknown>
-  private yAxis: d3.Selection<SVGGElement, unknown, HTMLElement, unknown>
+  svg: d3.Selection<SVGGElement, unknown, HTMLElement, unknown>
+  line: d3.Selection<SVGGElement, unknown, HTMLElement, unknown>
+  dots: d3.Selection<SVGGElement, unknown, HTMLElement, unknown>
+  x: d3.ScaleLinear<number, number, never>
+  y: d3.ScaleLinear<number, number, never>
+  xAxis: d3.Selection<SVGGElement, unknown, HTMLElement, unknown>
+  yAxis: d3.Selection<SVGGElement, unknown, HTMLElement, unknown>
 
-  private mounted (): void {
+  mounted (): void {
     this.data = this.calculateData(-5, 5)
     this.generateChart()
   }
 
-  private generateChart (): void {
+  generateChart (): void {
     this.svg = d3.select('#graph')
       .append('svg')
       .attr('width', width + margins.left + margins.right)
@@ -88,7 +88,7 @@ export default class IndexGraph extends Vue {
       .call(zoom)
   }
 
-  private drawDots (): void {
+  drawDots (): void {
     this.dots
       .selectAll()
       .data(this.points)
@@ -101,7 +101,7 @@ export default class IndexGraph extends Vue {
       .style('fill', '#240743')
   }
 
-  private drawGridline (): void {
+  drawGridline (): void {
     d3.selectAll('g.x-axis g.tick')
       .append('line')
       .classed('gridline', true)
@@ -125,7 +125,7 @@ export default class IndexGraph extends Vue {
       .style('stroke-opacity', d => d === 0 ? 0.5 : 0)
   }
 
-  private drawLine (): void {
+  drawLine (): void {
     this.line
       .append('path')
       .datum(this.data)
@@ -140,7 +140,7 @@ export default class IndexGraph extends Vue {
   }
 
   /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
-  private zoomed (event: any): void {
+  zoomed (event: any): void {
     d3.selectAll('.gridline').remove()
 
     const newX = event.transform.rescaleX(this.x)
@@ -166,7 +166,7 @@ export default class IndexGraph extends Vue {
   }
 
   /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
-  private zoomEnded (event: any): void {
+  zoomEnded (event: any): void {
     d3.select('.data-line').remove()
     const newX = event.transform.rescaleX(this.x)
     const newY = event.transform.rescaleY(this.y)
@@ -187,7 +187,7 @@ export default class IndexGraph extends Vue {
       )
   }
 
-  private calculateData (left: number, right: number): Array<Coordinate> {
+  calculateData (left: number, right: number): Array<Coordinate> {
     if (left > right) throw new Error('Error: left is greater than right')
 
     const delta = right - left

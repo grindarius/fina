@@ -6,30 +6,19 @@
       </p>
       <ul v-for="(item, i) in mainKeys" :key="'Docs item ' + i" class="docs-list">
         <li class="docs-list-item">
-          {{ item }}
+          <a class="docs-link">
+            {{ item }}
+          </a>
         </li>
         <ul class="docs-inner-list">
           <li v-for="(header, i) in listItems[item]" :key="'Docs inner item ' + i" class="docs-inner-list-item">
-            {{ header }}
+            <a class="docs-link">
+              {{ header }}
+            </a>
           </li>
         </ul>
       </ul>
     </div>
-
-    <b-menu :accordion="false">
-      <b-menu-list label="Menu">
-        <b-menu-item v-for="item in Object.keys(listItems)" expanded>
-          <template #label>
-            {{ item }}
-          </template>
-          <b-menu-item v-for="nestedItem in listItems[item]">
-            <template #label>
-              {{ nestedItem }}
-            </template>
-          </b-menu-item>
-        </b-menu-item>
-      </b-menu-list>
-    </b-menu>
   </nav>
 
   <main>

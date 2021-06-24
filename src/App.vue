@@ -42,36 +42,36 @@ import { NavbarMenu } from '@/types'
   }
 })
 export default class App extends Vue {
-  private get firstSemesterNavbarMenu (): Array<NavbarMenu> {
+  get firstSemesterNavbarMenu (): Array<NavbarMenu> {
     return [
-      { name: 'Significant Digits', path: '/significant-digits' },
-      { name: 'Decimal Points', path: '/decimal-points' },
-      { name: 'Bisection Method', path: '/bisection' },
-      { name: 'False Position Method', path: '/false-position' },
-      { name: 'Fixed Point Iteration Method', path: '/fixed-point-iteration' },
-      { name: 'Newton\'s Method', path: '/newton' },
-      { name: 'Secant Method', path: '/secant' },
-      { name: 'Gauss Seidel Method', path: '/gauss-seidel' }
+      { name: 'Significant Digits', path: '/docs/significant-digits' },
+      { name: 'Decimal Points', path: '/docs/decimal-points' },
+      { name: 'Bisection Method', path: '/docs/bisection' },
+      { name: 'False Position Method', path: '/docs/false-position' },
+      { name: 'Fixed Point Iteration Method', path: '/docs/fixed-point-iteration' },
+      { name: 'Newton\'s Method', path: '/docs/newton' },
+      { name: 'Secant Method', path: '/docs/secant' },
+      { name: 'Gauss Seidel Method', path: '/docs/gauss-seidel' }
     ]
   }
 
-  private get secondSemesterNavbarMenu (): Array<NavbarMenu> {
+  get secondSemesterNavbarMenu (): Array<NavbarMenu> {
     return [
-      { name: 'Jacobi Method', path: '/jacobi' },
-      { name: 'Newton\'s Divided Difference', path: '/divided-difference' },
-      { name: 'Newton\'s Forward Difference', path: '/forward-difference' },
-      { name: 'Newton\'s Backward Difference', path: '/backward-difference' },
-      { name: 'Lagrange Polynomial', path: '/lagrange' },
-      { name: 'Regression Equation', path: '/regression' },
-      { name: 'Trapezoidal Rule', path: '/trapezoidal' },
-      { name: 'Simpson\'s 1/3 Rule', path: '/simpsons-one-third' },
+      { name: 'Jacobi Method', path: '/docs/jacobi' },
+      { name: 'Newton\'s Divided Difference', path: '/docs/divided-difference' },
+      { name: 'Newton\'s Forward Difference', path: '/docs/forward-difference' },
+      { name: 'Newton\'s Backward Difference', path: '/docs/backward-difference' },
+      { name: 'Lagrange Polynomial', path: '/docs/lagrange' },
+      { name: 'Regression Equation', path: '/docs/regression' },
+      { name: 'Trapezoidal Rule', path: '/docs/trapezoidal' },
+      { name: 'Simpson\'s 1/3 Rule', path: '/docs/simpsons-one-third' },
       { name: 'Simpson\'s 3/8 Rule', path: '/simpsons-three-eights' },
-      { name: 'Romberg\'s Method', path: '/romberg' },
-      { name: 'Euler\'s Method', path: '/euler' }
+      { name: 'Romberg\'s Method', path: '/docs/romberg' },
+      { name: 'Euler\'s Method', path: '/docs/euler' }
     ]
   }
 
-  private get miscellaneousNavbarMenu (): Array<NavbarMenu> {
+  get miscellaneousNavbarMenu (): Array<NavbarMenu> {
     return [
       { name: 'About', path: '/about' },
       { name: 'Sources', path: '/sources' }

@@ -1,7 +1,7 @@
 import { Vue, Component } from 'vue-property-decorator'
 import FooterComponent from '@/components/footer/footer.vue'
 
-interface CardData {
+interface SignificantDigitsCardData {
   fullNumber: string
   answer: [string, string, string]
   answerDescription: string
@@ -14,7 +14,7 @@ interface CardData {
   }
 })
 export default class SignificantDigitsPage extends Vue {
-  private cardDescription: Array<CardData> = [
+  cardDescription: Array<SignificantDigitsCardData> = [
     {
       fullNumber: '3650',
       answer: ['', '365', '0'],
@@ -75,7 +75,7 @@ export default class SignificantDigitsPage extends Vue {
     }
   ]
 
-  private toggleCard (cardNumber: number): void {
+  toggleCard (cardNumber: number): void {
     this.cardDescription[cardNumber].show = !this.cardDescription[cardNumber].show
   }
 }
