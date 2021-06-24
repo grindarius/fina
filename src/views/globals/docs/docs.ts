@@ -15,6 +15,20 @@ interface DocsSidebarData {
 export default class DocsLandingPage extends Vue {
   listItemsWithRoute: Array<DocsSidebarData> = [
     {
+      name: 'Getting Started',
+      link: '/docs',
+      components: [
+        {
+          name: 'Getting Started',
+          link: '/docs#getting-started'
+        },
+        {
+          name: 'What is FINA',
+          link: '/docs#what-is-fina'
+        }
+      ]
+    },
+    {
       name: 'Significant Digits',
       link: '/docs/significant-digits',
       components: [
@@ -73,46 +87,6 @@ export default class DocsLandingPage extends Vue {
       ]
     }
   ]
-
-  listItems: Record<string, Array<string>> = {
-    'Significant Digits': [
-      'Significant Digits',
-      'Description',
-      'Input Constraints',
-      'Steps to Reproduce',
-      'Example'
-    ],
-    'Significant ddd': [
-      'Significant Digits',
-      'Description',
-      'Input Constraints',
-      'Steps to Reproduce',
-      'Example'
-    ],
-    'Decimal Points': [
-      'Decimal Points'
-    ],
-    'Bisection': [
-      'Bisection',
-      'Description'
-    ],
-    'lmao': [
-      'Bisection',
-      'Description'
-    ],
-    'lmao2': [
-      'Bisection',
-      'Description'
-    ],
-    'dijikstra': [
-      'Bisection',
-      'Description'
-    ],
-    'ddd': [
-      'Bisection',
-      'Description'
-    ]
-  }
 
   get mainKeys (): Array<DocsSidebarNestedLink> {
     return this.listItemsWithRoute.map(item => { return { name: item.name, link: item.link } })
