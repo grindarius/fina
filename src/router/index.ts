@@ -21,19 +21,30 @@ const routes: Array<RouteConfig> = [
     component: Pages.Sources
   },
   {
-    path: '/significant-digits',
-    name: 'Significant Digits',
-    component: Pages.SignificantDigits
-  },
-  {
-    path: '/decimal-points',
-    name: 'Decimal Points',
-    component: Pages.DecimalPoints
-  },
-  {
-    path: '/bisection',
-    name: 'Bisection Method',
-    component: Pages.Bisection
+    path: '/docs',
+    component: Pages.Docs,
+    children: [
+      {
+        path: '/',
+        name: 'Docs Root',
+        component: Pages.GettingStarted
+      },
+      {
+        path: 'significant-digits',
+        name: 'Significant Digits',
+        component: Pages.SignificantDigits
+      },
+      {
+        path: 'decimal-points',
+        name: 'Decimal Points',
+        component: Pages.DecimalPoints
+      },
+      {
+        path: 'bisection',
+        name: 'Bisection Method',
+        component: Pages.Bisection
+      }
+    ]
   },
   {
     path: '*',

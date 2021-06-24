@@ -1,8 +1,8 @@
 <div class="significant-digits-page">
-  <section class="hero is-sailor-blue is-medium">
+  <section class="hero">
     <div class="hero-body">
       <div class="container">
-        <h1 class="title is-1 has-text-light-blue">
+        <h1 class="title is-1">
           Significant Digits
         </h1>
         <h3 class="subtitle is-3">
@@ -11,14 +11,14 @@
       </div>
     </div>
   </section>
-  <section class="hero is-medium">
+  <section class="hero">
     <div class="hero-body">
       <div class="container">
         <h1 class="title is-1">
           Description
         </h1>
-        <p class="subtitle is-4 is-indented">
-          Significant Digits or <katex-element expression="SD" /> is the number that is absolutely necessary
+        <p class="subtitle is-indented">
+          Significant Digits, or <katex-element expression="SD" /> is the number that is absolutely necessary
           to indicate the quantity of something. If a number expressing the result
           of measurement of something (e.g., length, pressure, volume, or mass)
           has more digits than the digits allowed by the measurement resolution,
@@ -28,64 +28,64 @@
       </div>
     </div>
   </section>
-  <section class="hero is-medium is-sailor-blue">
+  <section class="hero">
     <div class="hero-body">
       <div class="container">
-        <h1 class="title is-1 has-text-light-blue">
+        <h1 class="title is-1">
           Rules
         </h1>
         <div class="content">
           <ol>
-            <li class="subtitle is-4">
-              <p class="subtitle is-4">
+            <li class="subtitle">
+              <p class="subtitle">
                 All non-zero numbers are significant digits,
                 e.g., 846 has 3 significant digits, 8, 4, and 6.
               </p>
             </li>
-            <li class="subtitle is-4">
-              <p class="subtitle is-4">
+            <li class="subtitle">
+              <p class="subtitle">
                 All zeros between non-zero numbers are significant digits,
                 e.g., 5005 has 4 significant digits,
                 5, 0 (on hundreds place), 0 (on tens place), and 5.
               </p>
             </li>
-            <li class="subtitle is-4">
-              <p class="subtitle is-4">
+            <li class="subtitle">
+              <p class="subtitle">
                 <b>Leading Zeros</b>, meaning zeros before any non-zero numbers, is <b>never</b>
                 significant in both float and integer, for example.
               <ul>
                 <li>
-                  <p class="subtitle is-4">
+                  <p class="subtitle">
                     0.0074 has 2 significant digits, 7 and 4.
                   </p>
                 </li>
                 <li>
-                  <p class="subtitle is-4">
+                  <p class="subtitle">
                     013 has 2 significant digits, 1 and 3.
                   </p>
                 </li>
               </ul>
               </p>
             </li>
-            <li class="subtitle is-4">
-              <p class="subtitle is-4">
+            <li class="subtitle">
+              <p class="subtitle">
                 All zeros after non-zero numbers (called <b>Trailing Zeros</b>), well, this depends.
               <ul>
                 <li>
-                  <p class="subtitle is-4">
+                  <p class="subtitle">
                     If it's an integer e.g. 400, then we won't count those 2 zeros,
                     so this one will have 1 significant digits, 4.
                   </p>
                 </li>
                 <li>
-                  <p class="subtitle is-4">
+                  <p class="subtitle">
                     If it's a float <b>without</b> zeros behind the dot, e.g., 540.,
                     then we count the zero before the dot too, so this one will have 3 significant digits,
                     5, 4, and 0.
                   </p>
                 </li>
                 <li>
-                  <p class="subtitle is-4">
+                  <p class="subtitle">
                     If it's an ordinary float, e.g. 400.00, then we count all the zeros both before
                     and after the dot, so this one will have 5 significant digits,
                     4, 0 (on tens place), 0 (one ones place), 0 (on tenths place), and 0 (on hundredths place).
@@ -94,8 +94,8 @@
               </ul>
               </p>
             </li>
-            <li class="subtitle is-4">
-              <p class="subtitle is-4">
+            <li class="subtitle">
+              <p class="subtitle">
                 Numbers in scientific notation <katex-element expression="N \times 10^x" />, all digits comprising <katex-element expression="N" />
                 are significant by the rules above, <katex-element expression="10" /> and <katex-element expression="x" /> are <b>NOT</b>
                 significant, e.g., <katex-element expression="5.02 \times 10^3" /> has 3 significant digits,
@@ -107,7 +107,7 @@
       </div>
     </div>
   </section>
-  <section class="hero is-medium is-white">
+  <section class="hero is-white">
     <div class="hero-body">
       <div class="container">
         <h1 class="title is-1">
@@ -125,7 +125,7 @@
                   <div class="level-left">
                     <p class="title is-4 has-text-black" v-show="!card.show">{{ card.fullNumber }}</p>
                     <div class="answer" v-show="card.show">
-                      <p class="title is-4 has-text-black">
+                      <p class="title has-text-black">
                         {{ card.answer[0] }}<span class="has-text-info">{{ card.answer[1] }}</span>{{ card.answer[2] }}
                       </p>
                       <p class="subtitle is-6 has-text-black is-indented">
@@ -145,4 +145,5 @@
       </div>
     </div>
   </section>
+  <breadcrumb-footer />
 </div>

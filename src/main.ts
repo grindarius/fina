@@ -3,6 +3,8 @@ import App from './App.vue'
 import router from './router'
 import Buefy from 'buefy'
 import VueKatex from 'vue-katex'
+
+import '@mdi/font/css/materialdesignicons.css'
 import './globals.scss'
 import 'katex/dist/katex.min.css'
 

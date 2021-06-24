@@ -1,8 +1,8 @@
 <div class="bisection-page">
-  <section class="hero is-sailor-blue is-medium">
+  <section class="hero">
     <div class="hero-body">
       <div class="container">
-        <h1 class="title is-1 has-text-light-blue">
+        <h1 class="title is-1">
           Bisection
         </h1>
         <h3 class="subtitle is-3">
@@ -11,13 +11,13 @@
       </div>
     </div>
   </section>
-  <section class="hero is-medium">
+  <section class="hero">
     <div class="hero-body">
       <div class="container">
         <h1 class="title is-1">
           Description
         </h1>
-        <p class="subtitle is-4 is-indented">
+        <p class="subtitle is-indented">
           Bisection method is a root-finding method that for every interval happens,
           it will slice each section by half towards the side that the root will be.
           It is very simple but really slow, so it is mostly used to find rough approximation
@@ -26,21 +26,21 @@
       </div>
     </div>
   </section>
-  <section class="hero is-sailor-blue is-medium">
+  <section class="hero">
     <div class="hero-body">
       <div class="container">
-        <h1 class="title is-1 has-text-light-blue">
+        <h1 class="title is-1">
           Input Constraints
         </h1>
         <div class="content">
           <ul>
             <li>
-              <p class="subtitle is-4">
+              <p class="subtitle">
                 Both starting value <katex-element expression="f(a)" /> and <katex-element expression="f(b)" /> must have opposing signs.
               </p>
             </li>
             <li>
-              <p class="subtitle is-4">
+              <p class="subtitle">
                 Between the starting value <katex-element expression="a" /> and <katex-element expression="b" /> must have the root value.
               </p>
             </li>
@@ -49,7 +49,7 @@
       </div>
     </div>
   </section>
-  <section class="hero is-medium">
+  <section class="hero">
     <div class="hero-body">
       <div class="container">
         <h1 class="title is-1">
@@ -57,35 +57,35 @@
         </h1>
         <div class="content">
           <ol>
-            <li class="subtitle is-4">
-              <p class="subtitle is-4">
+            <li class="subtitle">
+              <p class="subtitle">
                 Starts with an <katex-element expression="expression" />, starting value of the interval <katex-element expression="a" />
                 and the end of the interval <katex-element expression="b" />.
               </p>
             </li>
-            <li class="subtitle is-4">
-              <p class="subtitle is-4">
+            <li class="subtitle">
+              <p class="subtitle">
                 Find the next interval point <katex-element expression="c" /> using the formula <katex-element expression="\frac{a + b}{2}" :display-mode="true" />
               </p>
             </li>
-            <li class="subtitle is-4">
-              <p class="subtitle is-4">
+            <li class="subtitle">
+              <p class="subtitle">
                 Check the value of <katex-element expression="f(c)" />
               <ul>
                 <li>
-                  <p class="subtitle is-4">
+                  <p class="subtitle">
                     If the value of <katex-element expression="f(a) \cdot f(c)" /> is greater than <katex-element expression="0" />, then the next
                     interval to calculate is between <katex-element expression="c" /> and <katex-element expression="b" />.
                   </p>
                 </li>
                 <li>
-                  <p class="subtitle is-4">
+                  <p class="subtitle">
                     If the value of <katex-element expression="f(a) \cdot f(c)" /> is less than <katex-element expression="0" />, then the next
                     interval to calculate is between <katex-element expression="a" /> and <katex-element expression="c" />.
                   </p>
                 </li>
                 <li>
-                  <p class="subtitle is-4">
+                  <p class="subtitle">
                     If the value of <katex-element expression="f(a) \cdot f(c)" /> equals <katex-element expression="0" />, then you've found
                     the root value of the <katex-element expression="expression" />.
                   </p>
@@ -93,8 +93,8 @@
               </ul>
               </p>
             </li>
-            <li class="subtitle is-4">
-              <p class="subtitle is-4">
+            <li class="subtitle">
+              <p class="subtitle">
                 repeat step 2. to 4. until you've found the root value or it's under your acceptable
                 error. The root value or the answer is going to be the last <katex-element expression="c" /> that you can find
                 when <katex-element expression="f(c)" /> equals <katex-element expression="0" />.
@@ -105,10 +105,10 @@
       </div>
     </div>
   </section>
-  <section class="hero is-medium is-sailor-blue">
+  <section class="hero">
     <div class="hero-body">
       <div class="container">
-        <h1 class="title is-1 has-text-light-blue">
+        <h1 class="title is-1">
           Example
         </h1>
         <h3 class="subtitle is-3">
@@ -117,4 +117,5 @@
       </div>
     </div>
   </section>
+  <breadcrumb-footer />
 </div>

@@ -1,4 +1,5 @@
 import { Vue, Component } from 'vue-property-decorator'
+import FooterComponent from '@/components/footer/footer.vue'
 
 interface CardData {
   fullNumber: string
@@ -7,7 +8,11 @@ interface CardData {
   show: boolean
 }
 
-@Component
+@Component({
+  components: {
+    'breadcrumb-footer': FooterComponent
+  }
+})
 export default class SignificantDigitsPage extends Vue {
   private cardDescription: Array<CardData> = [
     {

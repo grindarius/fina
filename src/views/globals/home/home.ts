@@ -1,11 +1,13 @@
-import Grapher from '@/components/grapher/grapher.vue'
+import GrapherComponent from '@/components/grapher/grapher.vue'
+import FooterComponent from '@/components/footer/footer.vue'
 import { Coordinate } from '@/types'
 import { Vue, Component } from 'vue-property-decorator'
 
 @Component({
   name: 'Home',
   components: {
-    grapher: Grapher
+    'grapher': GrapherComponent,
+    'breadcrumb-footer': FooterComponent
   }
 })
 export default class HomePage extends Vue {
