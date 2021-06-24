@@ -1,16 +1,20 @@
-export function calculate (input: string): string {
+export function calculate (input: Array<string>): Array<string> {
   const leadingZerosRegExp: RegExp = /^\.?0*/g
   const trailingZerosRegExp: RegExp = /0+$/g
 
-  if (input.includes('.')) {
-    if (parseFloat(input) > 0) {
-      const removedLeadingZeros: string = input.replace(leadingZerosRegExp, '')
-      return removedLeadingZeros
+  const answers = input.map(item => {
+    if (item.includes('.')) {
+      if (parseFloat(item) > 0) {
+        const removedLeadingZeros: string = item.replace(leadingZerosRegExp, '')
+        return removedLeadingZeros
+      } else {
+        return item
+      }
     } else {
-      return input
+      const removedTrailingZeros: string = item.replace(trailingZerosRegExp, '')
+      return removedTrailingZeros
     }
-  } else {
-    const removedTrailingZeros: string = input.replace(trailingZerosRegExp, '')
-    return removedTrailingZeros
-  }
+  })
+
+  return answers
 }

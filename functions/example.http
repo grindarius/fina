@@ -5,7 +5,7 @@ Content-Type: application/json
 
 ###
 
-GET {{ host }}/significant-digits?input=4250 HTTP/1.1
+GET {{ host }}/significant-digits?input[]=4250&input[]=112343 HTTP/1.1
 Content-Type: application/json
 
 ###

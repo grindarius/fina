@@ -8,7 +8,7 @@ const schema: FastifySchema = {
 
 export default async function (fastify: FastifyInstance, _: FastifyPluginOptions): Promise<void> {
   fastify.get<{ Querystring: SignificantDigitsQuerystring }>('/', { schema }, async (request) => {
-    const input = request.query.input
+    const input: Array<string> = request.query.input
 
     const answer = significantDifference.calculate(input)
 

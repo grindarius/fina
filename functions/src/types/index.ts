@@ -13,18 +13,18 @@ interface BaseAnswerObject {
 }
 
 export const SignificantDigitsSchema = Type.Object({
-  input: Type.String()
+  input: Type.Array(Type.String())
 })
 export type SignificantDigitsQuerystring = Static<typeof SignificantDigitsSchema>
 
-export const BaseQuerystringSchema = Type.Object({
+export const BisectionSchema = Type.Object({
   expression: Type.String(),
   start: Type.Number(),
   end: Type.Number(),
   iteration: Type.Optional(Type.Number()),
   decimalPoint: Type.Optional(Type.Number())
 })
-export type BisectionQuerystring = Static<typeof BaseQuerystringSchema>
+export type BisectionQuerystring = Static<typeof BisectionSchema>
 
 /**
  * A raw answer object interface to store all the data that each iteration gives in, raw.

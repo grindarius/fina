@@ -1,19 +1,24 @@
 import { Component, Vue } from 'vue-property-decorator'
+import FooterComponent from '@/components/footer/footer.vue'
 
-interface DocsSidebarNestedLink {
+interface DocsSidebarLink {
   name: string
   link: string
 }
 
-interface DocsSidebarData {
+interface DocsSidebarPage {
   name: string
   link: string
-  components: Array<DocsSidebarNestedLink>
+  components: Array<DocsSidebarLink>
 }
 
-@Component
+@Component({
+  components: {
+    'breadcrumb-footer': FooterComponent
+  }
+})
 export default class DocsLandingPage extends Vue {
-  listItemsWithRoute: Array<DocsSidebarData> = [
+  listItemsWithRoute: Array<DocsSidebarPage> = [
     {
       name: 'Getting Started',
       link: '/docs',
@@ -75,11 +80,11 @@ export default class DocsLandingPage extends Vue {
     }
   ]
 
-  get mainKeys (): Array<DocsSidebarNestedLink> {
+  get mainKeys (): Array<DocsSidebarLink> {
     return this.listItemsWithRoute.map(item => { return { name: item.name, link: item.link } })
   }
 
-  getNestedKeys (index: number): Array<DocsSidebarNestedLink> {
+  getNestedKeys (index: number): Array<DocsSidebarLink> {
     return this.listItemsWithRoute[index].components
   }
 }
