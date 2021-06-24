@@ -25,6 +25,10 @@ export default class DocsLandingPage extends Vue {
         {
           name: 'What is FINA',
           link: '/docs#what-is-fina'
+        },
+        {
+          name: 'Features',
+          link: '/docs#features'
         }
       ]
     },

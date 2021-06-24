@@ -23,6 +23,34 @@
         </div>
       </div>
     </section>
+    <section id="features" class="hero">
+      <div class="hero-body">
+        <div class="container">
+          <h1 class="title is-2">
+            Features
+          </h1>
+          <div class="content">
+            <ul>
+              <li>
+                <p class="subtitle">
+                  Calculate answers for many topics in Numerical Analysis.
+                </p>
+              </li>
+              <li>
+                <p class="subtitle">
+                  Short and straight to the point explanation and examples.
+                </p>
+              </li>
+              <li>
+                <p class="subtitle">
+                  Easy to use UI
+                </p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
 </template>
 
