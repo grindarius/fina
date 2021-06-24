@@ -19,10 +19,6 @@ export default class DocsLandingPage extends Vue {
       link: '/docs',
       components: [
         {
-          name: 'Getting Started',
-          link: '/docs#getting-started'
-        },
-        {
           name: 'What is FINA',
           link: '/docs#what-is-fina'
         },
@@ -36,10 +32,6 @@ export default class DocsLandingPage extends Vue {
       name: 'Significant Digits',
       link: '/docs/significant-digits',
       components: [
-        {
-          name: 'Significant Digits',
-          link: '/docs/significant-digits#significant-digits'
-        },
         {
           name: 'Description',
           link: '/docs/significant-digits#description'
@@ -57,21 +49,12 @@ export default class DocsLandingPage extends Vue {
     {
       name: 'Decimal Points',
       link: '/docs/decimal-points',
-      components: [
-        {
-          name: 'Decimal Points',
-          link: '/docs/decimal-points#decimal-points'
-        }
-      ]
+      components: []
     },
     {
       name: 'Bisection',
       link: '/docs/bisection',
       components: [
-        {
-          name: 'Bisection',
-          link: '/docs/bisection#bisection'
-        },
         {
           name: 'Description',
           link: '/docs/bisection#description'
