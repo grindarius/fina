@@ -6,13 +6,13 @@
       </p>
       <ul v-for="(item, index) in mainKeys" :key="'Docs item ' + index" class="docs-list">
         <li class="docs-list-item">
-          <a :href="item.link" class="docs-link">
+          <a :href="item.path" class="docs-link">
             {{ item.name }}
           </a>
         </li>
         <ul class="docs-inner-list">
           <li v-for="(header, index) in getNestedKeys(index)" :key="'Docs inner item ' + index" class="docs-inner-list-item">
-            <a :href="header.link" class="docs-link">
+            <a :href="header.path" class="docs-link">
               {{ header.name }}
             </a>
           </li>

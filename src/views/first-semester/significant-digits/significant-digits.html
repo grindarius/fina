@@ -124,7 +124,7 @@
                 <p class="title is-4 has-text-black" v-show="!card.show">{{ card.fullNumber }}</p>
                 <div class="answer" v-show="card.show">
                   <p class="title has-text-black">
-                    <span class="title is-4 has-text-info">{{ card.answer[0] }}</span><span class="title is-4 has-text-info">{{ card.answer[1] }}</span><span class="title is-4 has-text-info">{{ card.answer[2] }}</span>
+                    <span class="title is-4">{{ card.answer[0] }}</span><span class="title is-4 has-text-info">{{ card.answer[1] }}</span><span class="title is-4">{{ card.answer[2] }}</span>
                   </p>
                   <p class="subtitle is-6 has-text-black is-indented">
                     {{ card.answerDescription }}
@@ -135,6 +135,21 @@
 
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+  <section id="calculate" class="hero">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title is-2">
+          Calculate
+        </h1>
+        <b-field label="Number">
+          <b-input v-model="numberInput" @input="searchDebounce" />
+        </b-field>
+        <h3 class="subtitle">
+          Answer: {{ answerString }}
+        </h3>
       </div>
     </div>
   </section>

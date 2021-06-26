@@ -1,4 +1,10 @@
 import { Vue, Component } from 'vue-property-decorator'
+import axios from 'axios'
+import { calculateSignificantDigits } from '@/api'
+import debounce from 'debounce'
+
+/** Debounce time in milliseconds */
+const DEBOUNCE_TIME = 500
 
 interface SignificantDigitsCardData {
   fullNumber: string
@@ -9,6 +15,8 @@ interface SignificantDigitsCardData {
 
 @Component
 export default class SignificantDigitsPage extends Vue {
+  numberInput = '4920'
+  answerString = '492'
   cardDescription: Array<SignificantDigitsCardData> = [
     {
       fullNumber: '3650',
@@ -69,6 +77,26 @@ export default class SignificantDigitsPage extends Vue {
       show: false
     }
   ]
+
+  searchDebounce = debounce(this.onNumberInputChange, DEBOUNCE_TIME)
+
+  async onNumberInputChange (): Promise<void> {
+    const validateNumberRegExp: RegExp = /^-?(0|[1-9]\d*)(\.\d+)?$/
+
+    if (this.numberInput.match(validateNumberRegExp) == null) {
+      this.answerString = 'Invalid number'
+      return
+    }
+
+    const response = await axios.request<Array<string>>({
+      method: calculateSignificantDigits.method,
+      url: calculateSignificantDigits.url,
+      params: {
+        input: [this.numberInput]
+      }
+    })
+    this.answerString = response.data[0]
+  }
 
   toggleCard (cardNumber: number): void {
     this.cardDescription[cardNumber].show = !this.cardDescription[cardNumber].show

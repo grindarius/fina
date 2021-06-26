@@ -3,7 +3,11 @@ export interface Coordinate {
   y: number
 }
 
-export interface NavbarMenu {
+export interface PageComponent {
   name: string
   path: string
+}
+
+export interface Page extends PageComponent {
+  components: Array<PageComponent>
 }

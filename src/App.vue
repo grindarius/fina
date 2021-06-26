@@ -32,9 +32,12 @@
   </div>
 </template>
 <script lang="ts">
+
 import { Vue, Component } from 'vue-property-decorator'
 import FooterComponent from '@/components/footer/footer.vue'
-import { NavbarMenu } from '@/types'
+import { firstSemesterPages, secondSemesterPages, miscellaneousPages } from '@/constants'
+import { getFirstLevelPage } from '@/services'
+import { PageComponent } from '@/types'
 
 @Component({
   components: {
@@ -42,40 +45,16 @@ import { NavbarMenu } from '@/types'
   }
 })
 export default class App extends Vue {
-  get firstSemesterNavbarMenu (): Array<NavbarMenu> {
-    return [
-      { name: 'Significant Digits', path: '/docs/significant-digits' },
-      { name: 'Decimal Points', path: '/docs/decimal-points' },
-      { name: 'Bisection Method', path: '/docs/bisection' },
-      { name: 'False Position Method', path: '/docs/false-position' },
-      { name: 'Fixed Point Iteration Method', path: '/docs/fixed-point-iteration' },
-      { name: 'Newton\'s Method', path: '/docs/newton' },
-      { name: 'Secant Method', path: '/docs/secant' },
-      { name: 'Gauss Seidel Method', path: '/docs/gauss-seidel' }
-    ]
+  get firstSemesterNavbarMenu (): Array<PageComponent> {
+    return getFirstLevelPage(firstSemesterPages)
   }
 
-  get secondSemesterNavbarMenu (): Array<NavbarMenu> {
-    return [
-      { name: 'Jacobi Method', path: '/docs/jacobi' },
-      { name: 'Newton\'s Divided Difference', path: '/docs/divided-difference' },
-      { name: 'Newton\'s Forward Difference', path: '/docs/forward-difference' },
-      { name: 'Newton\'s Backward Difference', path: '/docs/backward-difference' },
-      { name: 'Lagrange Polynomial', path: '/docs/lagrange' },
-      { name: 'Regression Equation', path: '/docs/regression' },
-      { name: 'Trapezoidal Rule', path: '/docs/trapezoidal' },
-      { name: 'Simpson\'s 1/3 Rule', path: '/docs/simpsons-one-third' },
-      { name: 'Simpson\'s 3/8 Rule', path: '/simpsons-three-eights' },
-      { name: 'Romberg\'s Method', path: '/docs/romberg' },
-      { name: 'Euler\'s Method', path: '/docs/euler' }
-    ]
+  get secondSemesterNavbarMenu (): Array<PageComponent> {
+    return getFirstLevelPage(secondSemesterPages)
   }
 
-  get miscellaneousNavbarMenu (): Array<NavbarMenu> {
-    return [
-      { name: 'About', path: '/about' },
-      { name: 'Sources', path: '/sources' }
-    ]
+  get miscellaneousNavbarMenu (): Array<PageComponent> {
+    return getFirstLevelPage(miscellaneousPages)
   }
 }
 </script>
