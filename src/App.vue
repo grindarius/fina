@@ -40,6 +40,11 @@ import { getFirstLevelPage } from '@/services'
 import { PageComponent } from '@/types'
 
 @Component({
+  metaInfo () {
+    return {
+      title: 'Learn Numerical Analysis | FINA'
+    }
+  },
   components: {
     'breadcrumb-footer': FooterComponent
   }

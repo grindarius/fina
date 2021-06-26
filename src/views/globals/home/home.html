@@ -39,7 +39,9 @@
           and
           <katex-element expression="2" />
         </h3>
-        <grapher :expression="expression" :points="points" />
+        <div class="graph-overflow">
+          <grapher :expression="expression" :points="points" />
+        </div>
       </div>
     </div>
   </section>

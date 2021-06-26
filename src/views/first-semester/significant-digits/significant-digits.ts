@@ -13,10 +13,17 @@ interface SignificantDigitsCardData {
   show: boolean
 }
 
-@Component
+@Component({
+  metaInfo () {
+    return {
+      title: 'Significant Digits | FINA'
+    }
+  }
+})
 export default class SignificantDigitsPage extends Vue {
   numberInput = '4920'
   answerString = '492'
+
   cardDescription: Array<SignificantDigitsCardData> = [
     {
       fullNumber: '3650',
@@ -81,6 +88,9 @@ export default class SignificantDigitsPage extends Vue {
   searchDebounce = debounce(this.onNumberInputChange, DEBOUNCE_TIME)
 
   async onNumberInputChange (): Promise<void> {
+    /**
+     * A RegExp pattern that checks for any positive and negative floats and integers.
+     */
     const validateNumberRegExp: RegExp = /^-?(0|[1-9]\d*)(\.\d+)?$/
 
     if (this.numberInput.match(validateNumberRegExp) == null) {

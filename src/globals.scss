@@ -95,5 +95,9 @@ $colors: mergeColorMaps(
   text-indent: 5%;
 }
 
+.graph-overflow {
+  overflow-x: auto;
+}
+
 @import '~bulma';
 @import '~buefy/src/scss/buefy';
