@@ -4,8 +4,6 @@ import { Coordinate } from '@/types'
 import * as helper from '@/services'
 
 const margins = { top: 40, right: 40, bottom: 40, left: 40 }
-const width = 700 - margins.left - margins.right
-const height = 700 - margins.top - margins.bottom
 
 @Component
 export default class Grapher extends Vue {
@@ -25,15 +23,27 @@ export default class Grapher extends Vue {
    * Start range number. This will draw a straight line to cap as the range
    * of the data used. won't draw anything if not specified.
    */
-  @Prop({ default: 0 })
-  start: number
+  @Prop()
+  start: number | undefined
 
   /**
    * Start range number. This will draw a straight line to cap as the range
    * of the data used. won't draw anything if not specified.
    */
-  @Prop({ default: 0 })
-  end: number
+  @Prop()
+  end: number | undefined
+
+  /**
+   * Width of the graph, no height prop because the system uses the same for height.
+   */
+  @Prop({ default: 700 })
+  width: number
+
+  /**
+   * Height of the graph, should use same as the width so the graph comes in 1:1 ratio.
+   */
+  @Prop({ default: 700 })
+  height: number
 
   data: Array<Coordinate> = []
   timeFactor = 100
@@ -47,6 +57,8 @@ export default class Grapher extends Vue {
   yAxis: d3.Selection<SVGGElement, unknown, HTMLElement, unknown>
 
   mounted (): void {
+    this.width = this.width - margins.left - margins.right
+    this.height = this.height - margins.top - margins.bottom
     this.data = this.calculateData(-5, 5)
     this.generateChart()
   }
@@ -57,16 +69,16 @@ export default class Grapher extends Vue {
   generateChart (): void {
     this.svg = d3.select('#graph')
       .append('svg')
-      .attr('width', width + margins.left + margins.right)
-      .attr('height', height + margins.top + margins.bottom)
+      .attr('width', this.width + margins.left + margins.right)
+      .attr('height', this.height + margins.top + margins.bottom)
       .append('g')
       .attr('transform', `translate(${margins.left}, ${margins.top})`)
 
-    this.x = d3.scaleLinear([-5, 5], [0, width])
-    this.y = d3.scaleLinear([-5, 5], [height, 0])
+    this.x = d3.scaleLinear([-5, 5], [0, this.width])
+    this.y = d3.scaleLinear([-5, 5], [this.height, 0])
 
     this.xAxis = this.svg.append('g')
-      .attr('transform', `translate(0, ${height})`)
+      .attr('transform', `translate(0, ${this.height})`)
       .attr('class', 'x-axis')
 
     this.yAxis = this.svg.append('g')
@@ -78,8 +90,8 @@ export default class Grapher extends Vue {
     this.svg.append('defs').append('svg:clipPath')
       .attr('id', 'clip')
       .append('svg:rect')
-      .attr('width', width)
-      .attr('height', height)
+      .attr('width', this.width)
+      .attr('height', this.height)
       .attr('x', 0)
       .attr('y', 0)
 
@@ -88,7 +100,10 @@ export default class Grapher extends Vue {
 
     this.drawLine(this.x, this.y)
     this.drawZeroLine()
-    this.drawStartEndLine(this.x, this.y)
+
+    if (this.start != null && this.end != null) {
+      this.drawStartEndLine(this.x, this.y)
+    }
 
     if (this.points !== []) {
       this.dots = this.svg.append('g')
@@ -99,14 +114,14 @@ export default class Grapher extends Vue {
 
     const zoom = d3.zoom<SVGRectElement, unknown>()
       .scaleExtent([1, 200])
-      .extent([[0, 0], [width, height]])
+      .extent([[0, 0], [this.width, this.height]])
       .on('zoom', this.zoomed)
       .on('end', this.zoomEnded)
 
     this.svg.append('rect')
       .classed('pointer-receiver', true)
-      .attr('width', width)
-      .attr('height', height)
+      .attr('width', this.width)
+      .attr('height', this.height)
       .style('fill', 'none')
       .style('pointer-events', 'all')
       .call(zoom)
@@ -119,23 +134,23 @@ export default class Grapher extends Vue {
    * @param yScale a y scale
    */
   drawStartEndLine (xScale: d3.ScaleLinear<number, number, never>, yScale: d3.ScaleLinear<number, number, never>): void {
-    this.svg.append('line')
+    this.line.append('line')
       .classed('start-range-line', true)
-      .attr('x1', xScale(this.start))
-      .attr('x2', xScale(this.start))
+      .attr('x1', xScale(this.start ?? 0))
+      .attr('x2', xScale(this.start ?? 0))
       .attr('y1', yScale(yScale.domain()[1]))
       .attr('y2', yScale(yScale.domain()[0]))
-      .style('stroke', '#39A2DB')
+      .style('stroke', '#ff3860')
       .style('shape-rendering', 'crispEdges')
       .style('stroke-opacity', 0.5)
 
-    this.svg.append('line')
+    this.line.append('line')
       .classed('end-range-line', true)
-      .attr('x1', xScale(this.end))
-      .attr('x2', xScale(this.end))
+      .attr('x1', xScale(this.end ?? 0))
+      .attr('x2', xScale(this.end ?? 0))
       .attr('y1', yScale(yScale.domain()[1]))
       .attr('y2', yScale(yScale.domain()[0]))
-      .style('stroke', '#39A2DB')
+      .style('stroke', '#ff3860')
       .style('shape-rendering', 'crispEdges')
       .style('stroke-opacity', 0.5)
   }
@@ -167,7 +182,7 @@ export default class Grapher extends Vue {
       .attr('stroke', '#0A0A0A')
       .attr('x1', 0)
       .attr('x2', 0)
-      .attr('y1', -height)
+      .attr('y1', -this.height)
       .attr('y2', 0)
       .style('shape-rendering', 'crispEdges')
       .style('stroke-opacity', 0.5)
@@ -178,7 +193,7 @@ export default class Grapher extends Vue {
       .classed('gridline', true)
       .attr('stroke', '#0A0A0A')
       .attr('x1', 0)
-      .attr('x2', width)
+      .attr('x2', this.width)
       .attr('y1', 0)
       .attr('y2', 0)
       .style('shape-rendering', 'crispEdges')
@@ -217,7 +232,9 @@ export default class Grapher extends Vue {
     this.xAxis.call(d3.axisBottom(newX))
     this.yAxis.call(d3.axisLeft(newY))
 
-    this.drawStartEndLine(newX, newY)
+    if (this.start != null && this.end != null) {
+      this.drawStartEndLine(newX, newY)
+    }
     this.drawZeroLine()
 
     const redrawline: d3.Selection<d3.BaseType, Array<Coordinate>, SVGGElement, unknown> = this.line.selectAll('.data-line')
