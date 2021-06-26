@@ -17,7 +17,7 @@ $max-width-mobile: 600px;
 
 .docs-inner-list {
   padding-left: 0.75em;
-  border-left: 1px solid rgb(219, 219, 219);
+  border-left: 2px solid rgb(200, 200, 200);
   margin: 0.75em;
 }
 
@@ -34,6 +34,10 @@ $max-width-mobile: 600px;
     color: rgb(74, 74, 74);
     display: block;
     padding: 0.5em 0.75em;
+
+    &:hover {
+      background-color: $docs-hover-blue;
+    }
   }
 }
 
