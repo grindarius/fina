@@ -2,14 +2,11 @@ import Fastify, { FastifyInstance } from 'fastify'
 import autoload from 'fastify-autoload'
 import cors from 'fastify-cors'
 import path from 'path'
-import qs from 'qs'
 
 const PORT = 3000
 
 const createServer = (): FastifyInstance => {
-  const fastify = Fastify({
-    querystringParser: (str) => qs.parse(str)
-  })
+  const fastify = Fastify()
 
   void fastify.register(cors)
 
