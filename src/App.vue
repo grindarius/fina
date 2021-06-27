@@ -36,12 +36,12 @@
 </template>
 <script lang="ts">
 
+import { Component, Vue } from 'vue-property-decorator'
+
 import FooterComponent from '@/components/footer/footer.vue'
 import { firstSemesterPages, miscellaneousPages, secondSemesterPages } from '@/constants'
 import { getFirstLevelPage } from '@/services'
 import { PageComponent } from '@/types'
-
-import { Component, Vue } from 'vue-property-decorator'
 
 @Component({
   metaInfo () {

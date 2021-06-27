@@ -9,7 +9,8 @@
   "scripts": {
     "serve": "node egg.js && vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint && npx stylelint \"**/*.scss\""
+    "lint": "vue-cli-service lint && npx stylelint \"**/*.scss\"",
+    "fix": "eslint . --fix && npx stylelint \"**/*.scss\" --fix"
   },
   "dependencies": {
     "@mdi/font": "^5.9.55",

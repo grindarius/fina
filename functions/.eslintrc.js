@@ -12,7 +12,7 @@ module.exports = {
     'simple-import-sort/imports': [
       'error',
       {
-        groups: [["^"], ["^@?\\w"], ["^\\."], ["^\\u0000"]]
+        groups: [["^\\w"], ["^(@?\\w)"], ["^", "^\\."], ["^\\u0000"]]
       }
     ]
   },

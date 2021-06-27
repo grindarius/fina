@@ -1,6 +1,6 @@
-import { Page, PageComponent } from '@/types'
-
 import * as math from 'mathjs'
+
+import { Page, PageComponent } from '@/types'
 
 /**
  * A function to evaluate the value of `x` in a function

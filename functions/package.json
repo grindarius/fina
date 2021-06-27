@@ -10,7 +10,8 @@
   "scripts": {
     "serve": "node dist/index.js",
     "build": "tsc",
-    "serve:watch": "nodemon"
+    "serve:watch": "nodemon",
+    "fix": "eslint **/*.ts --fix"
   },
   "dependencies": {
     "@sinclair/typebox": "^0.16.7",
