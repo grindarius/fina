@@ -1,6 +1,7 @@
-import * as helper from '../helpers'
 import * as math from 'mathjs'
+
 import { Answer } from '../../types'
+import * as helper from '../helpers'
 
 export function iteration (expression: string, diffedExpression: string, a: number, iteration: number, decimalPoint: number): Array<Answer> {
   let previousC = 0

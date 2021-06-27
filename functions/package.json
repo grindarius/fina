@@ -1,6 +1,6 @@
 {
   "name": "fina-functions",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Backend API for FINA",
   "main": "src/index.ts",
   "repository": "https://github.com/grindarius/fina",
@@ -29,6 +29,7 @@
     "eslint-plugin-import": "^2.23.3",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^5.1.0",
+    "eslint-plugin-simple-import-sort": "^7.0.0",
     "nodemon": "^2.0.7",
     "typescript": "^4.2.4"
   }

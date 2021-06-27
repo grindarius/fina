@@ -4,8 +4,17 @@ module.exports = {
     es2021: true,
     node: true
   },
+  plugins: [
+    'simple-import-sort'
+  ],
   rules: {
-    'no-void': ['error', { allowAsStatement: true }]
+    'no-void': ['error', { allowAsStatement: true }],
+    'simple-import-sort/imports': [
+      'error',
+      {
+        groups: [["^"], ["^@?\\w"], ["^\\."], ["^\\u0000"]]
+      }
+    ]
   },
   overrides: [
     {
@@ -13,6 +22,7 @@ module.exports = {
       extends: ['standard-with-typescript'],
       parser: '@typescript-eslint/parser',
       parserOptions: {
+        ecmaVersion: 2021,
         sourceType: 'module',
         project: ['./tsconfig.json']
       },

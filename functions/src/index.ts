@@ -1,7 +1,7 @@
 import Fastify, { FastifyInstance } from 'fastify'
-import path from 'path'
 import autoload from 'fastify-autoload'
 import cors from 'fastify-cors'
+import path from 'path'
 import qs from 'qs'
 
 const PORT = 3000

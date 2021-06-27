@@ -1,6 +1,7 @@
 import { FastifyInstance, FastifyPluginOptions, FastifySchema } from 'fastify'
-import { SignificantDigitsSchema, SignificantDigitsQuerystring } from '../../types'
+
 import * as significantDifference from '../../services/significant-digits'
+import { SignificantDigitsQuerystring, SignificantDigitsSchema } from '../../types'
 
 const schema: FastifySchema = {
   querystring: SignificantDigitsSchema

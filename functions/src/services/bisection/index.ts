@@ -1,5 +1,5 @@
-import * as helper from '../helpers'
 import { Answer } from '../../types'
+import * as helper from '../helpers'
 
 export function iteration (expression: string, a: number, b: number, iteration: number, decimalPoint: number): Array<Answer> {
   let previousC = 0

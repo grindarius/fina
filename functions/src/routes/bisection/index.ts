@@ -1,6 +1,7 @@
-import { FastifyInstance, FastifySchema, FastifyPluginOptions } from 'fastify'
-import { Answer, BisectionQuerystring, BisectionSchema } from '../../types'
+import { FastifyInstance, FastifyPluginOptions, FastifySchema } from 'fastify'
+
 import * as bisection from '../../services/bisection'
+import { Answer, BisectionQuerystring, BisectionSchema } from '../../types'
 
 const schema: FastifySchema = {
   querystring: BisectionSchema
