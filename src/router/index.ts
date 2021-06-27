@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
+
 import * as Pages from '../views'
 
 Vue.use(VueRouter)
@@ -26,7 +27,7 @@ const routes: Array<RouteConfig> = [
     children: [
       {
         path: '/',
-        name: 'Docs Root',
+        name: 'Getting Started',
         component: Pages.GettingStarted
       },
       {

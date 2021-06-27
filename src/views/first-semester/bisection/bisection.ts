@@ -1,5 +1,6 @@
-import { Vue, Component } from 'vue-property-decorator'
 import GrapherComponent from '@/components/grapher/grapher.vue'
+
+import { Component, Vue } from 'vue-property-decorator'
 
 @Component({
   metaInfo () {

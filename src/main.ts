@@ -1,9 +1,10 @@
-import Vue from 'vue'
-import App from './App.vue'
-import router from './router'
 import Buefy from 'buefy'
+import Vue from 'vue'
 import VueKatex from 'vue-katex'
 import VueMeta from 'vue-meta'
+
+import App from './App.vue'
+import router from './router'
 
 import '@mdi/font/css/materialdesignicons.css'
 import './globals.scss'

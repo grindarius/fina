@@ -6,10 +6,19 @@ module.exports = {
   parserOptions: {
     ecmaVersion: 2020
   },
+  plugins: [
+    'simple-import-sort'
+  ],
   rules: {
     'quote-props': ['error', 'consistent'],
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
-    'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off'
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+    'simple-import-sort/imports': [
+      'error',
+      {
+        groups: [["^"], ["^@?\\w"], ["^\\."], ["^\\u0000"]]
+      }
+    ]
   },
   overrides: [
     {

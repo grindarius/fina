@@ -1,7 +1,8 @@
-import { Vue, Component } from 'vue-property-decorator'
-import axios from 'axios'
 import { calculateSignificantDigits } from '@/api'
+
+import axios from 'axios'
 import debounce from 'debounce'
+import { Component, Vue } from 'vue-property-decorator'
 
 /** Debounce time in milliseconds */
 const DEBOUNCE_TIME = 500

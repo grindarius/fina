@@ -1,7 +1,8 @@
-import { Vue, Component, Prop } from 'vue-property-decorator'
-import * as d3 from 'd3'
-import { Coordinate } from '@/types'
 import * as helper from '@/services'
+import { Coordinate } from '@/types'
+
+import * as d3 from 'd3'
+import { Component, Prop, Vue } from 'vue-property-decorator'
 
 const margins = { top: 40, right: 40, bottom: 40, left: 40 }
 

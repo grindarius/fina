@@ -1,7 +1,8 @@
-import GrapherComponent from '@/components/grapher/grapher.vue'
 import FooterComponent from '@/components/footer/footer.vue'
+import GrapherComponent from '@/components/grapher/grapher.vue'
 import { Coordinate } from '@/types'
-import { Vue, Component } from 'vue-property-decorator'
+
+import { Component, Vue } from 'vue-property-decorator'
 
 @Component({
   name: 'Home',

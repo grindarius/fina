@@ -1,8 +1,9 @@
-import { Component, Vue } from 'vue-property-decorator'
 import FooterComponent from '@/components/footer/footer.vue'
-import { firstSemesterPages, secondSemesterPages, miscellaneousPages } from '@/constants'
+import { firstSemesterPages, miscellaneousPages, secondSemesterPages } from '@/constants'
 import { getFirstLevelPage } from '@/services'
 import { Page, PageComponent } from '@/types'
+
+import { Component, Vue } from 'vue-property-decorator'
 
 @Component({
   components: {
