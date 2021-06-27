@@ -12,24 +12,24 @@ export function evaluateFunction (expression: string, x: number): number {
 }
 
 /**
- * A function to calculate an absolute error (an error relative to your approximated or desired value)
+ * A function to calculate a relative error (an error relative to your approximated or desired value)
  *
  * @param current current value
  * @param approximated your desired or approximated value
  * @return absolute error in percent form.
  */
-export function absoluteError (current: number, approximated: number): number {
+export function relativeError (current: number, approximated: number): number {
   return Math.abs(current - approximated) * 100
 }
 
 /**
- * A function to calculate a relative error (an error relative to last approximated value)
+ * A function to calculate an absolute error (an error relative to last approximated value)
  *
  * @param current current value that you can calculate
  * @param previous last value
  * @return relative error in percent form.
  */
-export function relativeError (current: number, previous: number): number {
+export function absoluteError (current: number, previous: number): number {
   return Math.abs((current - previous) / current) * 100
 }
 

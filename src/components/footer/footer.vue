@@ -1,6 +1,6 @@
 <template>
   <footer class="footer">
-    <div class="containter has-text-centered">
+    <div class="container has-text-centered">
       <p class="subtitle is-6">
         Made with 🧠 and all these awesome tools!
       </p>

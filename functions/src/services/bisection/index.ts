@@ -4,6 +4,7 @@ import * as helper from '../helpers'
 export function iteration (expression: string, a: number, b: number, iteration: number, decimalPoint: number): Array<Answer> {
   let previousC = 0
   const answerArray: Array<Answer> = []
+  console.log(expression)
 
   for (let i = 0; i < iteration; i++) {
     // * find f(a), f(b)

@@ -112,10 +112,33 @@
           Examples
         </h1>
         <h3 class="subtitle is-3">
-          Find the root value of <katex-element expression="f(x) = sin(x)" />
+          Find the root value of <katex-element expression="f(x) = x^3 + 4x^2 - 10" /> between 1 and 2.
         </h3>
+        <h1 class="subtitle">
+          Ok, so what do we do here? First of all we have to find the <katex-element expression="c" /> value for the next iteration.
+          <katex-element expression="c = \frac{a + b}{2}" :display-mode="true" />
+          <katex-element :expression="katexExpressions[0]" :display-mode="true" />
+          <katex-element :expression="katexExpressions[1]" :display-mode="true" />
+          Go find <katex-element expression="f(c)" /> then you get the first point to plot!
+          <katex-element :expression="katexExpressions[2]" :display-mode="true" />
+          <katex-element :expression="katexExpressions[3]" :display-mode="true" />
+        </h1>
         <div class="graph-overflow">
-          <grapher expression="sin(x)" start="1" end="3" />
+          <grapher :id="'first-graph'" expression="x^3 + 4x^2 - 10" start="1" end="2" :points="[{ x: answer[0].c, y: answer[0].fc }]" />
+        </div>
+        <h1 class="subtitle">
+          Then you rinse and repeat!
+          <div v-for="(eachAnswer, i) in katexRepeatExpressions" :key="'expression: ' + i">
+            <katex-element :expression="eachAnswer[0]" :display-mode="true" />
+            <katex-element :expression="eachAnswer[1]" :display-mode="true" />
+            <katex-element :expression="eachAnswer[2]" :display-mode="true" />
+            <katex-element :expression="eachAnswer[3]" :display-mode="true" />
+            <hr class="linebreak">
+          </div>
+          Finally, you should have a graph that looks like this.
+        </h1>
+        <div class="graph-overflow">
+          <grapher :id="'final-graph'" expression="x^3 + 4x^2 - 10" start="1" end="2" :points="points" />
         </div>
       </div>
     </div>

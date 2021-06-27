@@ -99,14 +99,18 @@ export default class SignificantDigitsPage extends Vue {
       return
     }
 
-    const response = await axios.request<Array<string>>({
-      method: calculateSignificantDigits.method,
-      url: calculateSignificantDigits.url,
-      params: {
-        input: [this.numberInput]
-      }
-    })
-    this.answerString = response.data[0]
+    try {
+      const response = await axios.request<string>({
+        method: calculateSignificantDigits.method,
+        url: calculateSignificantDigits.url,
+        params: {
+          input: this.numberInput
+        }
+      })
+      this.answerString = response.data
+    } catch (e) {
+      this.answerString = e.message as string
+    }
   }
 
   toggleCard (cardNumber: number): void {

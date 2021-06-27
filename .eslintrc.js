@@ -43,7 +43,11 @@ module.exports = {
           default: 'generic',
           readonly: 'generic'
         }],
-        '@typescript-eslint/prefer-readonly': 'off'
+        '@typescript-eslint/prefer-readonly': 'off',
+        '@typescript-eslint/restrict-template-expressions': ['error', {
+          allowNumber: true,
+          allowNullish: true
+        }]
       }
     },
     {

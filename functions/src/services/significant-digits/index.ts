@@ -1,22 +1,18 @@
-export function calculate (input: Array<string>): Array<string> {
+export function calculate (input: string): string {
   const leadingZerosRegExp: RegExp = /^0+\.?0*/g
   const trailingZerosRegExp: RegExp = /0+$/g
 
-  const answers = input.map(item => {
-    if (item.includes('.')) {
-      if (parseFloat(item) > 0) {
-        const removedLeadingZeros: string = item.replace(leadingZerosRegExp, '')
-        return removedLeadingZeros
-      } else if (parseFloat(item) === 0) {
-        return '0'
-      } else {
-        return item
-      }
+  if (input.includes('.')) {
+    if (parseFloat(input) > 0) {
+      const removedLeadingZeros: string = input.replace(leadingZerosRegExp, '')
+      return removedLeadingZeros
+    } else if (parseFloat(input) === 0) {
+      return '0'
     } else {
-      const removedTrailingZeros: string = item.replace(trailingZerosRegExp, '')
-      return removedTrailingZeros
+      return input
     }
-  })
-
-  return answers
+  } else {
+    const removedTrailingZeros: string = input.replace(trailingZerosRegExp, '')
+    return removedTrailingZeros
+  }
 }
