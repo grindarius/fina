@@ -2,7 +2,7 @@ import { Page } from '@/types'
 
 export const firstSemesterPages: Array<Page> = [
   {
-    name: 'Getting Started',
+    name: 'Getting started',
     path: '/docs',
     components: [
       {
@@ -61,6 +61,10 @@ export const firstSemesterPages: Array<Page> = [
       {
         name: 'Examples',
         path: '/docs/bisection#examples'
+      },
+      {
+        name: 'Calculate',
+        path: '/docs/bisection#calculate'
       }
     ]
   },
