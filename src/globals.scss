@@ -95,20 +95,20 @@ $colors: mergeColorMaps(
   text-indent: 5%;
 }
 
-.graph-overflow {
+.box-overflow {
   overflow-x: auto;
 }
 
-body::-webkit-scrollbar, .docs-sidebar::-webkit-scrollbar {
+body::-webkit-scrollbar, .docs-sidebar::-webkit-scrollbar, .box-overflow::-webkit-scrollbar {
   background-color: $white;
-  width: 0.5em;
+  width: 0.4em;
 }
 
-body::-webkit-scrollbar-thumb, .docs-sidebar::-webkit-scrollbar-thumb {
+body::-webkit-scrollbar-thumb, .docs-sidebar::-webkit-scrollbar-thumb, .box-overflow::-webkit-scrollbar-thumb {
   background-color: $sailor-blue;
 }
 
-body::-webkit-scrollbar-track, .docs-sidebar::-webkit-scrollbar-track {
+body::-webkit-scrollbar-track, .docs-sidebar::-webkit-scrollbar-track, .box-overflow::-webkit-scrollbar-track {
   background-color: rgba(220, 220, 220, 0.5);
 }
 
