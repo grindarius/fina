@@ -217,22 +217,26 @@ export default class BisectionPage extends Vue {
     }
   ]
 
+  katexRepeatingAnswerDiv = false
+
   get katexExpressions (): Array<string> {
     return [
       `c = \\frac{${this.answer[0].a} + ${this.answer[0].b}}{2}`,
       `c = ${this.answer[0].c}`,
       `f(${this.answer[0].c}) = ${this.answer[0].c}^3 + 4(${this.answer[0].c}^2) - 10`,
-      `f(${this.answer[0].c}) = ${this.answer[0].fc}`
+      `f(${this.answer[0].c}) = ${this.answer[0].fc}`,
+      `f(a) \\cdot f(c) = ${this.answer[0].fa} \\cdot ${this.answer[0].fc}`,
+      `f(a) \\cdot f(c) = ${(this.answer[0].fa ?? 0) * (this.answer[0].fc ?? 0)}`
     ]
   }
 
-  get katexRepeatExpressions (): Array<Array<string>> {
-    return this.answer.slice(1).map((answer, i) => {
+  get katexRepeatArray (): Array<Array<string>> {
+    return this.answer.slice(1).map(answer => {
       return [
-        `i = ${i + 1}`,
+        `i = ${answer.i ?? 0 + 1}`,
         `c = \\frac{${answer.a} + ${answer.b}}{2}`,
         `c = ${answer.c}`,
-        `f(${answer.c}) = ${answer.c}^3 + 4(${answer.c}^2) - 10`
+        `f(c) = ${answer.c}^3 + 4(${answer.c}^2) - 10 = ${answer.fc}`
       ]
     })
   }
@@ -244,5 +248,9 @@ export default class BisectionPage extends Vue {
         y: answer.fc ?? 0
       }
     })
+  }
+
+  toggleAnswer (): void {
+    this.katexRepeatingAnswerDiv = !this.katexRepeatingAnswerDiv
   }
 }

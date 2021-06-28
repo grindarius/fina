@@ -123,23 +123,46 @@
           <katex-element :expression="katexExpressions[2]" :display-mode="true" />
           <katex-element :expression="katexExpressions[3]" :display-mode="true" />
         </h1>
-        <div class="graph-overflow">
+        <div class="box-overflow">
           <grapher :id="'first-graph'" expression="x^3 + 4x^2 - 10" start="1" end="2" :points="[{ x: answer[0].c, y: answer[0].fc }]" />
         </div>
         <h1 class="subtitle">
-          Then you rinse and repeat!
-          <div v-for="(eachAnswer, i) in katexRepeatExpressions" :key="'expression: ' + i">
-            <katex-element :expression="eachAnswer[0]" :display-mode="true" />
-            <katex-element :expression="eachAnswer[1]" :display-mode="true" />
-            <katex-element :expression="eachAnswer[2]" :display-mode="true" />
-            <katex-element :expression="eachAnswer[3]" :display-mode="true" />
-            <hr class="linebreak">
-          </div>
-          Finally, you should have a graph that looks like this.
+          Next, you determine if we're going to shrink the left or the right side from <katex-element expression="f(a) \cdot f(c)" />
+          <katex-element :expression="katexExpressions[4]" :display-mode="true" />
+          <katex-element :expression="katexExpressions[5]" :display-mode="true" />
+          Our result is negative, so our <katex-element expression="a" /> stays the same, and our <katex-element expression="c" /> will become
+          the next <katex-element expression="b" />
         </h1>
-        <div class="graph-overflow">
+        <h1 class="subtitle">
+          <p class="subtitle">
+            Then you rinse and repeat!
+          </p>
+          <b-button class="is-sailor-blue" @click="toggleAnswer" style="margin-bottom: 1.5rem;">Toggle calculations</b-button>
+          <div v-show="katexRepeatingAnswerDiv">
+            <div class="box-overflow" v-for="(eachAnswer, i) in katexRepeatArray" :key="'expression: ' + i">
+              <katex-element :expression="eachAnswer[0]" :display-mode="true" />
+              <katex-element :expression="eachAnswer[1]" :display-mode="true" />
+              <katex-element :expression="eachAnswer[2]" :display-mode="true" />
+              <katex-element :expression="eachAnswer[3]" :display-mode="true" />
+              <hr class="linebreak">
+            </div>
+          </div>
+          <h1 class="subtitle">
+            Finally, you should have a graph that looks like this.
+          </h1>
+        </h1>
+        <div class="box-overflow">
           <grapher :id="'final-graph'" expression="x^3 + 4x^2 - 10" start="1" end="2" :points="points" />
         </div>
+      </div>
+    </div>
+  </section>
+  <section id="calculate" class="hero">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title is-2">
+          Calculate
+        </h1>
       </div>
     </div>
   </section>
