@@ -22,4 +22,9 @@ export default class DocsLandingPage extends Vue {
   getNestedKeys (index: number): Array<PageComponent> {
     return this.allSidebarItems[index].components
   }
+
+  getHash (link: string): string {
+    const match = link.match(/#(.+)$/) ?? []
+    return match[0]
+  }
 }
