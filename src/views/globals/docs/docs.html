@@ -12,7 +12,7 @@
         </li>
         <ul class="docs-inner-list">
           <li v-for="(header, index) in getNestedKeys(index)" :key="'Docs inner item ' + index" class="docs-inner-list-item">
-            <router-link class="docs-link" :to="{ path: header.path }">
+            <router-link class="docs-link" :to="{ path: header.path, hash: getHash(header.path) }">
               {{ header.name }}
             </router-link>
           </li>
