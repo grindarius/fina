@@ -1,0 +1,15 @@
+{
+	"New katex element": {
+		"prefix": "katex",
+		"body": [
+			"<katex-element expression=\"\" />"
+		],
+		"description": "New katex element"
+	},
+	"New katex element with display=true": {
+		"prefix": "katexd",
+		"body": [
+			"<katex-element expression=\"\" :display-mode=\"true\" />"
+		]
+	}
+}
