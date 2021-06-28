@@ -17,7 +17,7 @@ export default class Grapher extends Vue {
   /**
    * An expression for the graph to draw Default is `x squared`.
    */
-  @Prop({ default: 'x^2' })
+  @Prop({ default: 'x' })
   expression: string
 
   /**
