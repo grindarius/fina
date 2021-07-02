@@ -1,5 +1,7 @@
 import { Component, Vue } from 'vue-property-decorator'
 
+import { lmao } from '@fina/common'
+
 import FooterComponent from '@/components/footer/footer.vue'
 import GrapherComponent from '@/components/grapher/grapher.vue'
 import { Coordinate } from '@/types'
@@ -48,4 +50,8 @@ export default class HomePage extends Vue {
       y: -0.00621
     }
   ]
+
+  mounted (): void {
+    console.log(lmao)
+  }
 }

@@ -51,3 +51,5 @@ export type BisectionResponse = Static<typeof BisectionResponseSchema>
  * mapped with the `TableDisplay` object to create a 2d array for rendering out as a table.
  */
 export type Answer = Partial<BaseAnswerObject>
+
+export const lmao = 69420
