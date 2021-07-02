@@ -1,17 +1,11 @@
 {
+  "extends": "../tsconfig.base.json",
   "compilerOptions": {
-    "target": "es2018",
-    "module": "esnext",
-    "strict": true,
     "jsx": "preserve",
     "importHelpers": true,
-    "moduleResolution": "node",
-    "experimentalDecorators": true,
-    "skipLibCheck": true,
     "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
     "strictPropertyInitialization": false,
-    "sourceMap": true,
+    "allowSyntheticDefaultImports": true,
     "baseUrl": ".",
     "types": [
       "webpack-env"
@@ -25,6 +19,9 @@
       ],
       "@declarations/*": [
         "src/types/*"
+      ],
+      "@fina/common": [
+        "../common/dist/*"
       ]
     },
     "lib": [

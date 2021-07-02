@@ -1,6 +1,6 @@
 import { Static, Type } from '@sinclair/typebox'
 
-interface BaseAnswerObject {
+export interface BaseAnswerObject {
   i: number
   a: number
   b: number
