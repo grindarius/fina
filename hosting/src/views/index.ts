@@ -8,12 +8,12 @@ import Home from './globals/home/home.vue'
 import Sources from './globals/sources/sources.vue'
 
 export {
-  Home,
   About,
-  Sources,
+  Bisection,
+  DecimalPoints,
   Docs,
   GettingStarted,
+  Home,
   SignificantDigits,
-  DecimalPoints,
-  Bisection
+  Sources
 }

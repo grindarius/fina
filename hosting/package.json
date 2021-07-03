@@ -9,8 +9,8 @@
   "scripts": {
     "serve": "node egg.js && vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint && npx stylelint \"**/*.scss\"",
-    "fix": "eslint . --fix && npx stylelint \"**/*.scss\" --fix"
+    "lint": "vue-cli-service lint",
+    "fix": "vue-cli-service lint --fix"
   },
   "dependencies": {
     "@fina/common": "^0.0.1",

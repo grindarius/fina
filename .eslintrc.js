@@ -18,7 +18,9 @@ module.exports = {
       {
         groups: [["^\\w"], ["^(@?\\w)"], ["^", "^\\."], ["^\\u0000"]]
       }
-    ]
+    ],
+    'simple-import-sort/exports': ['error'],
+    'no-void': ['error', { allowAsStatement: true }]
   },
   overrides: [
     {
