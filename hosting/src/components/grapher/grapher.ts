@@ -1,7 +1,8 @@
 import * as d3 from 'd3'
 import { Component, Prop, Vue } from 'vue-property-decorator'
 
-import * as helper from '@/services'
+import { evaluateFunction, round } from '@fina/common'
+
 import { Coordinate } from '@/types'
 
 const margins = { top: 40, right: 40, bottom: 40, left: 40 }
@@ -294,8 +295,8 @@ export default class Grapher extends Vue {
     else if (delta >= 1 && delta < 5) this.timeFactor = 1000
     else if (delta < 1) this.timeFactor = 10000
 
-    const multipliedLeft = helper.round(left, 5) * this.timeFactor
-    const multipliedRight = helper.round(right, 5) * this.timeFactor
+    const multipliedLeft = round(left, 5) * this.timeFactor
+    const multipliedRight = round(right, 5) * this.timeFactor
 
     const dummyArray = Array.from<number, number>({ length: (multipliedRight - multipliedLeft + 1) }, (_, i) => multipliedLeft + i)
 
@@ -304,7 +305,7 @@ export default class Grapher extends Vue {
 
       const coordinate: Coordinate = {
         x: x,
-        y: helper.evaluateFunction(this.expression, x)
+        y: evaluateFunction(this.expression, x)
       }
 
       return coordinate

@@ -11,9 +11,11 @@
     "fix": "eslint **/*.ts --fix"
   },
   "dependencies": {
-    "@sinclair/typebox": "^0.16.7"
+    "@sinclair/typebox": "^0.16.7",
+    "mathjs": "^9.4.3"
   },
   "devDependencies": {
+    "@types/mathjs": "^6.0.12",
     "nodemon": "^2.0.9"
   }
 }

@@ -1,4 +1,4 @@
-import * as math from 'mathjs'
+import { evaluate } from 'mathjs'
 
 /**
  * A function to evaluate the value of `x` in a function
@@ -8,7 +8,7 @@ import * as math from 'mathjs'
  * @return a calculated value
  */
 export function evaluateFunction (expression: string, x: number): number {
-  return math.evaluate(expression, { x: x })
+  return evaluate(expression, { x: x })
 }
 
 /**

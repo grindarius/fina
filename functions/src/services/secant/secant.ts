@@ -1,5 +1,4 @@
-import { Answer } from '../../types'
-import * as helper from '../helpers'
+import { absoluteError, Answer, evaluateFunction, round } from '@fina/common'
 
 export function iteration (expression: string, a: number, b: number, iteration: number, decimalPoint: number): Array<Answer> {
   let previousC = 0
@@ -7,18 +6,18 @@ export function iteration (expression: string, a: number, b: number, iteration: 
 
   for (let i = 0; i < iteration; i++) {
     // * find f(a), f(b)
-    const fa = helper.round(helper.evaluateFunction(expression, a), decimalPoint)
-    const fb = helper.round(helper.evaluateFunction(expression, b), decimalPoint)
+    const fa = round(evaluateFunction(expression, a), decimalPoint)
+    const fb = round(evaluateFunction(expression, b), decimalPoint)
 
     // * find c
     const cExpression = ((a * fb) - (b * fa)) / (fb - fa)
-    const c = helper.round(cExpression, decimalPoint)
+    const c = round(cExpression, decimalPoint)
 
     // * find f(c)
-    const fc = helper.round(helper.evaluateFunction(expression, c), decimalPoint)
+    const fc = round(evaluateFunction(expression, c), decimalPoint)
 
     // * find error
-    const error = helper.round(helper.absoluteError(c, previousC), decimalPoint)
+    const error = round(absoluteError(c, previousC), decimalPoint)
 
     const answer: Answer = { i, a, b, fa, fb, c, fc, error }
     answerArray.push(answer)
