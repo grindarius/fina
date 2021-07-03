@@ -89,9 +89,7 @@ export default class SignificantDigitsPage extends Vue {
   searchDebounce = debounce(this.onNumberInputChange, DEBOUNCE_TIME)
 
   async onNumberInputChange (): Promise<void> {
-    /**
-     * A RegExp pattern that checks for any positive and negative floats and integers.
-     */
+    /** A RegExp pattern that checks for any positive and negative floats and integers. */
     const validateNumberRegExp: RegExp = /^-?(0|[1-9]\d*)(\.\d+)?$/
 
     if (this.numberInput.match(validateNumberRegExp) == null) {

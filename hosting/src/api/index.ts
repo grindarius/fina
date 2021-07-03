@@ -9,5 +9,5 @@ interface Endpoint {
 
 export const calculateSignificantDigits: Endpoint = {
   method: 'GET',
-  url: `${apiRootUrl}/significant-digits`
+  url: `${apiRootUrl}/significant-digits/amount`
 }
