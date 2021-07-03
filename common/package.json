@@ -8,6 +8,8 @@
     "build": "tsc",
     "watch": "nodemon",
     "watch:ts": "tsc -w",
+    "clean": "npx rimraf dist",
+    "rebuild": "npm run clean && npm run watch:ts",
     "fix": "eslint **/*.ts --fix"
   },
   "dependencies": {
@@ -16,6 +18,7 @@
   },
   "devDependencies": {
     "@types/mathjs": "^6.0.12",
-    "nodemon": "^2.0.9"
+    "nodemon": "^2.0.9",
+    "rimraf": "^3.0.2"
   }
 }
