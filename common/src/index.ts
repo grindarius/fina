@@ -5,10 +5,14 @@ export {
   BisectionQuerystringSchema,
   BisectionResponse,
   BisectionResponseSchema,
-  SignificantDigitsQuerystring,
-  SignificantDigitsQuerystringSchema,
-  SignificantDigitsResponse,
-  SignificantDigitsResponseSchema
+  RoundToSignificantDigitsQuerystring,
+  RoundToSignificantDigitsQuerystringSchema,
+  RoundToSignificantDigitsResponse,
+  RoundToSignificantDigitsResponseSchema,
+  SignificantDigitsAmountQuerystring,
+  SignificantDigitsAmountQuerystringSchema,
+  SignificantDigitsAmountResponse,
+  SignificantDigitsAmountResponseSchema
 } from './types'
 export {
   absoluteError,
