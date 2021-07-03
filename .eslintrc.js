@@ -1,24 +1,32 @@
 module.exports = {
   root: true,
   env: {
-    node: true
+    es2021: true,
+    node: true,
+    browser: true
   },
-  parserOptions: {
-    ecmaVersion: 2020
-  },
+  extends: [
+    'standard'
+  ],
   plugins: [
     'simple-import-sort'
   ],
+  ignorePatterns: ['**/node_modules', '**/dist', '**/lib', '.*/**/*'],
+  parserOptions: {
+    ecmaVersion: 2020
+  },
   rules: {
+    'no-void': ['error', { allowAsStatement: true }],
     'quote-props': ['error', 'consistent'],
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'simple-import-sort/imports': [
       'error',
       {
-        groups: [["^\\w"], ["^(@?\\w)"], ["^", "^\\."], ["^\\u0000"]]
+        groups: [['^\\w'], ['^(@?\\w)'], ['^', '^\\.'], ['^\\u0000']]
       }
-    ]
+    ],
+    'simple-import-sort/exports': ['error']
   },
   overrides: [
     {
@@ -31,7 +39,12 @@ module.exports = {
       parser: '@typescript-eslint/parser',
       parserOptions: {
         ecmaVersion: 2020,
-        project: ['./tsconfig.json']
+        tsconfigRootDir: __dirname,
+        project: [
+          './common/tsconfig.json',
+          './functions/tsconfig.json',
+          './hosting/tsconfig.json'
+        ]
       },
       plugins: [
         '@typescript-eslint'

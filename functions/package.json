@@ -1,8 +1,8 @@
 {
-  "name": "fina-functions",
+  "name": "@fina/functions",
   "version": "0.0.1",
   "description": "Backend API for FINA",
-  "main": "src/index.ts",
+  "main": "dist/index.js",
   "repository": "https://github.com/grindarius/fina",
   "author": "Bhattarapong Somwong",
   "license": "MIT",
@@ -14,8 +14,8 @@
     "fix": "eslint **/*.ts --fix"
   },
   "dependencies": {
+    "@fina/common": "^0.0.1",
     "@sinclair/typebox": "^0.16.7",
-    "@types/qs": "^6.9.6",
     "fastify": "^3.16.2",
     "fastify-autoload": "^3.7.1",
     "fastify-cors": "^6.0.1",
@@ -23,14 +23,7 @@
   },
   "devDependencies": {
     "@types/node": "^15.6.1",
-    "@typescript-eslint/eslint-plugin": "^4.25.0",
-    "eslint": "^7.27.0",
-    "eslint-config-standard-with-typescript": "^20.0.0",
-    "eslint-plugin-import": "^2.23.3",
-    "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^5.1.0",
-    "eslint-plugin-simple-import-sort": "^7.0.0",
-    "nodemon": "^2.0.7",
-    "typescript": "^4.2.4"
+    "@types/qs": "^6.9.6",
+    "nodemon": "^2.0.9"
   }
 }

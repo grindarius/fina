@@ -1,0 +1,21 @@
+{
+  "name": "@fina/common",
+  "version": "0.0.1",
+  "description": "Common functions for FINA",
+  "main": "dist/index.js",
+  "scripts": {
+    "serve": "node dist/index.js",
+    "build": "tsc",
+    "watch": "nodemon",
+    "watch:ts": "tsc -w",
+    "fix": "eslint **/*.ts --fix"
+  },
+  "dependencies": {
+    "@sinclair/typebox": "^0.16.7",
+    "mathjs": "^9.4.3"
+  },
+  "devDependencies": {
+    "@types/mathjs": "^6.0.12",
+    "nodemon": "^2.0.9"
+  }
+}
