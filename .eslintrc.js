@@ -1,14 +1,20 @@
 module.exports = {
   root: true,
   env: {
-    node: true
+    es2021: true,
+    node: true,
+    browser: true
   },
-  parserOptions: {
-    ecmaVersion: 2020
-  },
+  extends: [
+    'standard'
+  ],
   plugins: [
     'simple-import-sort'
   ],
+  ignorePatterns: ['**/node_modules', '**/dist', '**/lib', '.*/**/*'],
+  parserOptions: {
+    ecmaVersion: 2020
+  },
   rules: {
     'quote-props': ['error', 'consistent'],
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
@@ -16,11 +22,10 @@ module.exports = {
     'simple-import-sort/imports': [
       'error',
       {
-        groups: [["^\\w"], ["^(@?\\w)"], ["^", "^\\."], ["^\\u0000"]]
+        groups: [['^\\w'], ['^(@?\\w)'], ['^', '^\\.'], ['^\\u0000']]
       }
     ],
-    'simple-import-sort/exports': ['error'],
-    'no-void': ['error', { allowAsStatement: true }]
+    'simple-import-sort/exports': ['error']
   },
   overrides: [
     {

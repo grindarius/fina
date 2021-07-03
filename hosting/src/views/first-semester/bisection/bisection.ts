@@ -1,7 +1,9 @@
 import { Component, Vue } from 'vue-property-decorator'
 
+import { Answer } from '@fina/common'
+
 import GrapherComponent from '@/components/grapher/grapher.vue'
-import { Answer, Coordinate } from '@/types'
+import { Coordinate } from '@/types'
 
 @Component({
   metaInfo () {

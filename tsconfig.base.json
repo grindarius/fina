@@ -8,9 +8,9 @@
       "DOM"
     ],
     "baseUrl": ".",
-    "removeComments": false,
+    "removeComments": true,
     "sourceMap": true,
-    "target": "ESNext",
+    "target": "ES2015",
     "module": "CommonJS",
     // Module resolution
     "allowSyntheticDefaultImports": true,
@@ -35,7 +35,7 @@
     "resolveJsonModule": true,
     "useDefineForClassFields": true,
     "paths": {
-      "@fina/common": [
+      "@fina/common/*": [
         "common/dist/*"
       ]
     }
