@@ -1,1 +1,1 @@
-export { absoluteError, evaluateFunction, relativeError, round } from './math'
+export * from './math'
