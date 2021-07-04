@@ -9,7 +9,7 @@ module.exports = {
     'standard'
   ],
   plugins: [
-    'simple-import-sort'
+    'simple-import-sort', 'unused-imports'
   ],
   ignorePatterns: ['**/node_modules', '**/dist', '**/lib', '.*/**/*'],
   parserOptions: {
@@ -26,7 +26,8 @@ module.exports = {
         groups: [['^\\w'], ['^(@?\\w)'], ['^', '^\\.'], ['^\\u0000']]
       }
     ],
-    'simple-import-sort/exports': ['error']
+    'simple-import-sort/exports': ['error'],
+    'unused-imports/no-unused-imports': 'error'
   },
   overrides: [
     {
