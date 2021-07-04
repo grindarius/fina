@@ -2,10 +2,15 @@ import axios from 'axios'
 import debounce from 'debounce'
 import { Component, Vue } from 'vue-property-decorator'
 
-import { calculateSignificantDigits } from '@/api'
+import { RoundToSignificantDigitsQuerystring, RoundToSignificantDigitsResponse, SignificantDigitsAmountResponse } from '@fina/common'
+
+import { calculateSignificantDigits, roundToSignificantDigits } from '@/api'
 
 /** Debounce time in milliseconds */
 const DEBOUNCE_TIME = 500
+
+/** A RegExp pattern that checks for any positive and negative floats and integers. */
+const validateNumberRegExp: RegExp = /^-?(0|[1-9]\d*)(\.\d+)?$/
 
 interface SignificantDigitsCardData {
   fullNumber: string
@@ -22,8 +27,15 @@ interface SignificantDigitsCardData {
   }
 })
 export default class SignificantDigitsPage extends Vue {
-  numberInput = '4920'
-  answerString = '492'
+  numberToFindSDAmount = '4920'
+  numberToFindSDAmountAnswer: SignificantDigitsAmountResponse = '492'
+
+  roundToSD: RoundToSignificantDigitsQuerystring = {
+    input: 0.0006149515874854588,
+    sd: 5
+  }
+
+  roundToSDAnswer = '0.00061494'
 
   cardDescription: Array<SignificantDigitsCardData> = [
     {
@@ -86,28 +98,49 @@ export default class SignificantDigitsPage extends Vue {
     }
   ]
 
-  searchDebounce = debounce(this.onNumberInputChange, DEBOUNCE_TIME)
+  findSDAmount = debounce(this.onNumberToFindSDAmountChange, DEBOUNCE_TIME)
+  roundNumberToSD = debounce(this.onRoundToSignificantDigitsChange, DEBOUNCE_TIME)
 
-  async onNumberInputChange (): Promise<void> {
-    /** A RegExp pattern that checks for any positive and negative floats and integers. */
-    const validateNumberRegExp: RegExp = /^-?(0|[1-9]\d*)(\.\d+)?$/
-
-    if (this.numberInput.match(validateNumberRegExp) == null) {
-      this.answerString = 'Invalid number'
+  async onNumberToFindSDAmountChange (): Promise<void> {
+    if (this.numberToFindSDAmount.match(validateNumberRegExp) == null) {
+      this.numberToFindSDAmountAnswer = 'Invalid number'
       return
     }
 
     try {
-      const response = await axios.request<string>({
+      const response = await axios.request<SignificantDigitsAmountResponse>({
         method: calculateSignificantDigits.method,
         url: calculateSignificantDigits.url,
         params: {
-          input: this.numberInput
+          input: this.numberToFindSDAmount
         }
       })
-      this.answerString = response.data
-    } catch (e) {
-      this.answerString = e.message as string
+      this.numberToFindSDAmountAnswer = response.data
+    } catch (error) {
+      this.numberToFindSDAmountAnswer = error.message as string
+    }
+  }
+
+  async onRoundToSignificantDigitsChange (): Promise<void> {
+    if (this.roundToSD.input.toString().match(validateNumberRegExp) == null) {
+      this.roundToSDAnswer = 'Invalid number'
+      return
+    }
+
+    if (this.roundToSD.sd < 0 || this.roundToSD.sd >= 15) {
+      this.roundToSDAnswer = 'Invalid input: Significant digits must be between 0 and 15'
+      return
+    }
+
+    try {
+      const response = await axios.request<RoundToSignificantDigitsResponse>({
+        method: roundToSignificantDigits.method,
+        url: roundToSignificantDigits.url,
+        params: this.roundToSD
+      })
+      this.roundToSDAnswer = response.data
+    } catch (error) {
+      this.roundToSDAnswer = error.message as string
     }
   }
 

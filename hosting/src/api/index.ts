@@ -11,3 +11,8 @@ export const calculateSignificantDigits: Endpoint = {
   method: 'GET',
   url: `${apiRootUrl}/significant-digits/amount`
 }
+
+export const roundToSignificantDigits: Endpoint = {
+  method: 'GET',
+  url: `${apiRootUrl}/significant-digits/round`
+}

@@ -32,8 +32,12 @@ export const firstSemesterPages: Array<Page> = [
         path: '/docs/significant-digits#examples'
       },
       {
-        name: 'Calculate',
-        path: '/docs/significant-digits#calculate'
+        name: 'Calculate Significant Digits in a number',
+        path: '/docs/significant-digits#calculate-sd-in-number'
+      },
+      {
+        name: 'Round number to a desired Significant Digits',
+        path: '/docs/significant-digits#round-to-sd'
       }
     ]
   },

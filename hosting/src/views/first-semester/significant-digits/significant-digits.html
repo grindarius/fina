@@ -138,17 +138,53 @@
       </div>
     </div>
   </section>
-  <section id="calculate" class="hero">
+  <section id="calculate-sd-in-number" class="hero">
     <div class="hero-body">
       <div class="container">
         <h1 class="title is-2">
-          Calculate
+          Calculate Significant Digits in a number
         </h1>
         <b-field label="Number">
-          <b-input v-model="numberInput" @input="searchDebounce" />
+          <b-input v-model="numberToFindSDAmount" @input="findSDAmount" />
         </b-field>
         <h3 class="subtitle">
-          Answer: {{ answerString }}
+          Answer: {{ numberToFindSDAmountAnswer }}
+        </h3>
+      </div>
+    </div>
+  </section>
+  <section id="round-to-sd" class="hero">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title is-2">
+          Round a number to desired Significant Digits
+        </h1>
+        <div class="field is-horizontal">
+          <div class="field-label is-normal">
+            <label for="round-to-sd-input" class="label">Number to round</label>
+          </div>
+          <div class="field-body">
+            <div class="field">
+              <div class="control has-icons-right">
+                <input class="input" name="round-to-sd-input" type="number" step="any" v-model="roundToSD.input" @input="roundNumberToSD" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="field is-horizontal">
+          <div class="field-label is-normal">
+            <label for="round-to-sd-sd" class="label">Significant Digits</label>
+          </div>
+          <div class="field-body">
+            <div class="field">
+              <div class="control has-icons-right">
+                <input class="input" name="round-to-sd-sd" type="number" step="any" min="1" max="15" v-model="roundToSD.sd" @input="roundNumberToSD" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <h3 class="subtitle">
+          Answer: {{ roundToSDAnswer }}
         </h3>
       </div>
     </div>

@@ -19,12 +19,14 @@ export function findSignificantDigits (input: string): string {
 
 export function roundToSignificantDigits (input: number, sfCount: number): string {
   let matches = input.toString().match(/^-?(0+)\.(0*)/)
+  console.log(matches)
 
   if (matches != null) {
     const firstIndex = matches[0].length
     const prefix = matches[0]
 
     const sf = Number(input.toString().substring(firstIndex, firstIndex + sfCount + 1))
+    console.log(sf)
     const roundedSF = Math.round(sf / 10)
     const sfString = prefix + roundedSF.toString()
     return Number(sfString).toFixed(matches[2].length + sfCount)
