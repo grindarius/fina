@@ -12,6 +12,11 @@
     "rebuild": "npm run clean && npm run watch:ts",
     "fix": "eslint **/*.ts --fix"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/grindarius/fina.git",
+    "directory": "common"
+  },
   "dependencies": {
     "@sinclair/typebox": "^0.16.7",
     "mathjs": "^9.4.3"
