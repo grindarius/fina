@@ -1,8 +1,16 @@
 {
   "name": "@fina/common",
   "version": "0.0.1",
+  "private": true,
   "description": "Common functions for FINA",
   "main": "dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/grindarius/fina.git",
+    "directory": "common"
+  },
+  "author": "Bhattarapong Somwong <numbbutt34685@gmail.com>",
+  "license": "MIT",
   "scripts": {
     "serve": "node dist/index.js",
     "build": "tsc",
@@ -13,11 +21,11 @@
     "fix": "eslint **/*.ts --fix"
   },
   "dependencies": {
-    "@sinclair/typebox": "^0.16.7",
+    "@sinclair/typebox": "^0.17.4",
     "mathjs": "^9.4.3"
   },
   "devDependencies": {
-    "@types/mathjs": "^6.0.12",
+    "@types/mathjs": "^9.4.1",
     "nodemon": "^2.0.9",
     "rimraf": "^3.0.2"
   }
