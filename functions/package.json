@@ -3,7 +3,11 @@
   "version": "0.0.1",
   "description": "Backend API for FINA",
   "main": "dist/index.js",
-  "repository": "https://github.com/grindarius/fina",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/grindarius/fina.git",
+    "directory": "functions"
+  },
   "author": "Bhattarapong Somwong",
   "license": "MIT",
   "private": true,
@@ -26,7 +30,6 @@
   },
   "devDependencies": {
     "@types/node": "^16.0.0",
-    "@types/qs": "^6.9.6",
     "nodemon": "^2.0.9",
     "rimraf": "^3.0.2"
   }
