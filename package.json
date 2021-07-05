@@ -9,31 +9,23 @@
   ],
   "scripts": {
     "serve": "cd hosting && npm run serve",
-    "serve:common": "cd common && npm run watch:ts",
-    "serve:functions": "cd functions && npm run watch",
-    "watch": "npx lerna run watch:ts",
-    "clean": "npx lerna run clean --paralell",
-    "rebuild": "npx lerna run rebuild",
-    "fix": "npx lerna run fix"
+    "watch:common": "cd common && npm run watch:ts",
+    "watch:functions": "cd functions && npm run watch",
+    "watch": "lerna run watch:ts",
+    "clean": "lerna run clean --paralell",
+    "rebuild": "lerna run rebuild",
+    "fix": "lerna run fix"
   },
-  "homepage": "https://github.com/grindarius/fina#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/grindarius/fina.git"
+    "url": "git+https://github.com/grindarius/fina.git"
   },
+  "keywords": [],
   "bugs": {
-    "url": "https://github.com/grindarius/fina/issues",
-    "email": "numbbutt34685@gmail.com"
+    "url": "https://github.com/grindarius/fina/issues"
   },
-  "keywords": [
-    "maths",
-    "numerical",
-    "analysis"
-  ],
-  "author": {
-    "name": "Bhattarapong Somwong",
-    "email": "numbbutt34685@gmail.com"
-  },
+  "homepage": "https://github.com/grindarius/fina#readme",
+  "author": "Bhattarapong Somwong",
   "license": "MIT",
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^4.28.1",
@@ -41,7 +33,7 @@
     "@vue/eslint-config-standard": "^6.0.0",
     "@vue/eslint-config-typescript": "^7.0.0",
     "@wemake-services/stylelint-config-scss": "^0.5.0",
-    "eslint": "^7.30.0",
+    "eslint": "^7.29.0",
     "eslint-config-standard": "^16.0.3",
     "eslint-config-standard-with-typescript": "^20.0.0",
     "eslint-plugin-import": "^2.23.4",
