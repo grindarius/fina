@@ -1,6 +1,7 @@
 {
   "name": "@fina/functions",
   "version": "0.0.1",
+  "private": true,
   "description": "Backend API for FINA",
   "main": "dist/index.js",
   "repository": {
@@ -8,12 +9,11 @@
     "url": "https://github.com/grindarius/fina.git",
     "directory": "functions"
   },
-  "author": "Bhattarapong Somwong",
+  "author": "Bhattarapong Somwong <numbbutt34685@gmail.com>",
   "license": "MIT",
-  "private": true,
   "scripts": {
     "serve": "node dist/index.js",
-    "build": "tsc",
+    "build": "tsc -p ./tsconfig.json",
     "watch": "nodemon",
     "watch:ts": "tsc -w",
     "clean": "npx rimraf dist",

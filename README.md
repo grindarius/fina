@@ -1,24 +1,26 @@
-# fina
+# FINA
+### Fabulous and Interactive Numerical Analysis Calculator
 
 ## Project setup
 ```
 npm install
 ```
+if the command did not succeed, try
+```
+npm install --legacy-peer-deps
+```
 
-### Compiles and hot-reloads for development
-```
-npm start
-```
+## Getting started
+Run these commands to start developing from the root directory.
 
-### Compiles and minifies for production
-```
-npm run build
-```
+| Terminal 1                  | Terminal 2                  | Terminal 3      |
+| --------------------------- | --------------------------- | --------------- |
+| `npm run serve:common`      | `npm run serve:functions`   | `npm run serve` |
+
+## Deployments
+// TODO: Add deployment notes
 
 ### Lints and fixes files
 ```
 npm run lint
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
