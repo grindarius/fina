@@ -114,19 +114,17 @@
           Examples
         </h1>
         <h3 class="subtitle">
-          Find the significant digits in these numbers. Click on each box to reveal the answer :)
+          Find the significant digits in these numbers. Click on each box to display the answer :)
         </h3>
         <div class="columns">
           <div class="column">
 
-            <div class="card" v-for="(card, index) in findSDCardDescription" @click="toggleFindSDCard(index)" :key="index">
+            <div class="card" v-for="(card, index) in cardDescription" @click="toggleCard(index)" :key="index">
               <div class="card-content">
                 <span class="title is-4 has-text-black" v-show="!card.show">{{ card.fullNumber }}</span>
                 <div class="answer" v-show="card.show">
                   <p class="title has-text-black">
-                    <span class="title is-4">{{ card.answer[0] }}</span>
-                    <span class="title is-4 has-text-info">{{ card.answer[1] }}</span>
-                    <span class="title is-4">{{ card.answer[2] }}</span>
+                    <span class="title is-4">{{ card.answer[0] }}</span><span class="title is-4 has-text-info">{{ card.answer[1] }}</span><span class="title is-4">{{ card.answer[2] }}</span>
                   </p>
                   <p class="subtitle is-6 has-text-black is-indented">
                     {{ card.answerDescription }}
@@ -167,120 +165,15 @@
       </div>
     </div>
   </section>
-  <hr class="linebreak">
   <section id="round-to-sd" class="hero">
-    <div class="hero-body">
-      <div class="container">
-        <h1 class="title is-2">
-          Rounding a number to a desired Significant Digits
-        </h1>
-        <p class="subtitle is-indented">
-          In previous session, you have learned about finding significant digits.
-          In this part, we will teach you how to round a number to a specified significant digits.
-        </p>
-      </div>
-    </div>
-  </section>
-  <section id="round-to-sd-rules" class="hero">
-    <div class="hero-body">
-      <div class="container">
-        <h1 class="title is-2">
-          Rules
-        </h1>
-        <div class="content">
-          <ol>
-            <li class="subtitle">
-              <p class="subtitle">
-                Look at the first non-zero digit if rounding to one significant digit.
-              </p>
-            </li>
-            <li class="subtitle">
-              <p class="subtitle">
-                Look at the digit after the first non-zero digit if rounding to two significant digits.
-              </p>
-            </li>
-            <li class="subtitle">
-              <p class="subtitle">
-                Draw a vertical line after the place value digit that is required.
-              </p>
-            </li>
-            <li class="subtitle">
-              <p class="subtitle">
-                Look at the next digit.
-              </p>
-              <ul>
-                <li class="subtitle">
-                  <p class="subtitle">
-                    <b>If it's 5 or more,</b> increase the previous digit by one.
-                  </p>
-                </li>
-                <li class="subtitle">
-                  <p class="subtitle">
-                    <b>If it's 4 or less,</b> keep the previous digit the same.
-                  </p>
-                </li>
-              </ul>
-            </li>
-            <li class="subtitle">
-              <p class="subtitle">
-                Fill any spaces to the <b>right</b> of the line with zeros. stopping at the decimal point
-                if there is one.
-              </p>
-            </li>
-            <li class="subtitle">
-              <p class="subtitle">
-                If the significant digits you want to round to is smaller than the number (50,000 round to 3 SD), you can
-                round them up into Scientific Notation (<katex-element expression="N \cdot 10^x" />) form too.
-              </p>
-            </li>
-          </ol>
-        </div>
-      </div>
-    </div>
-  </section>
-  <section id="round-to-sd-examples" class="hero">
-    <div class="hero-body">
-      <div class="container">
-        <h1 class="title is-2">
-          Examples
-        </h1>
-        <p class="subtitle">
-          Round these numbers to 3 significant digits. Click on each box to reveal the answer. Good luck :)
-        </p>
-
-        <div class="columns">
-          <div class="column">
-
-            <div class="card" v-for="(card, index) in roundSDCardDescription" @click="toggleRoundSDCard(index)" :key="index">
-              <div class="card-content">
-                <span class="title is-4 has-text-black" v-show="!card.show">{{ card.fullNumber }}</span>
-                <div class="answer" v-show="card.show">
-                  <p class="title has-text-black">
-                    <span class="title is-4">{{ card.answer[0] }}</span>
-                    <span class="title is-4 has-text-info">{{ card.answer[1]}}</span>
-                    <span class="title is-4">{{ card.answer[2] }}</span>
-                  </p>
-                  <p class="subtitle is-6 has-text-black is-indented">
-                    {{ card.answerDescription }}
-                  </p>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <section id="calculate-round-to-sd" class="hero">
     <div class="hero-body">
       <div class="container">
         <h1 class="title is-2">
           Round a number to desired Significant Digits
         </h1>
         <p class="subtitle is-indented">
-          The program will take your input, run it through <code>Number.toPrecision()</code> function of JavaScript and return
-          you the answer. Note that sometimes the answer will be in exponential variant.
+          The program will take your input, run it through <code>Number.toPrecision()</code> function of JavaScript and return you the answer.
+          Note that sometimes the answer will be in exponential variant.
         </p>
         <div class="field is-horizontal">
           <div class="field-label is-normal">
@@ -289,8 +182,7 @@
           <div class="field-body">
             <div class="field">
               <div class="control has-icons-right">
-                <input class="input" name="round-to-sd-input" type="number" step="any" v-model="roundToSD.input"
-                  @input="roundNumberToSD" />
+                <input class="input" name="round-to-sd-input" type="number" step="any" v-model="roundToSD.input" @input="roundNumberToSD" />
               </div>
             </div>
           </div>
@@ -302,8 +194,7 @@
           <div class="field-body">
             <div class="field">
               <div class="control has-icons-right">
-                <input class="input" name="round-to-sd-sd" type="number" step="any" min="1" max="15" v-model="roundToSD.sd"
-                  @input="roundNumberToSD" />
+                <input class="input" name="round-to-sd-sd" type="number" step="any" min="1" max="15" v-model="roundToSD.sd" @input="roundNumberToSD" />
               </div>
             </div>
           </div>
