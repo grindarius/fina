@@ -14,7 +14,7 @@ const validateNumberRegExp: RegExp = /^-?(0|[1-9]\d*)(\.\d+)?$/
 
 interface SignificantDigitsCardData {
   fullNumber: string
-  answer: [string, string, string]
+  answer: Array<string>
   answerDescription: string
   show: boolean
 }
@@ -42,7 +42,8 @@ export default class SignificantDigitsPage extends Vue {
 
   roundToSDAnswer = '305.46'
 
-  cardDescription: Array<SignificantDigitsCardData> = [
+  findSDCardDescription: Array<SignificantDigitsCardData> =
+  [
     {
       fullNumber: '3650',
       answer: ['', '365', '0'],
@@ -103,6 +104,42 @@ export default class SignificantDigitsPage extends Vue {
     }
   ]
 
+  roundSDCardDescription: Array<SignificantDigitsCardData> =
+  [
+    {
+      fullNumber: '0.004312',
+      answer: ['', '0.00431', '2'],
+      answerDescription: `Keep sliding from left side of the input until you find the number 4. Because we don't count
+        zeros in front and behind the dot. Since we're aiming for 3 significant digits. Count first 3 significant digits,
+        then, check the last digit after 1. Since it's less than 5 (2). We drop it, left with 0.00431.`,
+      show: false
+    },
+    {
+      fullNumber: '35',
+      answer: ['', '35.0', ''],
+      answerDescription: `For this one. Since the amount of significant digits is less than the number initially have.
+        So we have to add one more significant digit to the back of it to make it 3 SD. You can do that by adding a decimal point and a zero
+        at the back.`,
+      show: false
+    },
+    {
+      fullNumber: '59584',
+      answer: ['', '5.96e+4', ''],
+      answerDescription: `Since the amount of significant digits we wanted is less than the number initially have.
+        We would reduce it by converting it to a Scientific Notation, so we can handle the amount of significant digits
+        in N part, then handle the 10^x part so that it gives the same value as the initial value.`,
+      show: false
+    },
+    {
+      fullNumber: '0.000011233344',
+      answer: ['', '0.0000112', '33344'],
+      answerDescription: `This one is pretty close to the first one that we keep going from left side until we find
+        the significant, then count 3 of it, check if the next SD is less than 5 or not, in this case it's not, so we
+        drop them off.`,
+      show: false
+    }
+  ]
+
   findSDAmount = debounce(this.onNumberToFindSDAmountChange, DEBOUNCE_TIME)
   roundNumberToSD = debounce(this.onRoundToSignificantDigitsChange, DEBOUNCE_TIME)
 
@@ -146,7 +183,11 @@ export default class SignificantDigitsPage extends Vue {
     this.roundToSDAnswer = Number(inputToCalculate).toPrecision(sdToCalculate)
   }
 
-  toggleCard (cardNumber: number): void {
-    this.cardDescription[cardNumber].show = !this.cardDescription[cardNumber].show
+  toggleFindSDCard (cardNumber: number): void {
+    this.findSDCardDescription[cardNumber].show = !this.findSDCardDescription[cardNumber].show
+  }
+
+  toggleRoundSDCard (cardNumber: number): void {
+    this.roundSDCardDescription[cardNumber].show = !this.roundSDCardDescription[cardNumber].show
   }
 }

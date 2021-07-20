@@ -11,12 +11,12 @@
               FINA
             </h1>
             <h3 class="subtitle is-3">
-              <span class="has-text-light-blue">F</span>abulous and
-              <span class="has-text-light-blue">I</span>nteractive
-              <span class="has-text-light-blue">N</span>umerical
-              <span class="has-text-light-blue">A</span>nalysis calculator.
+              <span class="has-text-light-blue">{{ $t('home.heading.colored0') }}</span>{{ $t('home.heading.colored1') }}
+              <span class="has-text-light-blue">{{ $t('home.heading.colored2') }}</span>{{ $t('home.heading.colored3') }}
+              <span class="has-text-light-blue">{{ $t('home.heading.colored4') }}</span>{{ $t('home.heading.colored5') }}
+              <span class="has-text-light-blue">{{ $t('home.heading.colored6') }}</span>{{ $t('home.heading.colored7') }}
             </h3>
-            <b-button tag="router-link" to="/docs" type="is-link">Getting Started</b-button>
+            <b-button tag="router-link" to="/docs" type="is-link">{{ $t('home.gettingStarted') }}</b-button>
           </div>
         </div>
       </div>
@@ -26,17 +26,17 @@
     <div class="hero-body">
       <div class="container">
         <h1 class="title is-1 has-text-centered">
-          Interactive tool for Numerical Analysis
+          {{ $t('home.chart.header') }}
         </h1>
         <h3 class="subtitle is-3 has-text-centered">
-          Beautiful representation at the tip of your mouse
+          {{ $t('home.chart.description') }}
         </h3>
         <h3 class="subtitle is-3 has-text-centered">
-          Find the root value of a function
+          {{ $t('home.chart.question.1') }}
           <katex-element :expression="expression" />
-          where the root lies between
+          {{ $t('home.chart.question.2') }}
           <katex-element expression="1" />
-          and
+          {{ $t('home.chart.question.3') }}
           <katex-element expression="2" />
         </h3>
         <div class="box-overflow">

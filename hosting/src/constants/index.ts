@@ -1,43 +1,57 @@
+import { i18n } from '@/main'
 import { Page } from '@/types'
 
-export const firstSemesterPages: Array<Page> = [
+export const firstSemesterPages: Array<Page> =
+[
   {
-    name: 'Getting started',
+    name: i18n.t('firstSemesterDropdown.gettingStarted.name'),
     path: '/docs',
     components: [
       {
-        name: 'What is FINA',
+        name: i18n.t('firstSemesterDropdown.gettingStarted.components.whatIsFINA.name'),
         path: '/docs#what-is-fina'
       },
       {
-        name: 'Features',
+        name: i18n.t('firstSemesterDropdown.gettingStarted.components.features.name'),
         path: '/docs#features'
       }
     ]
   },
   {
-    name: 'Significant Digits',
+    name: i18n.t('firstSemesterDropdown.significantDigits.name'),
     path: '/docs/significant-digits',
     components: [
       {
-        name: 'Description',
+        name: i18n.t('firstSemesterDropdown.significantDigits.components.description.name'),
         path: '/docs/significant-digits#description'
       },
       {
-        name: 'Rules',
+        name: i18n.t('firstSemesterDropdown.significantDigits.components.rules.name'),
         path: '/docs/significant-digits#rules'
       },
       {
-        name: 'Examples',
+        name: i18n.t('firstSemesterDropdown.significantDigits.components.examples.name'),
         path: '/docs/significant-digits#examples'
       },
       {
-        name: 'Calculate Significant Digits in a number',
+        name: i18n.t('firstSemesterDropdown.significantDigits.components.calculate.name'),
         path: '/docs/significant-digits#calculate-sd-in-number'
       },
       {
-        name: 'Round number to a desired Significant Digits',
+        name: i18n.t('firstSemesterDropdown.significantDigits.components.roundToSD.name'),
         path: '/docs/significant-digits#round-to-sd'
+      },
+      {
+        name: i18n.t('firstSemesterDropdown.significantDigits.components.roundToSDRules.name'),
+        path: '/docs/significant-digits#round-to-sd-rules'
+      },
+      {
+        name: i18n.t('firstSemesterDropdown.significantDigits.components.roundToSDExamples.name'),
+        path: '/docs/significant-digits#round-to-sd-examples'
+      },
+      {
+        name: i18n.t('firstSemesterDropdown.significantDigits.components.calculateRoundToSD.name'),
+        path: '/docs/significant-digits#calculate-round-to-sd'
       }
     ]
   },

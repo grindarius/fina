@@ -23,6 +23,13 @@
       </template>
 
       <template #end>
+        <b-navbar-item tag="div">
+          <b-navbar-dropdown label="Language">
+            <b-navbar-item v-for="locale in locales" :key="locale.value + locale.caption" tag="a" @click="onLanguageChange(locale)">
+              {{ locale.caption }}
+            </b-navbar-item>
+          </b-navbar-dropdown>
+        </b-navbar-item>
         <b-navbar-item v-for="navbar in miscellaneousNavbarMenu" :key="navbar.name + navbar.path" tag="router-link" :to="{ path: navbar.path }">
           {{ navbar.name }}
         </b-navbar-item>
@@ -40,6 +47,7 @@ import { Component, Vue } from 'vue-property-decorator'
 
 import FooterComponent from '@/components/footer/footer.vue'
 import { firstSemesterPages, miscellaneousPages, secondSemesterPages } from '@/constants'
+import { LOCALES, Locales } from '@/i18n/locales'
 import { getFirstLevelPage } from '@/services'
 import { PageComponent } from '@/types'
 
@@ -54,6 +62,8 @@ import { PageComponent } from '@/types'
   }
 })
 export default class App extends Vue {
+  locales = LOCALES
+
   get firstSemesterNavbarMenu (): Array<PageComponent> {
     return getFirstLevelPage(firstSemesterPages).slice(1)
   }
@@ -64,6 +74,10 @@ export default class App extends Vue {
 
   get miscellaneousNavbarMenu (): Array<PageComponent> {
     return getFirstLevelPage(miscellaneousPages)
+  }
+
+  onLanguageChange (locale: { value: Locales, caption: string }): void {
+    this.$store.commit('setLanguage', locale.value)
   }
 }
 </script>
