@@ -116,7 +116,7 @@ export default class Grapher extends Vue {
       this.drawStartEndLine(this.x, this.y)
     }
 
-    if (this.points !== []) {
+    if (this.points.length !== 0) {
       this.dots = this.svg.append('g')
         .attr('clip-path', `url(#clip-${this.id})`)
 
@@ -170,11 +170,9 @@ export default class Grapher extends Vue {
    * A function that draw points (dots) for each iteration of the method.
    */
   drawDots (): void {
-    this.dots
-      .selectAll()
+    this.dots.selectAll(`point-${this.id}`)
       .data(this.points)
-      .enter()
-      .append('circle')
+      .join('circle')
       .classed(`point-${this.id}`, true)
       .attr('cx', (d) => this.x(d.x))
       .attr('cy', (d) => this.y(d.y))
@@ -218,9 +216,9 @@ export default class Grapher extends Vue {
    * @param yScale a y scale
    */
   drawLine (xScale: d3.ScaleLinear<number, number, never>, yScale: d3.ScaleLinear<number, number, never>): void {
-    this.line
-      .append('path')
-      .datum(this.data)
+    this.line.selectAll(`path.data-line-${this.id}`)
+      .data([this.data])
+      .join('path')
       .classed(`data-line-${this.id}`, true)
       .attr('fill', 'none')
       .attr('stroke', 'steelblue')
@@ -233,9 +231,8 @@ export default class Grapher extends Vue {
 
   /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
   zoomed (event: any): void {
-    d3.selectAll(`.gridline-${this.id}`).remove()
-    d3.select(`.start-range-line-${this.id}`).remove()
-    d3.select(`.end-range-line-${this.id}`).remove()
+    d3.select(`line.start-range-line-${this.id}`).remove()
+    d3.select(`line.end-range-line-${this.id}`).remove()
 
     const newX = event.transform.rescaleX(this.x)
     const newY = event.transform.rescaleY(this.y)
@@ -248,15 +245,14 @@ export default class Grapher extends Vue {
     }
     this.drawZeroLine()
 
-    const redrawline: d3.Selection<d3.BaseType, Array<Coordinate>, SVGGElement, unknown> = this.line.selectAll(`.data-line-${this.id}`)
+    const redrawline: d3.Selection<d3.BaseType, Array<Coordinate>, SVGGElement, unknown> = this.line.selectAll(`path.data-line-${this.id}`)
     redrawline.attr('d', d3.line<Coordinate>()
       .x(d => newX(d.x))
       .y(d => newY(d.y))
     )
 
     if (this.points.length !== 0) {
-      const redrawDots: d3.Selection<d3.BaseType, Array<Coordinate>, SVGGElement, unknown> = this.dots.selectAll(`.point-${this.id}`)
-      console.log(redrawDots)
+      const redrawDots: d3.Selection<d3.BaseType, Array<Coordinate>, SVGGElement, unknown> = this.dots.selectAll(`circle.point-${this.id}`)
       redrawDots.data(this.points)
         .attr('cx', (d) => newX(d.x))
         .attr('cy', (d) => newY(d.y))
@@ -286,6 +282,7 @@ export default class Grapher extends Vue {
    * @returns An array of coordinates made from those 2 ranges
    */
   calculateData (left: number, right: number): Array<Coordinate> {
+    console.time('calculate data')
     if (left > right) throw new Error('Error: left is greater than right')
 
     const delta = right - left
@@ -293,13 +290,17 @@ export default class Grapher extends Vue {
     if (delta >= 10) this.timeFactor = 100
     else if (delta >= 5 && delta < 10) this.timeFactor = 500
     else if (delta >= 1 && delta < 5) this.timeFactor = 1000
-    else if (delta < 1) this.timeFactor = 10000
+    else if (delta >= 0.5 && delta < 1) this.timeFactor = 5000
+    else if (delta >= 0.075 && delta < 0.5) this.timeFactor = 10000
+    else if (delta < 0.075) this.timeFactor = 50000
 
     const multipliedLeft = round(left, 5) * this.timeFactor
     const multipliedRight = round(right, 5) * this.timeFactor
 
     const dummyArray = Array.from<number, number>({ length: (multipliedRight - multipliedLeft + 1) }, (_, i) => multipliedLeft + i)
 
+    console.timeEnd('calculate data')
+    console.log(dummyArray.length, delta)
     return dummyArray.map((element) => {
       const x = element / this.timeFactor
 

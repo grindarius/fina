@@ -2,7 +2,7 @@ import * as math from 'mathjs'
 
 import { absoluteError, Answer, evaluateFunction, round } from '@fina/common'
 
-export function iteration (expression: string, diffedExpression: string, a: number, iteration: number, decimalPoint: number): Array<Answer> {
+export function newtonIteration (expression: string, diffedExpression: string, a: number, iteration: number, decimalPoint: number): Array<Answer> {
   let previousC = 0
   const answerArray: Array<Answer> = []
 

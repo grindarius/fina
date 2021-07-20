@@ -121,7 +121,7 @@
 
             <div class="card" v-for="(card, index) in cardDescription" @click="toggleCard(index)" :key="index">
               <div class="card-content">
-                <p class="title is-4 has-text-black" v-show="!card.show">{{ card.fullNumber }}</p>
+                <span class="title is-4 has-text-black" v-show="!card.show">{{ card.fullNumber }}</span>
                 <div class="answer" v-show="card.show">
                   <p class="title has-text-black">
                     <span class="title is-4">{{ card.answer[0] }}</span><span class="title is-4 has-text-info">{{ card.answer[1] }}</span><span class="title is-4">{{ card.answer[2] }}</span>
@@ -144,9 +144,21 @@
         <h1 class="title is-2">
           Calculate Significant Digits in a number
         </h1>
-        <b-field label="Number">
-          <b-input v-model="numberToFindSDAmount" @input="findSDAmount" />
-        </b-field>
+        <p class="subtitle is-indented">
+          The program will take your input, chop it up, and give you back the significant digits inside of that input.
+        </p>
+        <div class="field is-horizontal">
+          <div class="field-label is-normal">
+            <label for="find-sd" class="label">Number to find SD</label>
+          </div>
+          <div class="field-body">
+            <div class="field">
+              <div class="control has-icons-right">
+                <input class="input" name="find-sd" type="number" step="any" v-model="numberToFindSDAmount" @input="findSDAmount" >
+              </div>
+            </div>
+          </div>
+        </div>
         <h3 class="subtitle">
           Answer: {{ numberToFindSDAmountAnswer }}
         </h3>
@@ -159,6 +171,10 @@
         <h1 class="title is-2">
           Round a number to desired Significant Digits
         </h1>
+        <p class="subtitle is-indented">
+          The program will take your input, run it through <code>Number.toPrecision()</code> function of JavaScript and return you the answer.
+          Note that sometimes the answer will be in exponential variant.
+        </p>
         <div class="field is-horizontal">
           <div class="field-label is-normal">
             <label for="round-to-sd-input" class="label">Number to round</label>

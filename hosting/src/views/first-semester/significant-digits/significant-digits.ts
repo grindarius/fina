@@ -2,9 +2,9 @@ import axios from 'axios'
 import debounce from 'debounce'
 import { Component, Vue } from 'vue-property-decorator'
 
-import { RoundToSignificantDigitsQuerystring, RoundToSignificantDigitsResponse, SignificantDigitsAmountResponse } from '@fina/common'
+import { SignificantDigitsAmountResponse } from '@fina/common'
 
-import { calculateSignificantDigits, roundToSignificantDigits } from '@/api'
+import { calculateSignificantDigits } from '@/api'
 
 /** Debounce time in milliseconds */
 const DEBOUNCE_TIME = 500
@@ -19,6 +19,11 @@ interface SignificantDigitsCardData {
   show: boolean
 }
 
+interface RoundToSDInput {
+  input: number
+  sd: number
+}
+
 @Component({
   metaInfo () {
     return {
@@ -30,12 +35,12 @@ export default class SignificantDigitsPage extends Vue {
   numberToFindSDAmount = '4920'
   numberToFindSDAmountAnswer: SignificantDigitsAmountResponse = '492'
 
-  roundToSD: RoundToSignificantDigitsQuerystring = {
-    input: 0.0006149515874854588,
+  roundToSD: RoundToSDInput = {
+    input: 305.459,
     sd: 5
   }
 
-  roundToSDAnswer = '0.00061494'
+  roundToSDAnswer = '305.46'
 
   cardDescription: Array<SignificantDigitsCardData> = [
     {
@@ -121,7 +126,7 @@ export default class SignificantDigitsPage extends Vue {
     }
   }
 
-  async onRoundToSignificantDigitsChange (): Promise<void> {
+  onRoundToSignificantDigitsChange (): void {
     if (this.roundToSD.input.toString().match(validateNumberRegExp) == null) {
       this.roundToSDAnswer = 'Invalid number'
       return
@@ -132,16 +137,13 @@ export default class SignificantDigitsPage extends Vue {
       return
     }
 
-    try {
-      const response = await axios.request<RoundToSignificantDigitsResponse>({
-        method: roundToSignificantDigits.method,
-        url: roundToSignificantDigits.url,
-        params: this.roundToSD
-      })
-      this.roundToSDAnswer = response.data
-    } catch (error) {
-      this.roundToSDAnswer = error.message as string
-    }
+    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+    const inputToCalculate = this.roundToSD.input || 305.459
+
+    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+    const sdToCalculate = this.roundToSD.sd || 5
+
+    this.roundToSDAnswer = Number(inputToCalculate).toPrecision(sdToCalculate)
   }
 
   toggleCard (cardNumber: number): void {

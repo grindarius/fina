@@ -2,7 +2,7 @@ import { FastifyInstance, FastifyPluginOptions, FastifySchema } from 'fastify'
 
 import { Answer, BisectionQuerystring, BisectionQuerystringSchema, BisectionResponseSchema } from '@fina/common'
 
-import * as bisection from '../../services/bisection'
+import { bisectionIteration } from '../../services/bisection'
 
 const schema: FastifySchema = {
   querystring: BisectionQuerystringSchema,
@@ -19,7 +19,7 @@ export default async function (instance: FastifyInstance, _: FastifyPluginOption
     const iteration = request.query.iteration ?? 5
     const decimalPoint = request.query.dp ?? 5
 
-    const answer: Array<Answer> = bisection.iteration(expression, a, b, iteration, decimalPoint)
+    const answer: Array<Answer> = bisectionIteration(expression, a, b, iteration, decimalPoint)
 
     return answer
   })

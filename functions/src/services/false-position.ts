@@ -1,6 +1,6 @@
 import { absoluteError, Answer, evaluateFunction, round } from '@fina/common'
 
-export function iteration (expression: string, a: number, b: number, iteration: number, decimalPoint: number): Array<Answer> {
+export function falsePositionIteration (expression: string, a: number, b: number, iteration: number, decimalPoint: number): Array<Answer> {
   let previousC = 0
   const answerArray: Array<Answer> = []
 
@@ -22,9 +22,13 @@ export function iteration (expression: string, a: number, b: number, iteration: 
     const answer: Answer = { i, a, b, fa, fb, c, fc, error }
     answerArray.push(answer)
 
-    // * a becomes b, b becomes c
-    a = b
-    b = c
+    // * compare f(a) * f(c)
+    if (fa * fc < 0) {
+      b = c
+    } else if (fa * fc > 0) {
+      a = c
+    }
+
     previousC = c
   }
 

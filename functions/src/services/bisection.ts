@@ -1,6 +1,6 @@
 import { absoluteError, Answer, evaluateFunction, round } from '@fina/common'
 
-export function iteration (expression: string, a: number, b: number, iteration: number, decimalPoint: number): Array<Answer> {
+export function bisectionIteration (expression: string, a: number, b: number, iteration: number, decimalPoint: number): Array<Answer> {
   let previousC = 0
   const answerArray: Array<Answer> = []
 
@@ -10,7 +10,7 @@ export function iteration (expression: string, a: number, b: number, iteration: 
     const fb = round(evaluateFunction(expression, b), decimalPoint)
 
     // * find c
-    const cExpression = ((a * fb) - (b * fa)) / (fb - fa)
+    const cExpression = (a + b) / 2
     const c = round(cExpression, decimalPoint)
 
     // * find f(c)

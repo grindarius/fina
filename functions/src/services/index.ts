@@ -1,0 +1,6 @@
+export * from './bisection'
+export * from './false-position'
+export * from './fixed-point-iteration'
+export * from './newton'
+export * from './secant'
+export * from './significant-digits'
