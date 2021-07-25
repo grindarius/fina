@@ -1,11 +1,16 @@
 import * as d3 from 'd3'
-import { Component, Prop, Vue } from 'vue-property-decorator'
+import { Component, Prop, Ref, Vue } from 'vue-property-decorator'
 
 import { evaluateFunction, round } from '@fina/common'
 
 import { Coordinate } from '@/types'
 
 const margins = { top: 40, right: 40, bottom: 40, left: 40 }
+
+/**
+ * Graph mouse offset to move the chart away from the dot
+ */
+// const TOOLTIP_MOUSE_OFFSET = 10
 
 @Component
 export default class Grapher extends Vue {
@@ -59,13 +64,18 @@ export default class Grapher extends Vue {
   width: number = 0
   height: number = 0
 
-  svg: d3.Selection<SVGGElement, unknown, HTMLElement, unknown>
+  @Ref('container') readonly container!: HTMLDivElement
+  @Ref('tooltip-ref') readonly tooltip!: HTMLDivElement
+
+  svg: d3.Selection<SVGSVGElement, unknown, HTMLElement, unknown>
+  g: d3.Selection<SVGGElement, unknown, HTMLElement, unknown>
   line: d3.Selection<SVGGElement, unknown, HTMLElement, unknown>
   dots: d3.Selection<SVGGElement, unknown, HTMLElement, unknown>
   x: d3.ScaleLinear<number, number, never>
   y: d3.ScaleLinear<number, number, never>
   xAxis: d3.Selection<SVGGElement, unknown, HTMLElement, unknown>
   yAxis: d3.Selection<SVGGElement, unknown, HTMLElement, unknown>
+  tip: d3.Selection<d3.BaseType, unknown, HTMLElement, unknown>
 
   mounted (): void {
     this.width = this.propWidth - margins.left - margins.right
@@ -82,23 +92,25 @@ export default class Grapher extends Vue {
       .append('svg')
       .attr('width', this.width + margins.left + margins.right)
       .attr('height', this.height + margins.top + margins.bottom)
+
+    this.g = this.svg
       .append('g')
       .attr('transform', `translate(${margins.left}, ${margins.top})`)
 
     this.x = d3.scaleLinear([-5, 5], [0, this.width])
     this.y = d3.scaleLinear([-5, 5], [this.height, 0])
 
-    this.xAxis = this.svg.append('g')
+    this.xAxis = this.g.append('g')
       .attr('transform', `translate(0, ${this.height})`)
       .attr('class', `x-axis-${this.id}`)
 
-    this.yAxis = this.svg.append('g')
+    this.yAxis = this.g.append('g')
       .attr('class', `y-axis-${this.id}`)
 
     this.xAxis.call(d3.axisBottom(this.x))
     this.yAxis.call(d3.axisLeft(this.y))
 
-    this.svg.append('defs').append('svg:clipPath')
+    this.g.append('defs').append('svg:clipPath')
       .attr('id', `clip-${this.id}`)
       .append('svg:rect')
       .attr('width', this.width)
@@ -106,21 +118,19 @@ export default class Grapher extends Vue {
       .attr('x', 0)
       .attr('y', 0)
 
-    this.line = this.svg.append('g')
+    this.line = this.g.append('g')
+      .classed(`${this.id}-line-clip-path`, true)
       .attr('clip-path', `url(#clip-${this.id})`)
 
     this.drawLine(this.x, this.y)
     this.drawZeroLine()
 
+    this.tip = d3.select(`#${this.id}-tooltip`)
+      .style('position', 'absolute')
+      .style('visibility', 'hidden')
+
     if (this.start != null && this.end != null) {
       this.drawStartEndLine(this.x, this.y)
-    }
-
-    if (this.points.length !== 0) {
-      this.dots = this.svg.append('g')
-        .attr('clip-path', `url(#clip-${this.id})`)
-
-      this.drawDots()
     }
 
     const zoom = d3.zoom<SVGRectElement, unknown>()
@@ -129,13 +139,21 @@ export default class Grapher extends Vue {
       .on('zoom', this.zoomed)
       .on('end', this.zoomEnded)
 
-    this.svg.append('rect')
+    this.g.append('rect')
       .classed(`pointer-receiver-${this.id}`, true)
       .attr('width', this.width)
       .attr('height', this.height)
       .style('fill', 'none')
       .style('pointer-events', 'all')
       .call(zoom)
+
+    if (this.points.length !== 0) {
+      this.dots = this.g.append('g')
+        .classed(`${this.id}-points-clip-path`, true)
+        .attr('clip-path', `url(#clip-${this.id})`)
+
+      this.drawDots()
+    }
   }
 
   /**
@@ -178,6 +196,46 @@ export default class Grapher extends Vue {
       .attr('cy', (d) => this.y(d.y))
       .attr('r', 3)
       .style('fill', '#240743')
+      .on('mouseover', (event) => {
+        d3.select(event.currentTarget)
+          .style('stroke', '#C4C4C4')
+          .style('stroke-opacity', 1)
+
+        this.tip.style('visibility', 'visible')
+      })
+      .on('mousemove', (event, d) => {
+        const xPosition = d3.pointer(event, this.g)[0]
+        const yPosition = d3.pointer(event, this.g)[1]
+
+        console.log(d3.pointer(event, this.container), d3.pointer(event, this.g))
+
+        // const xPosition: number = event.offsetX
+        // const yPosition: number = event.offsetY
+
+        // const xPosition: number = startingXPosition + this.tooltip.clientWidth > this.width
+        //   ? startingXPosition - this.tooltip.clientWidth - TOOLTIP_MOUSE_OFFSET
+        //   : startingXPosition + TOOLTIP_MOUSE_OFFSET
+
+        // const yPosition: number = startingYPosition + this.tooltip.clientHeight > this.height
+        //   ? startingXPosition - this.tooltip.clientHeight - TOOLTIP_MOUSE_OFFSET
+        //   : startingYPosition + TOOLTIP_MOUSE_OFFSET
+
+        this.tip.style('visibility', 'visible')
+          .style('left', `${xPosition}px`)
+          .style('top', `${yPosition}px`)
+          .html(`
+            <div class="card-content has-text-left">
+              <span class="nowrap"><b>x: ${d.x}</b></span> <br>
+              <span class="nowrap"><b>y: ${d.y}</b></span>
+            </div>
+          `)
+      })
+      .on('mouseleave', (event) => {
+        this.tip.style('visibility', 'hidden')
+
+        d3.select(event.currentTarget)
+          .style('stroke', 'none')
+      })
   }
 
   /**
@@ -282,7 +340,6 @@ export default class Grapher extends Vue {
    * @returns An array of coordinates made from those 2 ranges
    */
   calculateData (left: number, right: number): Array<Coordinate> {
-    console.time('calculate data')
     if (left > right) throw new Error('Error: left is greater than right')
 
     const delta = right - left
@@ -299,8 +356,6 @@ export default class Grapher extends Vue {
 
     const dummyArray = Array.from<number, number>({ length: (multipliedRight - multipliedLeft + 1) }, (_, i) => multipliedLeft + i)
 
-    console.timeEnd('calculate data')
-    console.log(dummyArray.length, delta)
     return dummyArray.map((element) => {
       const x = element / this.timeFactor
 
