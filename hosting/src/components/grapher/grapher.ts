@@ -75,7 +75,7 @@ export default class Grapher extends Vue {
   y: d3.ScaleLinear<number, number, never>
   xAxis: d3.Selection<SVGGElement, unknown, HTMLElement, unknown>
   yAxis: d3.Selection<SVGGElement, unknown, HTMLElement, unknown>
-  tip: d3.Selection<d3.BaseType, unknown, HTMLElement, unknown>
+  legend: d3.Selection<SVGSVGElement, unknown, HTMLElement, unknown>
 
   mounted (): void {
     this.width = this.propWidth - margins.left - margins.right
@@ -125,16 +125,12 @@ export default class Grapher extends Vue {
     this.drawLine(this.x, this.y)
     this.drawZeroLine()
 
-    this.tip = d3.select(`#${this.id}-tooltip`)
-      .style('position', 'absolute')
-      .style('visibility', 'hidden')
-
     if (this.start != null && this.end != null) {
       this.drawStartEndLine(this.x, this.y)
     }
 
     const zoom = d3.zoom<SVGRectElement, unknown>()
-      .scaleExtent([1, 200])
+      .scaleExtent([1, 10_000])
       .extent([[0, 0], [this.width, this.height]])
       .on('zoom', this.zoomed)
       .on('end', this.zoomEnded)
@@ -154,6 +150,16 @@ export default class Grapher extends Vue {
 
       this.drawDots()
     }
+
+    this.legend = this.g
+      .append('svg')
+      .classed(`${this.id}-legend`, true)
+      .attr('width', '100%')
+      .attr('height', 80)
+      .attr('x', 0.8 * this.width)
+      .attr('y', 0.05 * this.height)
+      .style('visibility', 'hidden')
+      .style('fill', 'white')
   }
 
   /**
@@ -198,43 +204,24 @@ export default class Grapher extends Vue {
       .style('fill', '#240743')
       .on('mouseover', (event) => {
         d3.select(event.currentTarget)
-          .style('stroke', '#C4C4C4')
+          .style('stroke', 'red')
           .style('stroke-opacity', 1)
 
-        this.tip.style('visibility', 'visible')
+        this.legend.style('visibility', 'visible')
       })
-      .on('mousemove', (event, d) => {
-        const xPosition = d3.pointer(event, this.g)[0]
-        const yPosition = d3.pointer(event, this.g)[1]
-
-        console.log(d3.pointer(event, this.container), d3.pointer(event, this.g))
-
-        // const xPosition: number = event.offsetX
-        // const yPosition: number = event.offsetY
-
-        // const xPosition: number = startingXPosition + this.tooltip.clientWidth > this.width
-        //   ? startingXPosition - this.tooltip.clientWidth - TOOLTIP_MOUSE_OFFSET
-        //   : startingXPosition + TOOLTIP_MOUSE_OFFSET
-
-        // const yPosition: number = startingYPosition + this.tooltip.clientHeight > this.height
-        //   ? startingXPosition - this.tooltip.clientHeight - TOOLTIP_MOUSE_OFFSET
-        //   : startingYPosition + TOOLTIP_MOUSE_OFFSET
-
-        this.tip.style('visibility', 'visible')
-          .style('left', `${xPosition}px`)
-          .style('top', `${yPosition}px`)
-          .html(`
-            <div class="card-content has-text-left">
-              <span class="nowrap"><b>x: ${d.x}</b></span> <br>
-              <span class="nowrap"><b>y: ${d.y}</b></span>
-            </div>
-          `)
+      .on('mousemove', (_, d) => {
+        this.legend.html(`
+          <g>
+            <text x="10" y="20" fill="black">X: ${d.x} </text>
+            <text x="10" y="40" fill="black">Y: ${d.y} </text>
+          </g>
+        `)
       })
       .on('mouseleave', (event) => {
-        this.tip.style('visibility', 'hidden')
-
         d3.select(event.currentTarget)
           .style('stroke', 'none')
+
+        this.legend.style('visibility', 'hidden')
       })
   }
 
@@ -348,8 +335,11 @@ export default class Grapher extends Vue {
     else if (delta >= 5 && delta < 10) this.timeFactor = 500
     else if (delta >= 1 && delta < 5) this.timeFactor = 1000
     else if (delta >= 0.5 && delta < 1) this.timeFactor = 5000
-    else if (delta >= 0.075 && delta < 0.5) this.timeFactor = 10000
-    else if (delta < 0.075) this.timeFactor = 50000
+    else if (delta >= 0.075 && delta < 0.5) this.timeFactor = 10_000
+    else if (delta >= 0.025 && delta < 0.075) this.timeFactor = 50_000
+    else if (delta >= 0.01 && delta < 0.025) this.timeFactor = 100_000
+    else if (delta >= 0.002 && delta < 0.01) this.timeFactor = 500_000
+    else if (delta < 0.002) this.timeFactor = 1_000_000
 
     const multipliedLeft = round(left, 5) * this.timeFactor
     const multipliedRight = round(right, 5) * this.timeFactor
