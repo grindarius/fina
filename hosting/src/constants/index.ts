@@ -56,7 +56,20 @@ export const firstSemesterPages: Array<Page> = [
   {
     name: 'Decimal Points',
     path: '/docs/decimal-points',
-    components: []
+    components: [
+      {
+        name: 'Description',
+        path: '/docs/decimal-points#description'
+      },
+      {
+        name: 'Examples',
+        path: '/docs/decimal-points#examples'
+      },
+      {
+        name: 'Round to decimal points',
+        path: '/docs/decimal-points#round-to-dp'
+      }
+    ]
   },
   {
     name: 'Bisection',

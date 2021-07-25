@@ -2,15 +2,9 @@ import axios from 'axios'
 import debounce from 'debounce'
 import { Component, Vue } from 'vue-property-decorator'
 
-import { SignificantDigitsAmountResponse } from '@fina/common'
+import { DEBOUNCE_TIME, SignificantDigitsAmountResponse, validateNumberRegExp } from '@fina/common'
 
 import { calculateSignificantDigits } from '@/api'
-
-/** Debounce time in milliseconds */
-const DEBOUNCE_TIME = 500
-
-/** A RegExp pattern that checks for any positive and negative floats and integers. */
-const validateNumberRegExp: RegExp = /^-?(0|[1-9]\d*)(\.\d+)?$/
 
 interface SignificantDigitsCardData {
   fullNumber: string
@@ -169,18 +163,18 @@ export default class SignificantDigitsPage extends Vue {
       return
     }
 
-    if (this.roundToSD.sd < 0 || this.roundToSD.sd >= 15) {
-      this.roundToSDAnswer = 'Invalid input: Significant digits must be between 0 and 15'
+    if (this.roundToSD.sd < 0 || this.roundToSD.sd >= 100) {
+      this.roundToSDAnswer = 'Invalid input: Significant digits must be between 0 and 100'
       return
     }
 
     // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
-    const inputToCalculate = this.roundToSD.input || 305.459
+    const inputToCalculate = Number(this.roundToSD.input || 305.459)
 
     // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
-    const sdToCalculate = this.roundToSD.sd || 5
+    const sdToCalculate = Number(this.roundToSD.sd || 5)
 
-    this.roundToSDAnswer = Number(inputToCalculate).toPrecision(sdToCalculate)
+    this.roundToSDAnswer = inputToCalculate.toPrecision(sdToCalculate)
   }
 
   toggleFindSDCard (cardNumber: number): void {

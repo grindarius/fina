@@ -1,5 +1,5 @@
 <div class="decimal-points-page">
-  <section class="hero">
+  <section id="decimal-points" class="hero">
     <div class="hero-body">
       <div class="container">
         <h1 class="title is-1">
@@ -7,6 +7,86 @@
         </h1>
         <h3 class="subtitle is-3">
           Finding how many points we need is hard.
+        </h3>
+      </div>
+    </div>
+  </section>
+  <section id="description" class="hero">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title is-2">
+          Description
+        </h1>
+        <p class="subtitle is-indented">
+          It is a <b>point</b> or dot we use to separate the <b>whole number</b>
+          part from the fractional part of a number.
+          
+          A decimal number is a number that consists of a whole number
+          and a fractional part. The decimal point separates the
+          whole number from the fractional part.
+        </p>
+      </div>
+    </div>
+  </section>
+  <section id="examples" class="hero">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title is-2">
+          Examples
+        </h1>
+        <h1 class="subtitle">
+          Take a look at this number:
+        </h1>
+        <h1 class="title is-1 has-text-centered">
+          258.16
+        </h1>
+        <p class="subtitle is-indented">
+          You can see that the number is separated by a dot. We call the part before the dot
+          <b>'Whole number'</b>, and we call the part <b>after</b> the dot <b>'Fractional part'</b>.
+        </p>
+        <p class="subtitle is-indented">
+          We start counting the amount of decimal points by counting the amount of number
+          <b>after</b> the dot. So, from the example, this would have <b>2 decimal points</b>.
+        </p>
+      </div>
+    </div>
+  </section>
+  <section id="round-to-dp" class="hero">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title is-2">
+          Round to decimal points
+        </h1>
+        <p class="subtitle">
+          <b>Input:</b> The number you want to calculate how many decimal points are there. and the amount of decimal points (1-20)<br>
+          <b>Output:</b> Rounded number to the decimal points given.
+        </p>
+        <div class="field is-horizontal">
+          <div class="field-label is-normal">
+            <label for="find-dp-amount-input" class="label">Number to find DP</label>
+          </div>
+          <div class="field-body">
+            <div class="field">
+              <div class="control has-icons-right">
+                <input class="input" name="find-dp-amount-input" type="number" step="any" v-model="numberToFindDPAmount.input" @input="findDPAmount">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="field is-horizontal">
+          <div class="field-label is-normal">
+            <label for="find-dp-amount-dp" class="label">Decimal Points</label>
+          </div>
+          <div class="field-body">
+            <div class="field">
+              <div class="control has-icons-right">
+                <input class="input" name="find-dp-amount-dp" type="number" step="any" min="1" max="20" v-model="numberToFindDPAmount.dp" @input="findDPAmount">
+              </div>
+            </div>
+          </div>
+        </div>
+        <h3 class="subtitle">
+          Answer: {{ numberToFindDPAmountAnswer }}
         </h3>
       </div>
     </div>
