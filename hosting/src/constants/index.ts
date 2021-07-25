@@ -36,8 +36,20 @@ export const firstSemesterPages: Array<Page> = [
         path: '/docs/significant-digits#calculate-sd-in-number'
       },
       {
-        name: 'Round number to a desired Significant Digits',
+        name: 'Rounding a number to a desired Significant Digits',
         path: '/docs/significant-digits#round-to-sd'
+      },
+      {
+        name: 'Rules',
+        path: '/docs/significant-digits#round-to-sd-rules'
+      },
+      {
+        name: 'Examples',
+        path: '/docs/significant-digits#round-to-sd-examples'
+      },
+      {
+        name: 'Round a number to a desired Significant Digits',
+        path: '/docs/significant-digits#calculate-round-to-sd'
       }
     ]
   },
