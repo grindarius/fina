@@ -20,5 +20,5 @@ const createServer = (): FastifyInstance => {
 createServer().listen(PORT).then((address) => {
   console.log(`Server is running at ${address}`)
 }).catch((e) => {
-  console.error(e.message as string)
+  console.trace(e)
 })
