@@ -7,7 +7,7 @@ Content-Type: application/json
 GET {{ host }}/significant-digits/amount?input=4250 HTTP/1.1
 Content-Type: application/json
 
-### Working as intended for this request.
+### Route below has an eror where f(a) and f(b) does not have opposing signs.
 GET {{ host }}/bisection?expression=x^3 - 4x^2 - 10&start=1&end=3 HTTP/1.1
 Content-Type: application/json
 
@@ -17,4 +17,9 @@ Content-Type: application/json
 
 ### Route below has an error where `start` is greater than `end`, should return 400
 GET {{ host }}/bisection?expression=x^3 -x - 10&start=2&end=1&iteration=20&dp=8 HTTP/1.1
+Content-Type: application/json
+
+### Route below has both start greater than end error and opposing sign error. But start greater than end error
+### should appear first since we check those first.
+GET {{ host }}/bisection?expression=x^3 - 4x^2 - 10&start=2&end=1 HTTP/1.1
 Content-Type: application/json
