@@ -123,9 +123,7 @@
           <katex-element :expression="katexExpressions[2]" :display-mode="true" />
           <katex-element :expression="katexExpressions[3]" :display-mode="true" />
         </h1>
-        <div class="box-overflow">
-          <grapher :id="'first-graph'" expression="x^3 + 4x^2 - 10" start="1" end="2" :points="[{ x: answer[0].c, y: answer[0].fc }]" />
-        </div>
+        <grapher :id="'first-graph'" expression="x^3 + 4x^2 - 10" start="1" end="2" :points="[{ x: answer[0].c, y: answer[0].fc }]" />
         <h1 class="subtitle">
           Next, you determine if we're going to shrink the left or the right side from <katex-element expression="f(a) \cdot f(c)" />
           <katex-element :expression="katexExpressions[4]" :display-mode="true" />
@@ -151,9 +149,7 @@
             Finally, you should have a graph that looks like this.
           </h1>
         </h1>
-        <div class="box-overflow">
-          <grapher :id="'final-graph'" expression="x^3 + 4x^2 - 10" start="1" end="2" :points="points" />
-        </div>
+        <grapher :id="'final-graph'" expression="x^3 + 4x^2 - 10" start="1" end="2" :points="points" />
       </div>
     </div>
   </section>
@@ -163,9 +159,25 @@
         <h1 class="title is-2">
           Calculate
         </h1>
-        <b-field horizontal label="Function name">
-          <b-input name="function-name" />
+        <b-field horizontal label="Function expression">
+          <b-input name="function-expression" v-model="bisectionInput.expression" />
         </b-field>
+        <b-field horizontal label="Start">
+          <b-numberinput class="bisection-numberinput" name="start" :controls="false" v-model="bisectionInput.start" />
+        </b-field>
+        <b-field horizontal label="End">
+          <b-numberinput class="bisection-numberinput" name="end" :controls="false" v-model="bisectionInput.end" />
+        </b-field>
+        <b-field horizontal label="Iteration times">
+          <b-numberinput class="bisection-numberinput" min="1" name="iteration-time" :controls="false" v-model="bisectionInput.iteration" />
+        </b-field>
+        <b-field horizontal label="Decimal points">
+          <b-numberinput class="bisection-numberinput" min="1" max="15" name="decimal-points" :controls="false" v-model="bisectionInput.dp" />
+        </b-field>
+        <div class="buttons">
+          <b-button type="is-sailor-blue" @click="calculateBisection" :disabled="validateInputs">Calculate</b-button>
+          <b-button @click="resetInput">Reset inputs</b-button>
+        </div>
       </div>
     </div>
   </section>
