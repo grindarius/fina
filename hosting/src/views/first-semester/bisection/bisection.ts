@@ -281,13 +281,23 @@ export default class BisectionPage extends Vue {
     this.katexRepeatingAnswerDiv = !this.katexRepeatingAnswerDiv
   }
 
-  resetInput (): void {
+  resetInputs (): void {
     this.bisectionInput = {
       expression: '',
       start: 0,
       end: 0,
       iteration: 0,
       dp: 0
+    }
+  }
+
+  resetInputsToDefault (): void {
+    this.bisectionInput = {
+      expression: 'x^3 - x - 1',
+      start: 1,
+      end: 3,
+      iteration: 5,
+      dp: 5
     }
   }
 
