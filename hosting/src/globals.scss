@@ -99,6 +99,10 @@ $colors: mergeColorMaps(
   overflow-x: auto;
 }
 
+.nowrap {
+  white-space: nowrap;
+}
+
 body::-webkit-scrollbar, .docs-sidebar::-webkit-scrollbar, .box-overflow::-webkit-scrollbar {
   background-color: $white;
   width: 0.4em;
@@ -113,6 +117,10 @@ body::-webkit-scrollbar-track, .docs-sidebar::-webkit-scrollbar-track, .box-over
 }
 
 .significant-digits-numberinput > div.control > input.input {
+  text-align: left !important;
+}
+
+.bisection-numberinput > div.control > input.input {
   text-align: left !important;
 }
 
