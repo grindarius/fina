@@ -27,7 +27,7 @@
     "serve:common": "cd common && npm run watch:ts",
     "serve:functions": "cd functions && npm run watch",
     "watch": "lerna run watch:ts",
-    "clean": "lerna run clean --paralell",
+    "sweep": "lerna run clean && npm i",
     "rebuild": "lerna run rebuild",
     "fix": "lerna run fix"
   },
@@ -48,6 +48,7 @@
     "eslint-plugin-unicorn": "^34.0.1",
     "eslint-plugin-unused-imports": "^1.1.2",
     "eslint-plugin-vue": "^7.12.1",
+    "kill-port": "^1.6.1",
     "lerna": "^4.0.0",
     "nodemon": "^2.0.12",
     "rimraf": "^3.0.2",
