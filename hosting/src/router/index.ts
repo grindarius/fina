@@ -26,7 +26,7 @@ const routes: Array<RouteConfig> = [
     component: Pages.Docs,
     children: [
       {
-        path: '/',
+        path: '',
         name: 'Getting Started',
         component: Pages.GettingStarted
       },
@@ -44,6 +44,16 @@ const routes: Array<RouteConfig> = [
         path: 'bisection',
         name: 'Bisection Method',
         component: Pages.Bisection
+      },
+      {
+        path: 'calculate-bisection',
+        name: 'Calculate Bisection',
+        component: Pages.CalculateBisection
+      },
+      {
+        path: 'missing-querystring',
+        name: 'Missing Querystring',
+        component: Pages.MissingQuerystring
       }
     ]
   },
