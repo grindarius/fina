@@ -7,16 +7,14 @@ Content-Type: application/json
 GET {{ host }}/significant-digits/amount?input=4250 HTTP/1.1
 Content-Type: application/json
 
-###
-GET {{ host }}/significant-digits/round?input=0.0006149515874854588&sd=1 HTTP/1.1
-Content-Type: application/json
-
-###
-
+### Working as intended for this request.
 GET {{ host }}/bisection?expression=x^3 - 4x^2 - 10&start=1&end=3 HTTP/1.1
 Content-Type: application/json
 
-###
-
+### Route below has an error of REST Client where plus sign is not getting encoded.
 GET {{ host }}/bisection?expression=x^3 + 4x^2 - 10&start=1&end=2&iteration=20&dp=8 HTTP/1.1
+Content-Type: application/json
+
+### Route below has an error where `start` is greater than `end`, should return 400
+GET {{ host }}/bisection?expression=x^3 -x - 10&start=2&end=1&iteration=20&dp=8 HTTP/1.1
 Content-Type: application/json
