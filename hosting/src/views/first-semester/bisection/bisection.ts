@@ -1,6 +1,6 @@
 import { Component, Vue } from 'vue-property-decorator'
 
-import { Answer } from '@fina/common'
+import { Answer, BisectionQuerystring } from '@fina/common'
 
 import GrapherComponent from '@/components/grapher/grapher.vue'
 import { Coordinate } from '@/types'
@@ -16,6 +16,14 @@ import { Coordinate } from '@/types'
   }
 })
 export default class BisectionPage extends Vue {
+  bisectionInput: BisectionQuerystring = {
+    expression: 'x^3 - x - 1',
+    start: 1,
+    end: 3,
+    iteration: 5,
+    dp: 5
+  }
+
   answer: Array<Answer> = [
     {
       i: 0,
@@ -252,7 +260,63 @@ export default class BisectionPage extends Vue {
     })
   }
 
+  get validateInputs (): boolean {
+    if (this.bisectionInput.iteration == null || this.bisectionInput.dp == null) {
+      return true
+    }
+
+    if (this.bisectionInput.iteration < 0) {
+      return true
+    }
+
+    // eslint-disable-next-line yoda
+    if (!(0 <= this.bisectionInput.dp && this.bisectionInput.dp <= 15)) {
+      return true
+    }
+
+    return false
+  }
+
   toggleAnswer (): void {
     this.katexRepeatingAnswerDiv = !this.katexRepeatingAnswerDiv
+  }
+
+  resetInput (): void {
+    this.bisectionInput = {
+      expression: '',
+      start: 0,
+      end: 0,
+      iteration: 0,
+      dp: 0
+    }
+  }
+
+  calculateBisection (): void {
+    if (this.bisectionInput.expression === '') {
+      this.bisectionInput.expression = 'x^2'
+    }
+
+    if (this.bisectionInput.iteration == null || this.bisectionInput.dp == null) {
+      return
+    }
+
+    this.$router.push(
+      {
+        path: 'calculate-bisection',
+        query: {
+          expression: this.bisectionInput.expression,
+          start: this.bisectionInput.start.toString(),
+          end: this.bisectionInput.end.toString(),
+          iteration: this.bisectionInput.iteration.toString(),
+          dp: this.bisectionInput.dp.toString()
+        }
+      },
+      () => {
+        console.log('Calculate Bisection Route Done')
+      },
+      (error) => {
+        console.error(error)
+      }
+    )
   }
 }
