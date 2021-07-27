@@ -12,7 +12,7 @@ export const calculateSignificantDigits: Endpoint = {
   url: `${apiRootUrl}/significant-digits/amount`
 }
 
-export const roundToSignificantDigits: Endpoint = {
+export const calculateBisection: Endpoint = {
   method: 'GET',
-  url: `${apiRootUrl}/significant-digits/round`
+  url: `${apiRootUrl}/bisection`
 }
