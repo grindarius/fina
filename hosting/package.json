@@ -14,7 +14,8 @@
     "serve": "node egg.js && vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "fix": "vue-cli-service lint --fix"
+    "fix": "vue-cli-service lint --fix",
+    "clean": "npx rimraf dist && npx rimraf node_modules"
   },
   "dependencies": {
     "@fina/common": "^0.0.1",
