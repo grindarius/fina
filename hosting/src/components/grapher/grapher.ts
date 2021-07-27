@@ -143,13 +143,11 @@ export default class Grapher extends Vue {
       .style('pointer-events', 'all')
       .call(zoom)
 
-    if (this.points.length !== 0) {
-      this.dots = this.g.append('g')
-        .classed(`${this.id}-points-clip-path`, true)
-        .attr('clip-path', `url(#clip-${this.id})`)
+    this.dots = this.g.append('g')
+      .classed(`${this.id}-points-clip-path`, true)
+      .attr('clip-path', `url(#clip-${this.id})`)
 
-      this.drawDots()
-    }
+    this.drawDots()
 
     this.legend = this.g
       .append('svg')
@@ -296,12 +294,10 @@ export default class Grapher extends Vue {
       .y(d => newY(d.y))
     )
 
-    if (this.points.length !== 0) {
-      const redrawDots: d3.Selection<d3.BaseType, Array<Coordinate>, SVGGElement, unknown> = this.dots.selectAll(`circle.point-${this.id}`)
-      redrawDots.data(this.points)
-        .attr('cx', (d) => newX(d.x))
-        .attr('cy', (d) => newY(d.y))
-    }
+    const redrawDots: d3.Selection<d3.BaseType, Array<Coordinate>, SVGGElement, unknown> = this.dots.selectAll(`circle.point-${this.id}`)
+    redrawDots.data(this.points)
+      .attr('cx', (d) => newX(d.x))
+      .attr('cy', (d) => newY(d.y))
   }
 
   /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
