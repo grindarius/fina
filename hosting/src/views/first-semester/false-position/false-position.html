@@ -1,0 +1,189 @@
+<div class="false-position-page">
+  <section id="false-position" class="hero">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title is-1">
+          False Position
+        </h1>
+        <h3 class="subtitle is-3">
+          A root-finding algorithm that finds the next <b>falsy</b> <katex-element expression="c" />
+        </h3>
+      </div>
+    </div>
+  </section>
+  <section id="description" class="hero">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title is-2">
+          Description
+        </h1>
+        <p class="subtitle is-indented">
+          False position (or Regula Falsi) is another method of calculating the root of the function.
+          It's kinda like a <router-link :to="{ path: '/docs/secant' }" >Secant Method</router-link> plus
+          the <router-link :to="{ path: '/docs/bisection' }">Bisection Method</router-link>. This method is 
+          calculated by first finding the two points <katex-element expression="(a, \space f(a))" /> and <katex-element expression="(b, \space f(b))" />
+          then run it through the function and calculate the next point <katex-element expression="c" /> like the good'ol Bisection Method.
+        </p>
+      </div>
+    </div>
+  </section>
+  <section id="constraints" class="hero">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title is-2">
+          Input Constraints
+        </h1>
+        <div class="content">
+          <ul>
+            <li>
+              <p class="subtitle">
+                The expression <b>must</b> be evaluable.
+              </p>
+            </li>
+            <li>
+              <p class="subtitle">
+                Both starting value
+                <katex-element expression="f(a)" /> and
+                <katex-element expression="f(b)" /> must have opposing signs, meaning the
+                line of the expression in between <b>must</b> cross the
+                <katex-element expression="x = 0" /> line.
+              </p>
+            </li>
+            <li>
+              <p class="subtitle">
+                Between the starting value
+                <katex-element expression="a" /> and <katex-element expression="b" /> must have the root value,
+                meaning the line of the expression in between <b>must</b> cross the <katex-element expression="x = 0" /> line.
+              </p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="steps" class="hero">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title is-2">
+          Steps to Reproduce
+        </h1>
+        <div class="content">
+          <ol>
+            <li>
+              <p class="subtitle">
+                Starts with an <katex-element expression="expression" /> starting value
+                of the interval <katex-element expression="a" /> and the end of the interval
+                <katex-element expression="b" />
+              </p>
+            </li>
+            <li>
+              <p class="subtitle">
+                Find the next interval point <katex-element expression="c" /> using the formula
+                <katex-element expression="c = \frac{(a \cdot f(b)) - (b \cdot f(a))}{f(b) - f(a)}" :display-mode="true" /> 
+              </p>
+            </li>
+            <li>
+              <p class="subtitle">
+                Check the value of <katex-element expression="c" />
+                <ul>
+                  <li>
+                    <p class="subtitle">
+                      If the value of <katex-element expression="f(a) \cdot f(c)" /> is less than <katex-element expression="0" />,
+                      then, the next interval will be <katex-element expression="[a, c]" />.
+                    </p>
+                  </li>
+                  <li>
+                    <p class="subtitle">
+                      If the value of <katex-element expression="f(a) \cdot f(c)" /> is more than <katex-element expression="0" />,
+                      then, the next interval will be <katex-element expression="[c, b]" />.
+                    </p>
+                  </li>
+                  <li>
+                    <p class="subtitle">
+                      If the value of
+                      <katex-element expression="f(a) \cdot f(c)" /> equals
+                      <katex-element expression="0" />, then you've found
+                      the root value of the
+                      <katex-element expression="expression" />.
+                    </p>
+                  </li>
+                </ul>
+              </p>
+            </li>
+            <li>
+              <p class="subtitle">
+                Repeat step 2. to 4. until you've found the root value or it's under your acceptable
+                error. The root value or the answer is going to be the last
+                <katex-element expression="c" /> that you can find
+                when
+                <katex-element expression="f(c)" /> equals
+                <katex-element expression="0" />.
+              </p>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="examples" class="hero">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title is-2">
+          Examples
+        </h1>
+        <h3 class="subtitle is-3">
+          Find the root value of <katex-element expression="x^2 - x - 1" /> where
+          the root lies between <katex-element expression="-2" /> and <katex-element expression="0" />
+        </h3>
+        <p class="subtitle">
+          Ok, as the steps said, we will calculate <katex-element expression="c" /> for the 
+          next iteration. But before that, we need <katex-element expression="f(a)" /> and <katex-element expression="f(b)" />.
+          So we're going to do that first.
+        </p>
+        <katex-element expression="f(a) = a^2 - a - 1" :display-mode="true" />
+        <katex-element expression="f(-2) = (-2)^2 - (-2) - 1" :display-mode="true" />
+        <katex-element expression="f(-2) = 5" :display-mode="true" /> <br>
+        <katex-element expression="f(b) = b^2 - b - 1" :display-mode="true" />
+        <katex-element expression="f(0) = 0^2 - 0 - 1" :display-mode="true" />
+        <katex-element expression="f(0) = -1" :display-mode="true" />
+        <p class="subtitle">
+          Then, we calculate <katex-element expression="c" /> for the next iteration.
+        </p>
+        <katex-element expression="c = \frac{(a \cdot f(b)) - (b \cdot f(a))}{f(b) - f(a)}" :display-mode="true" />
+        <katex-element expression="c = \frac{(-2 \cdot -1) - (0 \cdot 5)}{(-1) - 1}" :display-mode="true" />
+        <katex-element expression="c = -0.3333333" :display-mode="true" />
+        <p class="subtitle">
+          Find <katex-element expression="f(c)" /> and you get the first point!
+        </p>
+        <katex-element expression="f(c) = c^2 - c - 1" :display-mode="true" />
+        <katex-element expression="f(-0.3333333) = (-0.3333333)^2 - (-0.3333333) - 1" :display-mode="true" />
+        <katex-element expression="f(-0.3333333) = -0.5555556" :display-mode="true" />
+        <grapher :id="'false-position-first-graph'" :expression="'x^2 - x - 1'" :start="-2" :end="0" :points="[ { x: answer[0].c, y: answer[0].fc } ]" />
+        <p class="subtitle">
+          Next, you calculate the next point using <katex-element expression="f(a)" /> and <katex-element expression="f(b)" />
+          <katex-element expression="f(a) \cdot f(b) = 5 \cdot -1" :display-mode="true" />
+          <katex-element expression="f(a) \cdot f(b) = -5" :display-mode="true" />
+          Since the result is less than <katex-element expression="0" />, the next point is <katex-element expression="[a, c]" />
+          or <katex-element expression="[-2, -0.3333333]" />
+        </p>
+        <p class="subtitle">
+          Then we rinse and repeat! (the calculations below lists <b>all</b> the calculations.)
+        </p>
+        <b-button class="is-sailor-blue" @click="toggleAnswer" style="margin-bottom: 1.5rem;">Toggle calculations</b-button>
+        <div class="box-overflow" v-show="katexAnswerDiv">
+          <div v-for="(eachAnswer, i) in katexAnswerArray" :key="'expression: ' + i">
+            <katex-element :expression="eachAnswer[0]" :display-mode="true" />
+            <katex-element :expression="eachAnswer[1]" :display-mode="true" />
+            <katex-element :expression="eachAnswer[2]" :display-mode="true" />
+            <katex-element :expression="eachAnswer[3]" :display-mode="true" />
+            <hr class="linebreak">
+          </div>
+        </div>
+        <p class="subtitle">
+          Finally, you should have the answer that looks like this 
+        </p>
+        <grapher :id="'false-position-final-graph'" :expression="'x^2 - x - 1'" :start="-2" :end="0" :points="points" />
+      </div>
+    </div>
+  </section>
+</div>
