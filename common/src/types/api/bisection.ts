@@ -9,7 +9,7 @@ export const BisectionQuerystringSchema = Type.Object({
 })
 export type BisectionQuerystring = Static<typeof BisectionQuerystringSchema>
 
-export const BisectionResponseSchema = Type.Array(Type.Object({
+export const BisectionResponseObjectSchema = Type.Object({
   i: Type.Number(),
   a: Type.Number(),
   b: Type.Number(),
@@ -18,5 +18,8 @@ export const BisectionResponseSchema = Type.Array(Type.Object({
   c: Type.Number(),
   fc: Type.Number(),
   error: Type.Number()
-}))
+})
+export type BisectionResponseObject = Static<typeof BisectionResponseObjectSchema>
+
+export const BisectionResponseSchema = Type.Array(BisectionResponseObjectSchema)
 export type BisectionResponse = Static<typeof BisectionResponseSchema>
