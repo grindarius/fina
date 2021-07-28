@@ -1,8 +1,8 @@
-import { absoluteError, Answer, evaluateFunction, round } from '@fina/common'
+import { absoluteError, BisectionResponse, BisectionResponseObject, evaluateFunction, round } from '@fina/common'
 
-export function bisectionIteration (expression: string, a: number, b: number, iteration: number, decimalPoint: number): Array<Answer> {
+export function bisectionIteration (expression: string, a: number, b: number, iteration: number, decimalPoint: number): BisectionResponse {
   let previousC = 0
-  const answerArray: Array<Answer> = []
+  const answerArray: BisectionResponse = []
 
   for (let i = 0; i < iteration; i++) {
     // * find f(a), f(b)
@@ -19,7 +19,7 @@ export function bisectionIteration (expression: string, a: number, b: number, it
     // * find error
     const error = round(absoluteError(c, previousC), decimalPoint)
 
-    const answer: Answer = { i, a, b, fa, fb, c, fc, error }
+    const answer: BisectionResponseObject = { i, a, b, fa, fb, c, fc, error }
     answerArray.push(answer)
 
     // * compare f(a) * f(c)

@@ -1,18 +1,18 @@
 import { FastifyInstance, FastifyPluginOptions, FastifySchema } from 'fastify'
 
-import { BisectionQuerystring, BisectionQuerystringSchema, BisectionResponse, BisectionResponseSchema, evaluateFunction, round } from '@fina/common'
+import { evaluateFunction, FalsePositionQuerystring, FalsePositionQuerystringSchema, FalsePositionResponse, FalsePositionResponseSchema, round } from '@fina/common'
 
-import { bisectionIteration } from '../../services/bisection'
+import { falsePositionIteration } from '../../services'
 
 const schema: FastifySchema = {
-  querystring: BisectionQuerystringSchema,
+  querystring: FalsePositionQuerystringSchema,
   response: {
-    200: BisectionResponseSchema
+    200: FalsePositionResponseSchema
   }
 }
 
 export default async function (instance: FastifyInstance, _: FastifyPluginOptions): Promise<void> {
-  instance.get<{ Querystring: BisectionQuerystring }>('/', {
+  instance.get<{ Querystring: FalsePositionQuerystring }>('/', {
     schema,
     preValidation: [
       async (request, reply, done) => {
@@ -48,7 +48,7 @@ export default async function (instance: FastifyInstance, _: FastifyPluginOption
     const iteration = request.query.iteration ?? 5
     const decimalPoint = request.query.dp ?? 5
 
-    const answer: BisectionResponse = bisectionIteration(expression, a, b, iteration, decimalPoint)
+    const answer: FalsePositionResponse = falsePositionIteration(expression, a, b, iteration, decimalPoint)
 
     return answer
   })

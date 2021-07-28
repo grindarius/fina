@@ -1,8 +1,8 @@
-import { absoluteError, Answer, evaluateFunction, round } from '@fina/common'
+import { absoluteError, evaluateFunction, FalsePositionResponse, FalsePositionResponseObject, round } from '@fina/common'
 
-export function falsePositionIteration (expression: string, a: number, b: number, iteration: number, decimalPoint: number): Array<Answer> {
+export function falsePositionIteration (expression: string, a: number, b: number, iteration: number, decimalPoint: number): FalsePositionResponse {
   let previousC = 0
-  const answerArray: Array<Answer> = []
+  const answerArray: FalsePositionResponse = []
 
   for (let i = 0; i < iteration; i++) {
     // * find f(a), f(b)
@@ -19,7 +19,7 @@ export function falsePositionIteration (expression: string, a: number, b: number
     // * find error
     const error = round(absoluteError(c, previousC), decimalPoint)
 
-    const answer: Answer = { i, a, b, fa, fb, c, fc, error }
+    const answer: FalsePositionResponseObject = { i, a, b, fa, fb, c, fc, error }
     answerArray.push(answer)
 
     // * compare f(a) * f(c)
