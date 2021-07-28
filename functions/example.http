@@ -1,11 +1,16 @@
 @host = http://127.0.0.1:3000
 
+### Root
 GET {{ host }} HTTP/1.1
 Content-Type: application/json
+
+### Significant Digits
 
 ###
 GET {{ host }}/significant-digits/amount?input=4250 HTTP/1.1
 Content-Type: application/json
+
+### Bisection
 
 ### Route below has an eror where f(a) and f(b) does not have opposing signs.
 GET {{ host }}/bisection?expression=x^3 - 4x^2 - 10&start=1&end=3 HTTP/1.1
@@ -22,4 +27,10 @@ Content-Type: application/json
 ### Route below has both start greater than end error and opposing sign error. But start greater than end error
 ### should appear first since we check those first.
 GET {{ host }}/bisection?expression=x^3 - 4x^2 - 10&start=2&end=1 HTTP/1.1
+Content-Type: application/json
+
+### False Position
+
+###
+GET {{ host }}/false-position?expression=x^2 - x - 1&start=-2&end=0&iteration=20&dp=7 HTTP/1.1
 Content-Type: application/json
