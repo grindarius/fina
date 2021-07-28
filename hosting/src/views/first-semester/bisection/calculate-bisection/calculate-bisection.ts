@@ -10,7 +10,6 @@ import { Coordinate, TableKey } from '@/types'
 
 @Component({
   beforeRouteEnter (from, _, next) {
-    console.log(from.query)
     if (Object.keys(from.query).length === 0) {
       next({
         path: '/docs/missing-querystring'
@@ -31,6 +30,7 @@ import { Coordinate, TableKey } from '@/types'
 export default class CalculateBisectionPage extends Vue {
   answer: BisectionResponse = []
   points: Array<Coordinate> = []
+  errorMessage = ''
   isFetching = true
 
   async mounted (): Promise<void> {
@@ -39,6 +39,17 @@ export default class CalculateBisectionPage extends Vue {
 
   get tableKeys (): Array<TableKey> {
     return bisectionTableKeys
+  }
+
+  getPoints (answer: BisectionResponse): Array<Coordinate> {
+    return answer.map(iteration => {
+      const coordinate: Coordinate = {
+        x: iteration.c,
+        y: iteration.fc
+      }
+
+      return coordinate
+    })
   }
 
   getRouteQueries (): BisectionQuerystring {
@@ -63,20 +74,19 @@ export default class CalculateBisectionPage extends Vue {
   }
 
   async getAnswer (): Promise<BisectionResponse> {
-    const { method, url } = calculateBisection
+    const { method, url, headers } = calculateBisection
 
     try {
       const response = await axios.request<BisectionResponse>({
-        method, url, params: this.getRouteQueries()
+        method, url, headers, params: this.getRouteQueries()
       })
 
-      this.points = this.mapResponseToPoints(response.data)
+      this.points = this.getPoints(response.data)
 
       this.isFetching = false
       return response.data
     } catch (error) {
-      console.error(error)
-      this.isFetching = false
+      this.errorMessage = (error.response.data.error as string) + ': ' + (error.response.data.message as string)
       return []
     }
   }
