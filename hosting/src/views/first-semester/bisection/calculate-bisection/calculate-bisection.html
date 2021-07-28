@@ -3,7 +3,7 @@
     <div class="hero-body">
       <div class="container">
         <h1 class="title is-2">
-          Find the root of the function <katex-element :expression="getRouteQueries().expression" />
+          Find the root of the function <katex-element :expression="parsedExpression" />
           where the root lies between <katex-element :expression="getRouteQueries().start.toString()" /> and
           <katex-element :expression="getRouteQueries().end.toString()" />
         </h1>

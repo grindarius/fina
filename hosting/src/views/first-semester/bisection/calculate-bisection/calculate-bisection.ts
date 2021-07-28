@@ -1,11 +1,12 @@
 import axios from 'axios'
+import { parse } from 'mathjs'
 import { Component, Vue } from 'vue-property-decorator'
 
 import { BisectionQuerystring, BisectionResponse } from '@fina/common'
 
 import { calculateBisection } from '@/api'
 import GrapherComponent from '@/components/grapher/grapher.vue'
-import { bisectionTableKeys } from '@/constants/tableKeys'
+import { bisectionTableKeys } from '@/constants'
 import { Coordinate, TableKey } from '@/types'
 
 @Component({
@@ -39,6 +40,10 @@ export default class CalculateBisectionPage extends Vue {
 
   get tableKeys (): Array<TableKey> {
     return bisectionTableKeys
+  }
+
+  get parsedExpression (): string {
+    return parse(this.getRouteQueries().expression).toTex()
   }
 
   getPoints (answer: BisectionResponse): Array<Coordinate> {
