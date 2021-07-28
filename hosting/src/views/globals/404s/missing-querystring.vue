@@ -18,12 +18,17 @@
     </section>
   </div>
 </template>
-
 <script lang="ts">
 
 import { Component, Vue } from 'vue-property-decorator'
 
-@Component
+@Component({
+  metaInfo () {
+    return {
+      title: 'You shall not pass! | FINA'
+    }
+  }
+})
 export default class MissingQueryInAnswerPage extends Vue {
   puns: Array<string> = [
     'You shall not pass!',
