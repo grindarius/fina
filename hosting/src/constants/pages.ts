@@ -100,7 +100,24 @@ export const firstSemesterPages: Array<Page> = [
   {
     name: 'False Position',
     path: '/docs/false-position',
-    components: []
+    components: [
+      {
+        name: 'Desription',
+        path: '/docs/false-position#description'
+      },
+      {
+        name: 'Input Constraints',
+        path: '/docs/false-position#constraints'
+      },
+      {
+        name: 'Steps to Reproduce',
+        path: '/docs/false-position#steps'
+      },
+      {
+        name: 'Examples',
+        path: '/docs/false-position#examples'
+      }
+    ]
   },
   {
     name: 'Fixed Point Iteration',

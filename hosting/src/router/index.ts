@@ -51,6 +51,15 @@ const routes: Array<RouteConfig> = [
         component: Pages.CalculateBisection
       },
       {
+        path: 'false-position',
+        name: 'False Position Method',
+        component: Pages.FalsePosition
+      },
+      {
+        path: 'calculate-false-position',
+        name: 'Calculate False Position'
+      },
+      {
         path: 'missing-querystring',
         name: 'Missing Querystring',
         component: Pages.MissingQuerystring
