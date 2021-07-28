@@ -1,6 +1,7 @@
 import Bisection from './first-semester/bisection/bisection.vue'
 import CalculateBisection from './first-semester/bisection/calculate-bisection/calculate-bisection.vue'
 import DecimalPoints from './first-semester/decimal-points/decimal-points.vue'
+import FalsePosition from './first-semester/false-position/false-position.vue'
 import SignificantDigits from './first-semester/significant-digits/significant-digits.vue'
 import MissingQuerystring from './globals/404s/missing-querystring.vue'
 import About from './globals/about/about.vue'
@@ -15,6 +16,7 @@ export {
   CalculateBisection,
   DecimalPoints,
   Docs,
+  FalsePosition,
   GettingStarted,
   Home,
   MissingQuerystring,
