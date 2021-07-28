@@ -36,20 +36,20 @@
         </h1>
         <div class="content">
           <ol>
-            <li class="subtitle">
+            <li>
               <p class="subtitle">
                 All non-zero numbers are significant digits,
                 e.g., 846 has 3 significant digits, 8, 4, and 6.
               </p>
             </li>
-            <li class="subtitle">
+            <li>
               <p class="subtitle">
                 All zeros between non-zero numbers are significant digits,
                 e.g., 5005 has 4 significant digits,
                 5, 0 (on hundreds place), 0 (on tens place), and 5.
               </p>
             </li>
-            <li class="subtitle">
+            <li>
               <p class="subtitle">
                 <b>Leading Zeros</b>, meaning zeros before any non-zero numbers, is <b>never</b>
                 significant in both float and integer, for example.
@@ -67,7 +67,7 @@
               </ul>
               </p>
             </li>
-            <li class="subtitle">
+            <li>
               <p class="subtitle">
                 All zeros after non-zero numbers (called <b>Trailing Zeros</b>), well, this depends.
               <ul>
@@ -94,7 +94,7 @@
               </ul>
               </p>
             </li>
-            <li class="subtitle">
+            <li>
               <p class="subtitle">
                 Numbers in scientific notation <katex-element expression="N \times 10^x" />, all digits comprising <katex-element expression="N" />
                 are significant by the rules above, <katex-element expression="10" /> and <katex-element expression="x" /> are <b>NOT</b>
@@ -189,45 +189,45 @@
         </h1>
         <div class="content">
           <ol>
-            <li class="subtitle">
+            <li>
               <p class="subtitle">
                 Look at the first non-zero digit if rounding to one significant digit.
               </p>
             </li>
-            <li class="subtitle">
+            <li>
               <p class="subtitle">
                 Look at the digit after the first non-zero digit if rounding to two significant digits.
               </p>
             </li>
-            <li class="subtitle">
+            <li>
               <p class="subtitle">
                 Draw a vertical line after the place value digit that is required.
               </p>
             </li>
-            <li class="subtitle">
+            <li>
               <p class="subtitle">
                 Look at the next digit.
               </p>
               <ul>
-                <li class="subtitle">
+                <li>
                   <p class="subtitle">
                     <b>If it's 5 or more,</b> increase the previous digit by one.
                   </p>
                 </li>
-                <li class="subtitle">
+                <li>
                   <p class="subtitle">
                     <b>If it's 4 or less,</b> keep the previous digit the same.
                   </p>
                 </li>
               </ul>
             </li>
-            <li class="subtitle">
+            <li>
               <p class="subtitle">
                 Fill any spaces to the <b>right</b> of the line with zeros. stopping at the decimal point
                 if there is one.
               </p>
             </li>
-            <li class="subtitle">
+            <li>
               <p class="subtitle">
                 If the significant digits you want to round to is smaller than the number (50,000 round to 3 SD), you can
                 round them up into Scientific Notation (<katex-element expression="N \cdot 10^x" />) form too.
