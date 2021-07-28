@@ -2,7 +2,7 @@
   <section id="bisection" class="hero">
     <div class="hero-body">
       <div class="container">
-        <h1 class="title is-2">
+        <h1 class="title is-1">
           Bisection
         </h1>
         <h3 class="subtitle is-3">
@@ -36,12 +36,23 @@
           <ul>
             <li>
               <p class="subtitle">
-                Both starting value <katex-element expression="f(a)" /> and <katex-element expression="f(b)" /> must have opposing signs.
+                The expression <b>must</b> be evaluable.
               </p>
             </li>
             <li>
               <p class="subtitle">
-                Between the starting value <katex-element expression="a" /> and <katex-element expression="b" /> must have the root value.
+                Both starting value <katex-element expression="f(a)" /> and
+                <katex-element expression="f(b)" /> must have opposing signs, meaning the line of the expression in between <b>must</b> cross the
+                <katex-element expression="x = 0" /> line.
+              </p>
+            </li>
+            <li>
+              <p class="subtitle">
+                Between the starting value
+                <katex-element expression="a" /> and
+                <katex-element expression="b" /> must have the root value,
+                meaning the line of the expression in between <b>must</b> cross the
+                <katex-element expression="x = 0" /> line.
               </p>
             </li>
           </ul>
@@ -57,31 +68,31 @@
         </h1>
         <div class="content">
           <ol>
-            <li class="subtitle">
+            <li>
               <p class="subtitle">
                 Starts with an <katex-element expression="expression" />, starting value of the interval <katex-element expression="a" />
                 and the end of the interval <katex-element expression="b" />.
               </p>
             </li>
-            <li class="subtitle">
+            <li>
               <p class="subtitle">
                 Find the next interval point <katex-element expression="c" /> using the formula <katex-element expression="\frac{a + b}{2}" :display-mode="true" />
               </p>
             </li>
-            <li class="subtitle">
+            <li>
               <p class="subtitle">
                 Check the value of <katex-element expression="f(c)" />
               <ul>
                 <li>
                   <p class="subtitle">
                     If the value of <katex-element expression="f(a) \cdot f(c)" /> is more than <katex-element expression="0" />, then the next
-                    interval to calculate is between <katex-element expression="c" /> and <katex-element expression="b" />.
+                    interval to calculate is <katex-element expression="[c, b]" />.
                   </p>
                 </li>
                 <li>
                   <p class="subtitle">
                     If the value of <katex-element expression="f(a) \cdot f(c)" /> is less than <katex-element expression="0" />, then the next
-                    interval to calculate is between <katex-element expression="a" /> and <katex-element expression="c" />.
+                    interval to calculate is <katex-element expression="[a, c]" />.
                   </p>
                 </li>
                 <li>
@@ -93,9 +104,9 @@
               </ul>
               </p>
             </li>
-            <li class="subtitle">
+            <li>
               <p class="subtitle">
-                repeat step 2. to 4. until you've found the root value or it's under your acceptable
+                Repeat step 2. to 4. until you've found the root value or it's under your acceptable
                 error. The root value or the answer is going to be the last <katex-element expression="c" /> that you can find
                 when <katex-element expression="f(c)" /> equals <katex-element expression="0" />.
               </p>
@@ -112,44 +123,42 @@
           Examples
         </h1>
         <h3 class="subtitle is-3">
-          Find the root value of <katex-element expression="f(x) = x^3 + 4x^2 - 10" /> between 1 and 2.
+          Find the root value of <katex-element expression="f(x) = x^3 + 4x^2 - 10" /> between <katex-element expression="1" /> and <katex-element expression="2" />.
         </h3>
-        <h1 class="subtitle">
-          Ok, so what do we do here? First of all we have to find the <katex-element expression="c" /> value for the next iteration.
+        <p class="subtitle">
+          Ok, so what do we do here? First of all we have to find the <katex-element expression="c" /> for the next iteration.
           <katex-element expression="c = \frac{a + b}{2}" :display-mode="true" />
-          <katex-element :expression="katexExpressions[0]" :display-mode="true" />
-          <katex-element :expression="katexExpressions[1]" :display-mode="true" />
+          <katex-element expression="c = \frac{1 + 2}{2}" :display-mode="true" />
+          <katex-element expression="c = 1.5" :display-mode="true" />
           Go find <katex-element expression="f(c)" /> then you get the first point to plot!
-          <katex-element :expression="katexExpressions[2]" :display-mode="true" />
-          <katex-element :expression="katexExpressions[3]" :display-mode="true" />
-        </h1>
-        <grapher :id="'first-graph'" expression="x^3 + 4x^2 - 10" start="1" end="2" :points="[{ x: answer[0].c, y: answer[0].fc }]" />
-        <h1 class="subtitle">
+          <katex-element expression="f(1.5) = 1.5^3 + 4(1.5)^2 - 10" :display-mode="true" />
+          <katex-element expression="f(1.5) = 2.375" :display-mode="true" />
+        </p>
+        <grapher :id="'bisection-first-graph'" expression="x^3 + 4x^2 - 10" start="1" end="2" :points="[{ x: answer[0].c, y: answer[0].fc }]" />
+        <p class="subtitle">
           Next, you determine if we're going to shrink the left or the right side from <katex-element expression="f(a) \cdot f(c)" />
-          <katex-element :expression="katexExpressions[4]" :display-mode="true" />
-          <katex-element :expression="katexExpressions[5]" :display-mode="true" />
+          <katex-element  expression="f(a) \cdot f(c) = -5 \cdot 2.375" :display-mode="true" />
+          <katex-element expression="f(a) \cdot f(c) = -11.875" :display-mode="true" />
           Our result is negative, so our <katex-element expression="a" /> stays the same, and our <katex-element expression="c" /> will become
           the next <katex-element expression="b" />
-        </h1>
-        <h1 class="subtitle">
-          <p class="subtitle">
-            Then you rinse and repeat!
-          </p>
-          <b-button class="is-sailor-blue" @click="toggleAnswer" style="margin-bottom: 1.5rem;">Toggle calculations</b-button>
-          <div v-show="katexRepeatingAnswerDiv">
-            <div class="box-overflow" v-for="(eachAnswer, i) in katexRepeatArray" :key="'expression: ' + i">
-              <katex-element :expression="eachAnswer[0]" :display-mode="true" />
-              <katex-element :expression="eachAnswer[1]" :display-mode="true" />
-              <katex-element :expression="eachAnswer[2]" :display-mode="true" />
-              <katex-element :expression="eachAnswer[3]" :display-mode="true" />
-              <hr class="linebreak">
-            </div>
+        </p>
+        <p class="subtitle">
+          Then you rinse and repeat! (the calculations below lists <b>all</b> the calculations.)
+        </p>
+        <b-button class="is-sailor-blue" @click="toggleAnswer" style="margin-bottom: 1.5rem;">Toggle calculations</b-button>
+        <div v-show="katexAnswerDiv" class="box-overflow">
+          <div v-for="(eachAnswer, i) in katexAnswerArray" :key="'expression: ' + i">
+            <katex-element :expression="eachAnswer[0]" :display-mode="true" />
+            <katex-element :expression="eachAnswer[1]" :display-mode="true" />
+            <katex-element :expression="eachAnswer[2]" :display-mode="true" />
+            <katex-element :expression="eachAnswer[3]" :display-mode="true" />
+            <hr class="linebreak">
           </div>
-          <h1 class="subtitle">
-            Finally, you should have a graph that looks like this.
-          </h1>
-        </h1>
-        <grapher :id="'final-graph'" expression="x^3 + 4x^2 - 10" start="1" end="2" :points="points" />
+        </div>
+        <p class="subtitle">
+          Finally, you should have a graph that looks like this.
+        </p>
+        <grapher :id="'bisection-final-graph'" expression="x^3 + 4x^2 - 10" start="1" end="2" :points="points" />
       </div>
     </div>
   </section>
