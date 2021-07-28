@@ -28,13 +28,13 @@ export default async function (instance: FastifyInstance, _: FastifyPluginOption
       },
       async (request, reply, done) => {
         const fa = round(evaluateFunction(request.query.expression, request.query.start), request.query.dp ?? 5)
-        const fb = round(evaluateFunction(request.query.expression, request.query.start), request.query.dp ?? 5)
+        const fb = round(evaluateFunction(request.query.expression, request.query.end), request.query.dp ?? 5)
 
         if (fa * fb >= 0) {
           await reply.code(400).send({
             statusCode: 400,
             error: 'Bad request',
-            message: 'f(a) and f(b) does not have opposing signs'
+            message: `f(a) and f(b) does not have opposing signs, f(a) = ${fa}, f(b) = ${fb}`
           })
         } else {
           done()
