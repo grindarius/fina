@@ -15,6 +15,10 @@
     "url": "https://github.com/grindarius/fina/issues",
     "email": "numbbutt34685@gmail.com"
   },
+  "engines": {
+    "node": ">=12",
+    "npm": ">=7"
+  },
   "author": "Bhattarapong Somwong",
   "license": "MIT",
   "workspaces": [
