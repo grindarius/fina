@@ -1,7 +1,9 @@
+import { TableKey } from '@/types'
+
 /**
  * Keys of bisection answer to construct table
  */
-export const bisectionTableKeys = [
+export const bisectionTableKeys: Array<TableKey> = [
   {
     field: 'i',
     label: 'i'
