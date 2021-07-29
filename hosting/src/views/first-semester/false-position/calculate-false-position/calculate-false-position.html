@@ -1,0 +1,59 @@
+<div class="calculate-false-position-page">
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title is-2">
+          Find the root of the function <katex-element :expression="parsedExpression" />
+          where the root lies between <katex-element :expression="getRouteQueries().start.toString()" /> and 
+          <katex-element :expression="getRouteQueries().end.toString()" />
+        </h1>
+      </div>
+    </div>
+  </section>
+  <hr class="linebreak">
+  <template v-if="!isFetching">
+    <section class="hero">
+      <div class="hero-body">
+        <div class="container">
+          <h1 class="title is-2">
+            Graph visualization
+          </h1>
+          <grapher :id="'false-position-answer-graph'" :expression="getRouteQueries().expression"
+            :start="getRouteQueries().start" :end="getRouteQueries().end" :points="points" />
+        </div>
+      </div>
+    </section>
+    <section class="hero">
+      <div class="hero-body">
+        <div class="container">
+          <h1 class="title is-2">
+            Table visualization
+          </h1>
+          <div class="table-container">
+            <table class="table is-fullwidth">
+              <thead>
+                <tr>
+                  <th class="nowrap" v-for="key in tableKeys">
+                    <katex-element :expression="key.field" />
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="[i, eachIteration] in answer.entries()">
+                  <td class="nowrap" v-for="[j, _] in Object.entries(Object.entries(eachIteration))">
+                    <span class="subtitle is-6" v-if="tableKeys[Number(j)].label === 'error'">
+                      {{ answer[Number(i)][tableKeys[Number(j)].label] }}%
+                    </span>
+                    <span class="subtitle is-6" v-else>
+                      {{ answer[Number(i)][tableKeys[Number(j)].label] }}
+                    </span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+  </template>
+</div>
