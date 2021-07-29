@@ -1,14 +1,14 @@
-import { evaluate } from 'mathjs'
+import math from 'mathjs'
 
 /**
  * A function to evaluate the value of `x` in a function
  *
  * @param expression an expression to be calculated
- * @param x an x value to put in
+ * @param variables a record of variables to put in the function.
  * @return a calculated value
  */
-export function evaluateFunction (expression: string, x: number): number {
-  return evaluate(expression, { x: x })
+export function evaluateFunction (expression: string, variables: Record<string, number>): number {
+  return math.evaluate(expression, variables)
 }
 
 /**
@@ -43,4 +43,20 @@ export function absoluteError (current: number, previous: number): number {
 export function round (numberToRound: number, decimalPoint: number): number {
   if (decimalPoint <= 0) return numberToRound
   else return Math.round(numberToRound * Math.pow(10, decimalPoint)) / Math.pow(10, decimalPoint)
+}
+
+/**
+ * A function to generates LaTeX code from the expression string.
+ * If it's unparsable, will return empty string
+ *
+ * @param expression an expression string
+ * @returns an expression string in LaTeX form
+ */
+export function expressionToTex (expression: string): string {
+  try {
+    return math.parse(expression).toTex()
+  } catch (error) {
+    console.error(error)
+    return ''
+  }
 }
