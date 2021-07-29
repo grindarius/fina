@@ -14,7 +14,7 @@ const headers: Record<string, string> = {
 
 export const calculateSignificantDigits: Endpoint = {
   method: 'GET',
-  url: `${apiRootUrl}/significant-digits/amount`,
+  url: `${apiRootUrl}/significant-digits`,
   headers
 }
 
