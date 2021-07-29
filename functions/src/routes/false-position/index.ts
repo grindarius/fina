@@ -1,6 +1,6 @@
 import { FastifyInstance, FastifyPluginOptions, FastifySchema } from 'fastify'
 
-import { evaluateFunction, FalsePositionQuerystring, FalsePositionQuerystringSchema, FalsePositionResponse, FalsePositionResponseSchema, round } from '@fina/common'
+import { , FalsePositionQuerystring, FalsePositionQuerystringSchema, evaluateFunction, FalsePositionResponse, FalsePositionResponseSchema, round } from '@fina/common'
 
 import { falsePositionIteration } from '../../services'
 
@@ -27,8 +27,8 @@ export default async function (instance: FastifyInstance, _: FastifyPluginOption
         }
       },
       async (request, reply, done) => {
-        const fa = round(evaluateFunction(request.query.expression, request.query.start), request.query.dp ?? 5)
-        const fb = round(evaluateFunction(request.query.expression, request.query.end), request.query.dp ?? 5)
+        const fa = round(evaluateFunction(request.query.expression, { x: request.query.start }), request.query.dp ?? 5)
+        const fb = round(evaluateFunction(request.query.expression, { x: request.query.end }), request.query.dp ?? 5)
 
         if (fa * fb >= 0) {
           await reply.code(400).send({

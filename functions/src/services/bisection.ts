@@ -6,15 +6,15 @@ export function bisectionIteration (expression: string, a: number, b: number, it
 
   for (let i = 0; i < iteration; i++) {
     // * find f(a), f(b)
-    const fa = round(evaluateFunction(expression, a), decimalPoint)
-    const fb = round(evaluateFunction(expression, b), decimalPoint)
+    const fa = round(evaluateFunction(expression, { x: a }), decimalPoint)
+    const fb = round(evaluateFunction(expression, { x: b }), decimalPoint)
 
     // * find c
     const cExpression = (a + b) / 2
     const c = round(cExpression, decimalPoint)
 
     // * find f(c)
-    const fc = round(evaluateFunction(expression, c), decimalPoint)
+    const fc = round(evaluateFunction(expression, { x: c }), decimalPoint)
 
     // * find error
     const error = round(absoluteError(c, previousC), decimalPoint)
