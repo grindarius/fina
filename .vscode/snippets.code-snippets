@@ -2,14 +2,14 @@
   "New katex element": {
     "prefix": "katex",
     "body": [
-      "<katex-element expression=\"$end\" />"
+      "<katex-element expression=\"$0\" />"
     ],
     "description": "New katex element"
   },
   "New katex element with display=true": {
     "prefix": "katexd",
     "body": [
-      "<katex-element expression=\"$end\" :display-mode=\"true\" />"
+      "<katex-element expression=\"$0\" :display-mode=\"true\" />"
     ]
   },
   "New vue typescript setup": {
@@ -18,7 +18,8 @@
       "import { Component, Vue } from 'vue-property-decorator'",
       "",
       "@Component",
-      "export default class $end extends Vue {}"
+      "export default class $0 extends Vue {}",
+      ""
     ]
   }
 }
