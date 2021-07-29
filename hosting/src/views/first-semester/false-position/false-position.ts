@@ -6,13 +6,13 @@ import GrapherComponent from '@/components/grapher/grapher.vue'
 import { Coordinate } from '@/types'
 
 @Component({
-  components: {
-    grapher: GrapherComponent
-  },
   metaInfo () {
     return {
       title: 'False Position | FINA'
     }
+  },
+  components: {
+    grapher: GrapherComponent
   }
 })
 export default class FalsePositionPage extends Vue {
