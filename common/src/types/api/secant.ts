@@ -1,6 +1,6 @@
 import { Static, Type } from '@sinclair/typebox'
 
-export const BisectionQuerystringSchema = Type.Object({
+export const SecantQuerystringSchema = Type.Object({
   expression: Type.String(),
   start: Type.Number(),
   end: Type.Number(),
@@ -12,9 +12,9 @@ export const BisectionQuerystringSchema = Type.Object({
     maximum: 15
   }))
 })
-export type BisectionQuerystring = Static<typeof BisectionQuerystringSchema>
+export type SecantQuerystring = Static<typeof SecantQuerystringSchema>
 
-export const BisectionResponseObjectSchema = Type.Object({
+export const SecantResponseObjectSchema = Type.Object({
   i: Type.Number(),
   a: Type.Number(),
   b: Type.Number(),
@@ -24,7 +24,7 @@ export const BisectionResponseObjectSchema = Type.Object({
   fc: Type.Number(),
   error: Type.Number()
 })
-export type BisectionResponseObject = Static<typeof BisectionResponseObjectSchema>
+export type SecantResponseObject = Static<typeof SecantResponseObjectSchema>
 
-export const BisectionResponseSchema = Type.Array(BisectionResponseObjectSchema)
-export type BisectionResponse = Static<typeof BisectionResponseSchema>
+export const SecantResponseSchema = Type.Array(SecantResponseObjectSchema)
+export type SecantResponse = Static<typeof SecantResponseSchema>
