@@ -1,6 +1,6 @@
 import { Component, Vue } from 'vue-property-decorator'
 
-import { Answer, BisectionQuerystring } from '@fina/common'
+import { BisectionQuerystring, BisectionResponse } from '@fina/common'
 
 import GrapherComponent from '@/components/grapher/grapher.vue'
 import { Coordinate } from '@/types'
@@ -24,7 +24,7 @@ export default class BisectionPage extends Vue {
     dp: 5
   }
 
-  answer: Array<Answer> = [
+  answer: BisectionResponse = [
     {
       i: 0,
       a: 1,

@@ -1,8 +1,7 @@
 import axios from 'axios'
-import { parse } from 'mathjs'
 import { Component, Vue } from 'vue-property-decorator'
 
-import { BisectionQuerystring, BisectionResponse } from '@fina/common'
+import { BisectionQuerystring, BisectionResponse, expressionToTex } from '@fina/common'
 
 import { calculateBisection } from '@/api'
 import GrapherComponent from '@/components/grapher/grapher.vue'
@@ -19,13 +18,13 @@ import { Coordinate, TableKey } from '@/types'
       next()
     }
   },
-  components: {
-    grapher: GrapherComponent
-  },
   metaInfo () {
     return {
       title: 'Calculate Bisection | FINA'
     }
+  },
+  components: {
+    grapher: GrapherComponent
   }
 })
 export default class CalculateBisectionPage extends Vue {
@@ -43,7 +42,7 @@ export default class CalculateBisectionPage extends Vue {
   }
 
   get parsedExpression (): string {
-    return parse(this.getRouteQueries().expression).toTex()
+    return expressionToTex(this.getRouteQueries().expression)
   }
 
   getPoints (answer: BisectionResponse): Array<Coordinate> {
@@ -65,17 +64,6 @@ export default class CalculateBisectionPage extends Vue {
       iteration: Number(this.$route.query.iteration),
       dp: Number(this.$route.query.dp)
     }
-  }
-
-  mapResponseToPoints (resp: BisectionResponse): Array<Coordinate> {
-    return resp.map(iteration => {
-      const coordinate: Coordinate = {
-        x: iteration.c,
-        y: iteration.fc
-      }
-
-      return coordinate
-    })
   }
 
   async getAnswer (): Promise<BisectionResponse> {
