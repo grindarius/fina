@@ -27,10 +27,7 @@ interface RoundToSDInput {
 })
 export default class SignificantDigitsPage extends Vue {
   numberToFindSDAmount = '4920'
-  numberToFindSDAmountAnswer: SignificantDigitsResponse = {
-    output: '492',
-    amount: 3
-  }
+  numberToFindSDAmountAnswer: string = 'There are 3 significant digits in here (492)'
 
   roundToSD: RoundToSDInput = {
     input: 305.459,
@@ -142,10 +139,7 @@ export default class SignificantDigitsPage extends Vue {
 
   async onNumberToFindSDAmountChange (): Promise<void> {
     if (this.numberToFindSDAmount.match(validateNumberRegExp) == null) {
-      this.numberToFindSDAmountAnswer = {
-        output: 'Invalid number',
-        amount: 'Invalid number'.length
-      }
+      this.numberToFindSDAmountAnswer = 'Invalid answer'
       return
     }
 
@@ -157,13 +151,14 @@ export default class SignificantDigitsPage extends Vue {
           input: this.numberToFindSDAmount
         }
       })
-      this.numberToFindSDAmountAnswer = response.data
+      this.numberToFindSDAmountAnswer = this.responseToString(response.data)
     } catch (error) {
-      this.numberToFindSDAmountAnswer = {
-        output: error.message as string,
-        amount: (error.message as string).length
-      }
+      this.numberToFindSDAmountAnswer = 'Unexpected Error: ' + (error.message as string)
     }
+  }
+
+  responseToString (response: SignificantDigitsResponse): string {
+    return `There are ${response.amount} significant digits in here <b>(${response.output})<b>`
   }
 
   onRoundToSignificantDigitsChange (): void {
