@@ -57,7 +57,8 @@ const routes: Array<RouteConfig> = [
       },
       {
         path: 'calculate-false-position',
-        name: 'Calculate False Position'
+        name: 'Calculate False Position',
+        component: Pages.CalculateFalsePosition
       },
       {
         path: 'missing-querystring',
