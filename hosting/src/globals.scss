@@ -116,11 +116,7 @@ body::-webkit-scrollbar-track, .docs-sidebar::-webkit-scrollbar-track, .box-over
   background-color: rgba(220, 220, 220, 0.5);
 }
 
-.significant-digits-numberinput > div.control > input.input {
-  text-align: left !important;
-}
-
-.bisection-numberinput > div.control > input.input {
+.numberinput-left-align > div.control > input.input {
   text-align: left !important;
 }
 
