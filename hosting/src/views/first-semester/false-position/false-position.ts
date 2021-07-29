@@ -1,6 +1,6 @@
 import { Component, Vue } from 'vue-property-decorator'
 
-import { FalsePositionResponse } from '@fina/common'
+import { FalsePositionQuerystring, FalsePositionResponse } from '@fina/common'
 
 import GrapherComponent from '@/components/grapher/grapher.vue'
 import { Coordinate } from '@/types'
@@ -16,6 +16,14 @@ import { Coordinate } from '@/types'
   }
 })
 export default class FalsePositionPage extends Vue {
+  falsePositionInput: FalsePositionQuerystring = {
+    expression: 'x^2 - 2x - 3',
+    start: 2,
+    end: 3.2,
+    iteration: 5,
+    dp: 5
+  }
+
   answer: FalsePositionResponse = [
     {
       i: 0,
@@ -230,6 +238,27 @@ export default class FalsePositionPage extends Vue {
     })
   }
 
+  get validateInputs (): boolean {
+    if (this.falsePositionInput.expression == null || this.falsePositionInput.expression === '') {
+      return true
+    }
+
+    if (this.falsePositionInput.iteration == null || this.falsePositionInput.dp == null) {
+      return true
+    }
+
+    if (this.falsePositionInput.iteration < 0) {
+      return true
+    }
+
+    // eslint-disable-next-line yoda
+    if (!(0 <= this.falsePositionInput.dp && this.falsePositionInput.dp <= 15)) {
+      return true
+    }
+
+    return false
+  }
+
   get katexAnswerArray (): Array<Array<string>> {
     return this.answer.map(answer => {
       return [
@@ -238,6 +267,39 @@ export default class FalsePositionPage extends Vue {
         `c = ${answer.c}`,
         `f(c) = (${answer.c})^2 - ${answer.c} - 1 = ${answer.fc}`
       ]
+    })
+  }
+
+  resetInputsToDefault (): void {
+    this.falsePositionInput = {
+      expression: 'x^2 - 2x - 3',
+      start: 2,
+      end: 3.2,
+      iteration: 5,
+      dp: 5
+    }
+  }
+
+  calculateFalsePosition (): void {
+    if (this.falsePositionInput.iteration == null || this.falsePositionInput.dp == null) {
+      return
+    }
+
+    this.$router.push({
+      path: 'calculate-false-position',
+      query: {
+        expression: this.falsePositionInput.expression,
+        start: this.falsePositionInput.start.toString(),
+        end: this.falsePositionInput.end.toString(),
+        iteration: this.falsePositionInput.iteration.toString(),
+        dp: this.falsePositionInput.dp.toString()
+      }
+    },
+    () => {
+      console.log('Calculate False Position Route Done')
+    },
+    (error) => {
+      console.error(error)
     })
   }
 

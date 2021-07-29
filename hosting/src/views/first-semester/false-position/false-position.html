@@ -186,4 +186,77 @@
       </div>
     </div>
   </section>
+  <section id="calculate" class="hero">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title is-2">
+          Calculate
+        </h1>
+        <div class="field is-horizontal">
+          <div class="field-label is-normal">
+            <label for="bisection-function-expression" class="label">Function expression</label>
+          </div>
+          <div class="field-body">
+            <div class="field">
+              <div class="control has-icons-right">
+                <input class="input" name="false-position-function-expression" type="text" v-model="falsePositionInput.expression">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="field is-horizontal">
+          <div class="field-label is-normal">
+            <label for="false-position-start" class="label">Start</label>
+          </div>
+          <div class="field-body">
+            <div class="field">
+              <div class="control has-icons-right">
+                <input class="input" name="false-position-start" type="number" step="any" v-model="falsePositionInput.start">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="field is-horizontal">
+          <div class="field-label is-normal">
+            <label for="false-position-end" class="label">End</label>
+          </div>
+          <div class="field-body">
+            <div class="field">
+              <div class="control has-icons-right">
+                <input class="input" name="false-position-end" type="number" step="any" v-model="falsePositionInput.end">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="field is-horizontal">
+          <div class="field-label is-normal">
+            <label for="false-position-iteration" class="label">Iteration times</label>
+          </div>
+          <div class="field-body">
+            <div class="field">
+              <div class="control has-icons-right">
+                <input class="input" name="false-position-iteration" type="number" min="1" step="1" v-model="falsePositionInput.iteration">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="field is-horizontal">
+          <div class="field-label is-normal">
+            <label for="false-position-dp" class="label">Decimal points</label>
+          </div>
+          <div class="field-body">
+            <div class="field">
+              <div class="control has-icons-right">
+                <input class="input" name="false-position-dp" type="number" min="1" max="15" step="1" v-model="falsePositionInput.dp">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="buttons">
+          <b-button type="is-sailor-blue" @click="calculateFalsePosition" :disabled="validateInputs">Calculate</b-button>
+          <b-button @click="resetInputsToDefault">Reset to default</b-button>
+        </div>
+      </div>
+    </div>
+  </section>
 </div>
