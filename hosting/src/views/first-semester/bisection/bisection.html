@@ -168,24 +168,68 @@
         <h1 class="title is-2">
           Calculate
         </h1>
-        <b-field horizontal label="Function expression">
-          <b-input name="function-expression" v-model="bisectionInput.expression" />
-        </b-field>
-        <b-field horizontal label="Start">
-          <b-numberinput class="bisection-numberinput" name="start" :controls="false" v-model="bisectionInput.start" />
-        </b-field>
-        <b-field horizontal label="End">
-          <b-numberinput class="bisection-numberinput" name="end" :controls="false" v-model="bisectionInput.end" />
-        </b-field>
-        <b-field horizontal label="Iteration times">
-          <b-numberinput class="bisection-numberinput" min="1" name="iteration-time" :controls="false" v-model="bisectionInput.iteration" />
-        </b-field>
-        <b-field horizontal label="Decimal points">
-          <b-numberinput class="bisection-numberinput" min="1" max="15" name="decimal-points" :controls="false" v-model="bisectionInput.dp" />
-        </b-field>
+        <div class="field is-horizontal">
+          <div class="field-label is-normal">
+            <label for="bisection-function-expression" class="label">Function expression</label>
+          </div>
+          <div class="field-body">
+            <div class="field">
+              <div class="control has-icons-right">
+                <input class="input" name="bisection-function-expression" type="text" v-model="bisectionInput.expression">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="field is-horizontal">
+          <div class="field-label is-normal">
+            <label for="bisection-start" class="label">Start</label>
+          </div>
+          <div class="field-body">
+            <div class="field">
+              <div class="control has-icons-right">
+                <input class="input" name="bisection-start" type="number" step="any" v-model="bisectionInput.start">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="field is-horizontal">
+          <div class="field-label is-normal">
+            <label for="bisection-end" class="label">End</label>
+          </div>
+          <div class="field-body">
+            <div class="field">
+              <div class="control has-icons-right">
+                <input class="input" name="bisection-end" type="number" step="any" v-model="bisectionInput.end">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="field is-horizontal">
+          <div class="field-label is-normal">
+            <label for="bisection-iteration" class="label">Iteration times</label>
+          </div>
+          <div class="field-body">
+            <div class="field">
+              <div class="control has-icons-right">
+                <input class="input" name="bisection-iteration" type="number" min="1" step="1" v-model="bisectionInput.iteration">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="field is-horizontal">
+          <div class="field-label is-normal">
+            <label for="bisection-dp" class="label">Decimal points</label>
+          </div>
+          <div class="field-body">
+            <div class="field">
+              <div class="control has-icons-right">
+                <input class="input" name="bisection-dp" type="number" min="1" max="15" step="1" v-model="bisectionInput.dp">
+              </div>
+            </div>
+          </div>
+        </div>
         <div class="buttons">
           <b-button type="is-sailor-blue" @click="calculateBisection" :disabled="validateInputs">Calculate</b-button>
-          <b-button @click="resetInputs">Reset inputs</b-button>
           <b-button @click="resetInputsToDefault">Reset to default</b-button>
         </div>
       </div>

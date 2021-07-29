@@ -250,6 +250,10 @@ export default class BisectionPage extends Vue {
   }
 
   get validateInputs (): boolean {
+    if (this.bisectionInput.expression == null || this.bisectionInput.expression === '') {
+      return true
+    }
+
     if (this.bisectionInput.iteration == null || this.bisectionInput.dp == null) {
       return true
     }
@@ -270,16 +274,6 @@ export default class BisectionPage extends Vue {
     this.katexAnswerDiv = !this.katexAnswerDiv
   }
 
-  resetInputs (): void {
-    this.bisectionInput = {
-      expression: '',
-      start: 0,
-      end: 0,
-      iteration: 0,
-      dp: 0
-    }
-  }
-
   resetInputsToDefault (): void {
     this.bisectionInput = {
       expression: 'x^3 - x - 1',
@@ -291,31 +285,25 @@ export default class BisectionPage extends Vue {
   }
 
   calculateBisection (): void {
-    if (this.bisectionInput.expression === '') {
-      this.bisectionInput.expression = 'x^2'
-    }
-
     if (this.bisectionInput.iteration == null || this.bisectionInput.dp == null) {
       return
     }
 
-    this.$router.push(
-      {
-        path: 'calculate-bisection',
-        query: {
-          expression: this.bisectionInput.expression,
-          start: this.bisectionInput.start.toString(),
-          end: this.bisectionInput.end.toString(),
-          iteration: this.bisectionInput.iteration.toString(),
-          dp: this.bisectionInput.dp.toString()
-        }
-      },
-      () => {
-        console.log('Calculate Bisection Route Done')
-      },
-      (error) => {
-        console.error(error)
+    this.$router.push({
+      path: 'calculate-bisection',
+      query: {
+        expression: this.bisectionInput.expression,
+        start: this.bisectionInput.start.toString(),
+        end: this.bisectionInput.end.toString(),
+        iteration: this.bisectionInput.iteration.toString(),
+        dp: this.bisectionInput.dp.toString()
       }
-    )
+    },
+    () => {
+      console.log('Calculate Bisection Route Done')
+    },
+    (error) => {
+      console.error(error)
+    })
   }
 }
