@@ -7,11 +7,6 @@ import { Coordinate } from '@/types'
 
 const margins = { top: 40, right: 40, bottom: 40, left: 40 }
 
-/**
- * Graph mouse offset to move the chart away from the dot
- */
-// const TOOLTIP_MOUSE_OFFSET = 10
-
 @Component
 export default class Grapher extends Vue {
   /**
