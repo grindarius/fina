@@ -116,6 +116,10 @@ export const firstSemesterPages: Array<Page> = [
       {
         name: 'Examples',
         path: '/docs/false-position#examples'
+      },
+      {
+        name: 'Calculate',
+        path: '/docs/false-position#calculate'
       }
     ]
   },
