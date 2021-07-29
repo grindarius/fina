@@ -23,3 +23,9 @@ export const calculateBisection: Endpoint = {
   url: `${apiRootUrl}/bisection`,
   headers
 }
+
+export const calculateFalsePosition: Endpoint = {
+  method: 'GET',
+  url: `${apiRootUrl}/false-position`,
+  headers
+}
