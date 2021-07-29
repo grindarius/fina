@@ -1,4 +1,4 @@
-import math from 'mathjs'
+import * as math from 'mathjs'
 
 /**
  * A function to evaluate the value of `x` in a function
