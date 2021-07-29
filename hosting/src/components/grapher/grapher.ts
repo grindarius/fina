@@ -347,7 +347,7 @@ export default class Grapher extends Vue {
 
       const coordinate: Coordinate = {
         x: x,
-        y: evaluateFunction(this.expression, x)
+        y: evaluateFunction(this.expression, { x })
       }
 
       return coordinate

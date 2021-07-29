@@ -2,7 +2,7 @@ import axios from 'axios'
 import debounce from 'debounce'
 import { Component, Vue } from 'vue-property-decorator'
 
-import { DEBOUNCE_TIME, SignificantDigitsAmountResponse, validateNumberRegExp } from '@fina/common'
+import { DEBOUNCE_TIME, SignificantDigitsResponse, validateNumberRegExp } from '@fina/common'
 
 import { calculateSignificantDigits } from '@/api'
 
@@ -27,7 +27,10 @@ interface RoundToSDInput {
 })
 export default class SignificantDigitsPage extends Vue {
   numberToFindSDAmount = '4920'
-  numberToFindSDAmountAnswer: SignificantDigitsAmountResponse = '492'
+  numberToFindSDAmountAnswer: SignificantDigitsResponse = {
+    output: '492',
+    amount: 3
+  }
 
   roundToSD: RoundToSDInput = {
     input: 305.459,
@@ -139,12 +142,15 @@ export default class SignificantDigitsPage extends Vue {
 
   async onNumberToFindSDAmountChange (): Promise<void> {
     if (this.numberToFindSDAmount.match(validateNumberRegExp) == null) {
-      this.numberToFindSDAmountAnswer = 'Invalid number'
+      this.numberToFindSDAmountAnswer = {
+        output: 'Invalid number',
+        amount: 'Invalid number'.length
+      }
       return
     }
 
     try {
-      const response = await axios.request<SignificantDigitsAmountResponse>({
+      const response = await axios.request<SignificantDigitsResponse>({
         method: calculateSignificantDigits.method,
         url: calculateSignificantDigits.url,
         params: {
@@ -153,7 +159,10 @@ export default class SignificantDigitsPage extends Vue {
       })
       this.numberToFindSDAmountAnswer = response.data
     } catch (error) {
-      this.numberToFindSDAmountAnswer = error.message as string
+      this.numberToFindSDAmountAnswer = {
+        output: error.message as string,
+        amount: (error.message as string).length
+      }
     }
   }
 
@@ -163,7 +172,8 @@ export default class SignificantDigitsPage extends Vue {
       return
     }
 
-    if (this.roundToSD.sd < 0 || this.roundToSD.sd >= 100) {
+    // eslint-disable-next-line yoda
+    if (0 > this.roundToSD.sd || this.roundToSD.sd >= 100) {
       this.roundToSDAnswer = 'Invalid input: Significant digits must be between 0 and 100'
       return
     }
