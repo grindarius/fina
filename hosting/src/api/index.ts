@@ -29,3 +29,9 @@ export const calculateFalsePosition: Endpoint = {
   url: `${apiRootUrl}/false-position`,
   headers
 }
+
+export const calculateFixedPointIteration: Endpoint = {
+  method: 'GET',
+  url: `${apiRootUrl}/fixed-point-iteration`,
+  headers
+}
