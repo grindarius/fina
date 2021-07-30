@@ -262,7 +262,7 @@ export default class FalsePositionPage extends Vue {
   get katexAnswerArray (): Array<Array<string>> {
     return this.answer.map(answer => {
       return [
-        `i = ${answer.i}`,
+        `i = ${answer.i + 1}`,
         `c = \\frac{(${answer.a} \\cdot ${answer.fb}) - (${answer.b} \\cdot ${answer.fa})}{${answer.fb} - ${answer.fa}}`,
         `c = ${answer.c}`,
         `f(c) = (${answer.c})^2 - ${answer.c} - 1 = ${answer.fc}`

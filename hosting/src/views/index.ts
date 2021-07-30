@@ -3,6 +3,7 @@ import CalculateBisection from './first-semester/bisection/calculate-bisection/c
 import DecimalPoints from './first-semester/decimal-points/decimal-points.vue'
 import CalculateFalsePosition from './first-semester/false-position/calculate-false-position/calculate-false-position.vue'
 import FalsePosition from './first-semester/false-position/false-position.vue'
+import FixedPointIteration from './first-semester/fixed-point-iteration/fixed-point-iteration.vue'
 import SignificantDigits from './first-semester/significant-digits/significant-digits.vue'
 import MissingQuerystring from './globals/404s/missing-querystring.vue'
 import About from './globals/about/about.vue'
@@ -19,6 +20,7 @@ export {
   DecimalPoints,
   Docs,
   FalsePosition,
+  FixedPointIteration,
   GettingStarted,
   Home,
   MissingQuerystring,

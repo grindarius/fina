@@ -232,7 +232,7 @@ export default class BisectionPage extends Vue {
   get katexAnswerArray (): Array<Array<string>> {
     return this.answer.map(answer => {
       return [
-        `i = ${answer.i}`,
+        `i = ${answer.i + 1}`,
         `c = \\frac{${answer.a} + ${answer.b}}{2}`,
         `c = ${answer.c}`,
         `f(c) = (${answer.c})^3 + 4((${answer.c})^2) - 10 = ${answer.fc}`
