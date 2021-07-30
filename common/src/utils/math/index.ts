@@ -41,7 +41,7 @@ export function absoluteError (current: number, previous: number): number {
  * @return a rounded number to your desired decimal points
  */
 export function round (numberToRound: number, decimalPoint: number): number {
-  if (decimalPoint <= 0) return numberToRound
+  if (decimalPoint <= 0 || decimalPoint > 15) return numberToRound
   else return Math.round(numberToRound * Math.pow(10, decimalPoint)) / Math.pow(10, decimalPoint)
 }
 
@@ -59,4 +59,21 @@ export function expressionToTex (expression: string): string {
     console.error(error)
     return ''
   }
+}
+
+/**
+ * A function to run a derivative through the given expression string. Can be chained
+ * with `.evaluate({ x })` to evaluate the function.
+ * ```ts
+ * const fpx = deriveFunction('x^3', 'x')
+ * const value = fpx.evaluate({ x: 4 })
+ * value // 48
+ * ```
+ *
+ * @param expression an expression string to derive
+ * @param respect which variable to derive to
+ * @returns a `MathNode` that can be evaluaated later
+ */
+export function deriveFunction (expression: string, respect: string): math.MathNode {
+  return math.derivative(expression, respect)
 }

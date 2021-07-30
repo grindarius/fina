@@ -2,9 +2,8 @@ import { Static, Type } from '@sinclair/typebox'
 
 export const FixedPointIterationQuerystringSchema = Type.Object({
   expression: Type.String(),
-  diffedExpression: Type.Optional(Type.String()),
+  fixedExpression: Type.String(),
   start: Type.Number(),
-  end: Type.Number(),
   iteration: Type.Optional(Type.Number({
     minimum: 1
   })),
