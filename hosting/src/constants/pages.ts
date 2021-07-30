@@ -1,132 +1,163 @@
 import { Page } from '@/types'
 
+const pathPrefix = '/docs'
+const path = {
+  gettingStarted: pathPrefix,
+  significantDigits: `${pathPrefix}/significant-digits`,
+  decimalPoints: `${pathPrefix}/decimal-points`,
+  bisection: `${pathPrefix}/bisection`,
+  falsePosition: `${pathPrefix}/false-position`,
+  fixedPointIteration: `${pathPrefix}/fixed-point-iteration`
+}
+
 export const firstSemesterPages: Array<Page> = [
   {
     name: 'Getting started',
-    path: '/docs',
+    path: path.gettingStarted,
     components: [
       {
         name: 'What is FINA',
-        path: '/docs#what-is-fina'
+        path: `${path.gettingStarted}#what-is-fina`
       },
       {
         name: 'Features',
-        path: '/docs#features'
+        path: `${path.gettingStarted}#features`
       }
     ]
   },
   {
     name: 'Significant Digits',
-    path: '/docs/significant-digits',
+    path: path.significantDigits,
     components: [
       {
         name: 'Description',
-        path: '/docs/significant-digits#description'
+        path: `${path.significantDigits}#description`
       },
       {
         name: 'Rules',
-        path: '/docs/significant-digits#rules'
+        path: `${path.significantDigits}#rules`
       },
       {
         name: 'Examples',
-        path: '/docs/significant-digits#examples'
+        path: `${path.significantDigits}#examples`
       },
       {
         name: 'Calculate Significant Digits in a number',
-        path: '/docs/significant-digits#calculate-sd-in-number'
+        path: `${path.significantDigits}#calculate-sd-in-number`
       },
       {
         name: 'Rounding a number to a desired Significant Digits',
-        path: '/docs/significant-digits#round-to-sd'
+        path: `${path.significantDigits}#round-to-sd`
       },
       {
         name: 'Rules',
-        path: '/docs/significant-digits#round-to-sd-rules'
+        path: `${path.significantDigits}#round-to-sd-rules`
       },
       {
         name: 'Examples',
-        path: '/docs/significant-digits#round-to-sd-examples'
+        path: `${path.significantDigits}#round-to-sd-examples`
       },
       {
         name: 'Round a number to a desired Significant Digits',
-        path: '/docs/significant-digits#calculate-round-to-sd'
+        path: `${path.significantDigits}#calculate-round-to-sd`
       }
     ]
   },
   {
     name: 'Decimal Points',
-    path: '/docs/decimal-points',
+    path: path.decimalPoints,
     components: [
       {
         name: 'Description',
-        path: '/docs/decimal-points#description'
+        path: `${path.decimalPoints}#description`
       },
       {
         name: 'Examples',
-        path: '/docs/decimal-points#examples'
+        path: `${path.decimalPoints}#examples`
       },
       {
         name: 'Round to decimal points',
-        path: '/docs/decimal-points#round-to-dp'
+        path: `${path.decimalPoints}#round-to-dp`
       }
     ]
   },
   {
     name: 'Bisection',
-    path: '/docs/bisection',
+    path: path.bisection,
     components: [
       {
         name: 'Description',
-        path: '/docs/bisection#description'
+        path: `${path.bisection}#description`
       },
       {
         name: 'Input Constraints',
-        path: '/docs/bisection#constraints'
+        path: `${path.bisection}#constraints`
       },
       {
         name: 'Steps to Reproduce',
-        path: '/docs/bisection#steps'
+        path: `${path.bisection}#steps`
       },
       {
         name: 'Examples',
-        path: '/docs/bisection#examples'
+        path: `${path.bisection}#examples`
       },
       {
         name: 'Calculate',
-        path: '/docs/bisection#calculate'
+        path: `${path.bisection}#calculate`
       }
     ]
   },
   {
     name: 'False Position',
-    path: '/docs/false-position',
+    path: path.falsePosition,
     components: [
       {
         name: 'Desription',
-        path: '/docs/false-position#description'
+        path: `${path.falsePosition}#description`
       },
       {
         name: 'Input Constraints',
-        path: '/docs/false-position#constraints'
+        path: `${path.falsePosition}#constraints`
       },
       {
         name: 'Steps to Reproduce',
-        path: '/docs/false-position#steps'
+        path: `${path.falsePosition}#steps`
       },
       {
         name: 'Examples',
-        path: '/docs/false-position#examples'
+        path: `${path.falsePosition}#examples`
       },
       {
         name: 'Calculate',
-        path: '/docs/false-position#calculate'
+        path: `${path.falsePosition}#calculate`
       }
     ]
   },
   {
     name: 'Fixed Point Iteration',
-    path: '/docs/fixed-point-iteration',
-    components: []
+    path: path.fixedPointIteration,
+    components: [
+      {
+        name: 'Description',
+        path: `${path.fixedPointIteration}#description`
+      },
+      {
+        name: 'Input Constraints',
+        path: `${path.fixedPointIteration}#constraints`
+      },
+      {
+        name: 'Steps to Reproduce',
+        path: `${path.fixedPointIteration}#steps`
+      },
+      {
+        name: 'Examples',
+        path: `${path.fixedPointIteration}#examples`
+      },
+      {
+        name: 'Calculate',
+        path: `${path.fixedPointIteration}#calculate`
+      }
+    ]
   },
   {
     name: 'Newton\'s',
