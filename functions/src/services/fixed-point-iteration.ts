@@ -1,10 +1,10 @@
 import { absoluteError, evaluateFunction, FixedPointIterationResponse, FixedPointIterationResponseObject, round } from '@fina/common'
 
-export function fixedPointIteration (expression: string, fixedExpression: string, a: number, iteration: number, decimalPoint: number): FixedPointIterationResponse {
+export function fixedPointIterationIteration (expression: string, fixedExpression: string, a: number, iteration: number, decimalPoint: number): FixedPointIterationResponse {
   let previousC = 0
   const answerArray: FixedPointIterationResponse = []
 
-  for (let i = 0; i < iteration; i++) {
+  for (let i = 1; i <= iteration; i++) {
     // * find f(a)
     const fa = round(evaluateFunction(expression, { x: a }), decimalPoint)
 

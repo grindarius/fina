@@ -4,7 +4,7 @@ export function secantIteration (expression: string, a: number, b: number, itera
   let previousC = 0
   const answerArray: SecantResponse = []
 
-  for (let i = 0; i < iteration; i++) {
+  for (let i = 1; i <= iteration; i++) {
     // * find f(a), f(b)
     const fa = round(evaluateFunction(expression, { x: a }), decimalPoint)
     const fb = round(evaluateFunction(expression, { x: b }), decimalPoint)

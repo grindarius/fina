@@ -6,7 +6,7 @@ export function newtonIteration (expression: string, diffedExpression: string, a
   let previousC = 0
   const answerArray: NewtonResponse = []
 
-  for (let i = 0; i < iteration; i++) {
+  for (let i = 1; i <= iteration; i++) {
     // * find f(a)
     const fa = round(evaluateFunction(expression, { x: a }), decimalPoint)
 
