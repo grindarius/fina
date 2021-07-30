@@ -1,4 +1,4 @@
-import { SignificantDigitsResponse } from '@fina/common'
+import { dotRegExp, SignificantDigitsResponse } from '@fina/common'
 
 export function findSignificantDigits (input: string): SignificantDigitsResponse {
   const leadingZerosRegExp: RegExp = /^0+\.?0*/g
@@ -9,7 +9,7 @@ export function findSignificantDigits (input: string): SignificantDigitsResponse
       const removedLeadingZeros: string = input.replace(leadingZerosRegExp, '')
       return {
         output: removedLeadingZeros,
-        amount: removedLeadingZeros.length
+        amount: removedLeadingZeros.replace(dotRegExp, '').length
       }
     } else if (parseFloat(input) === 0) {
       return {
@@ -19,14 +19,19 @@ export function findSignificantDigits (input: string): SignificantDigitsResponse
     } else {
       return {
         output: input,
-        amount: input.length
+        amount: input.replace(dotRegExp, '').length
       }
+    }
+  } else if (input === '0') {
+    return {
+      output: '0',
+      amount: 1
     }
   } else {
     const removedTrailingZeros: string = input.replace(trailingZerosRegExp, '')
     return {
       output: removedTrailingZeros,
-      amount: removedTrailingZeros.length
+      amount: removedTrailingZeros.replace(dotRegExp, '').length
     }
   }
 }
