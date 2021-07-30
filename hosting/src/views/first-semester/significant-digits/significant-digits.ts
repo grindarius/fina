@@ -2,7 +2,7 @@ import axios from 'axios'
 import debounce from 'debounce'
 import { Component, Vue } from 'vue-property-decorator'
 
-import { DEBOUNCE_TIME, SignificantDigitsResponse, validateNumberRegExp } from '@fina/common'
+import { DEBOUNCE_TIME, dotRegExp, SignificantDigitsResponse, validateNumberRegExp } from '@fina/common'
 
 import { calculateSignificantDigits } from '@/api'
 
@@ -139,7 +139,7 @@ export default class SignificantDigitsPage extends Vue {
 
   async onNumberToFindSDAmountChange (): Promise<void> {
     if (this.numberToFindSDAmount.match(validateNumberRegExp) == null) {
-      this.numberToFindSDAmountAnswer = 'Invalid answer'
+      this.numberToFindSDAmountAnswer = 'Invalid input'
       return
     }
 
@@ -158,7 +158,7 @@ export default class SignificantDigitsPage extends Vue {
   }
 
   responseToString (response: SignificantDigitsResponse): string {
-    return `There are ${response.amount} significant digits in here <b>(${response.output})<b>`
+    return `There are ${response.amount} significant digits in here (${response.output.replace(dotRegExp, '').split('').join(' ')})`
   }
 
   onRoundToSignificantDigitsChange (): void {
