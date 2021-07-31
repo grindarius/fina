@@ -1,6 +1,6 @@
 import { Component, Vue } from 'vue-property-decorator'
 
-import { FixedPointIterationResponse } from '@fina/common'
+import { FixedPointIterationQuerystring, FixedPointIterationResponse } from '@fina/common'
 
 import GrapherComponent from '@/components/grapher/grapher.vue'
 import { Coordinate } from '@/types'
@@ -16,6 +16,14 @@ import { Coordinate } from '@/types'
   }
 })
 export default class FixedPointIterationPage extends Vue {
+  fixedPointIterationInput: FixedPointIterationQuerystring = {
+    expression: 'x^2 - x - 1',
+    fixedExpression: '1 + (1/x)',
+    start: 2,
+    iteration: 5,
+    dp: 5
+  }
+
   answer: FixedPointIterationResponse = [
     {
       i: 1,
@@ -202,7 +210,61 @@ export default class FixedPointIterationPage extends Vue {
     })
   }
 
+  get validateInputs (): boolean {
+    if (this.fixedPointIterationInput.expression == null || this.fixedPointIterationInput.expression === '') {
+      return true
+    }
+
+    if (this.fixedPointIterationInput.fixedExpression == null || this.fixedPointIterationInput.fixedExpression === '') {
+      return true
+    }
+
+    if (this.fixedPointIterationInput.iteration == null || this.fixedPointIterationInput.dp == null) {
+      return true
+    }
+
+    // eslint-disable-next-line yoda
+    if (!(0 <= this.fixedPointIterationInput.dp && this.fixedPointIterationInput.dp <= 15)) {
+      return true
+    }
+
+    return false
+  }
+
   toggleAnswer (): void {
     this.katexAnswerDiv = !this.katexAnswerDiv
+  }
+
+  resetInputsToDefault (): void {
+    this.fixedPointIterationInput = {
+      expression: 'x^2 - x - 1',
+      fixedExpression: '1 + (1/x)',
+      start: 2,
+      iteration: 5,
+      dp: 5
+    }
+  }
+
+  calculateFixedPointIteration (): void {
+    if (this.fixedPointIterationInput.iteration == null || this.fixedPointIterationInput.dp == null) {
+      return
+    }
+
+    this.$router.push({
+      path: 'calculate-fixed-point-iteration',
+      query: {
+        expression: this.fixedPointIterationInput.expression,
+        fixedExpression: this.fixedPointIterationInput.fixedExpression,
+        start: this.fixedPointIterationInput.start.toString(),
+        iteration: this.fixedPointIterationInput.iteration.toString(),
+        dp: this.fixedPointIterationInput.dp.toString()
+      }
+    },
+    () => {
+      console.log('Calculate Fixed Point Iteration Route Done')
+    },
+    (error) => {
+      console.error(error)
+    })
   }
 }
