@@ -70,7 +70,7 @@
           <ol>
             <li>
               <p class="subtitle">
-                Starts with an <katex-element expression="expression" />, starting value of the interval <katex-element expression="a" />
+                Starts with an expression <katex-element expression="f" />, starting value of the interval <katex-element expression="a" />
                 and the end of the interval <katex-element expression="b" />.
               </p>
             </li>
@@ -123,7 +123,7 @@
           Examples
         </h1>
         <h3 class="subtitle is-3">
-          Find the root value of <katex-element expression="f(x) = x^3 + 4x^2 - 10" /> between <katex-element expression="1" /> and <katex-element expression="2" />.
+          Find the root value of <katex-element expression="x^3 + 4x^2 - 10" /> between <katex-element expression="1" /> and <katex-element expression="2" />.
         </h3>
         <p class="subtitle">
           Ok, so what do we do here? First of all we have to find the <katex-element expression="c" /> for the next iteration.
@@ -148,10 +148,9 @@
         <b-button class="is-sailor-blue" @click="toggleAnswer" style="margin-bottom: 1.5rem;">Toggle calculations</b-button>
         <div v-show="katexAnswerDiv" class="box-overflow">
           <div v-for="(eachAnswer, i) in katexAnswerArray" :key="'expression: ' + i">
-            <katex-element :expression="eachAnswer[0]" :display-mode="true" />
-            <katex-element :expression="eachAnswer[1]" :display-mode="true" />
-            <katex-element :expression="eachAnswer[2]" :display-mode="true" />
-            <katex-element :expression="eachAnswer[3]" :display-mode="true" />
+            <div v-for="expression in eachAnswer" :key="'sub-expression: ' + expression">
+              <katex-element :expression="expression" :display-mode="true" />
+            </div>
             <hr class="linebreak">
           </div>
         </div>

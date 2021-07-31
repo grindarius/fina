@@ -5,6 +5,255 @@
         <h1 class="title is-1">
           Fixed Point Iteration
         </h1>
+        <h1 class="subtitle is-3">
+          This one is one of the fastest out there?!?!? and the first one that's not bracketing method?
+        </h1>
+      </div>
+    </div>
+  </section>
+  <section id="description" class="hero">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title is-2">
+          Description
+        </h1>
+        <p class="subtitle is-indented">
+          Fixed Point Iteration method is another method of computing fixed points of a function.
+          Given a function <katex-element expression="f" /> defined on the real numbers with real
+          values, and given a point <katex-element expression="x_1" />
+          in the domain of <katex-element expression="f" />. There will be a function where it will create a sequence which
+          is hoped to converge to a point <katex-element expression="x" />. This method differs from
+          the previous 2 by taking only 1 point to start the chain. But it will need 2 functions to calculate.
+        </p>
+      </div>
+    </div>
+  </section>
+  <section id="constraints" class="hero">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title is-2">
+          Input Constraints
+        </h1>
+        <div class="content">
+          <ol>
+            <li>
+              <p class="subtitle">
+                Both expressions <b>must</b> be evaluable. The program will return error
+                when both functions are unevaluable.
+              </p>
+            </li>
+            <li>
+              <p class="subtitle">
+                The fixed expression <katex-element expression="g" />, its <katex-element expression="|g'(x)|" />
+                (an absolute of the derivative of the fixed expression) <b>should</b> be less than <katex-element expression="1" />.
+                Otherwise, it <b>will not</b> converge to the root. The program have the checkbox where you
+                can ignore this check.
+              </p>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="steps" class="hero">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title is-2">
+          Steps to Reproduce
+        </h1>
+        <div class="content">
+          <ol>
+            <li>
+              <p class="subtitle">
+                Starting with an expression <katex-element expression="f" /> and
+                a starting value <katex-element expression="x_1" />.
+              </p>
+            </li>
+            <li>
+              <p class="subtitle">
+                Find <katex-element expression="g" /> (Steps on finding
+                <katex-element expression="g" /> lies below. Keep scrolling).
+              </p>
+            </li>
+            <li>
+              <p class="subtitle">
+                Calculate <katex-element expression="x_{n + 1}" />, you will have <katex-element expression="x_2" />
+              </p>
+            </li>
+            <li>
+              <p class="subtitle">
+                Then plug <katex-element expression="x_2" /> into
+                where <katex-element expression="x_1" /> previously there.
+              </p>
+            </li>
+            <li>
+              <p class="subtitle">
+                Repeat steps 3 and 4 until you get the <b>point</b> (haha, get it? sorry that's bad)
+              </p>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="examples" class="hero">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title is-2">
+          Examples
+        </h1>
+        <h1 class="subtitle is-3">
+          Find the root value of <katex-element expression="x^2 - x - 1" /> where
+          the root starts at <katex-element expression="1.5" />
+        </h1>
+        <p class="subtitle is-indented">
+          Starting with an expression
+          <katex-element expression="x^2 - x - 1" /> and
+          a starting value
+          <katex-element expression="x_1" />.
+          First of all. You need to find a fixed expression
+          <katex-element expression="g" />. A fixed expression is an expression
+          that's made from 'fixing' the variable inside the expression
+          <katex-element expression="f" />.
+        </p>
+        <p class="subtitle">
+          We can fix the expression by
+          <div class="content">
+            <ul>
+              <li>
+                <p class="subtitle">
+                  Observe the function.
+                </p>
+              </li>
+              <li>
+                <p class="subtitle">
+                  Select which
+                  <katex-element expression="x" /> you want to 'fix'.
+                </p>
+              </li>
+              <li>
+                <p class="subtitle">
+                  Move everything to other side, leaving the left side with only
+                  <katex-element expression="x" /> that you wanted to fix.
+                </p>
+              </li>
+              <li>
+                <p class="subtitle">
+                  Label the left side's
+                  <katex-element expression="x" /> to be
+                  <katex-element expression="x_{n + 1}" /> and the right side's
+                  <katex-element expression="x" />
+                  to be
+                  <katex-element expression="x_n" />
+                </p>
+              </li>
+            </ul>
+          </div>
+        <p class="subtitle">
+          There are many ways to fix the expression. And I have some to show you here.
+        </p>
+        <p class="subtitle">
+          The first one, you can select the middle
+          <katex-element expression="x" />:
+          <katex-element expression="x^2 - x - 1 = 0" :display-mode="true" />
+          <katex-element expression="-x = 1 - x^2" :display-mode="true" />
+          <katex-element expression="x = -1 + x^2" :display-mode="true" />
+          <katex-element expression="x_{n + 1} = -1 + x_{n}^2" :display-mode="true" />
+        </p>
+        <p class="subtitle">
+          The second one, you can select the
+          <katex-element expression="x^2" />
+          <katex-element expression="x^2 - x - 1 = 0" :display-mode="true" />
+          <katex-element expression="x^2 = x + 1" :display-mode="true" />
+          <katex-element expression="x = 1 + \frac{1}{x}" :display-mode="true" />
+          <katex-element expression="x_{n + 1} = 1 + \frac{1}{x_n}" :display-mode="true" />
+        </p>
+        <p class="subtitle">
+          This one, we'll move the middle
+          <katex-element expression="x" /> to the
+          left side first, then take the square out.
+          <katex-element expression="x^2 - x - 1 = 0" :display-mode="true" />
+          <katex-element expression="x^2 = x + 1" :display-mode="true" />
+          <katex-element expression="x = \pm \sqrt{x + 1}" :display-mode="true" />
+          <katex-element expression="x_{n + 1} = \pm \sqrt{x_n + 1}" :display-mode="true" />
+        </p>
+        <p class="subtitle">
+          This one (last one), we move
+          <katex-element expression="1" /> to the right,
+          then, pull out the
+          <katex-element expression="x" />, and move them to the right.
+          <katex-element expression="x^2 - x - 1 = 0" :display-mode="true" />
+          <katex-element expression="x^2 - x = 1" :display-mode="true" />
+          <katex-element expression="x(x - 1) = 1" :display-mode="true" />
+          <katex-element expression="x = \frac{1}{x - 1}" :display-mode="true" />
+          <katex-element expression="x_{n + 1} = \frac{1}{x_n - 1}" :display-mode="true" />
+        </p>
+        <p class="subtitle is-indented">
+          <b>Do keep in mind</b> that the function that ends up having 2 values
+          like
+          <katex-element expression="x_{n + 1} = \pm \sqrt{x_n + 1}" />
+          is <b>not a good way to go</b>. Since it produces 2 values for
+          <katex-element expression="x_{n + 1}" />. We should not use that
+          function as a fixed function.
+        </p>
+        <p class="subtitle">
+          In this example we're going to use these two equations.
+          <katex-element expression="f(x) = x^2 - x - 1" :display-mode="true" />
+          <katex-element expression="x_{n + 1} = 1 + \frac{1}{x_n}" :display-mode="true" />
+        </p>
+        </p>
+        <p class="subtitle">
+          Now, we know <katex-element expression="x_1" />, we are going to
+          find <katex-element expression="f(x_1)" /> first using expression
+          <katex-element expression="f" />
+          where <katex-element expression="x_1 = 2" />
+          <katex-element expression="f(x) = x^2 - x - 1" :display-mode="true" />
+          <katex-element expression="f(2) = 2^2 - 2 - 1" :display-mode="true" />
+          <katex-element expression="f(2) = 1" :display-mode="true" />
+        </p>
+        <p class="subtitle">
+          Then, calculate
+          <katex-element expression="x_{n + 1}" /> (in this case 
+          <katex-element expression="x_2" />) using
+          expression <katex-element expression="g" />
+          where
+          <katex-element expression="x_1 = 2" />
+          <katex-element expression="x_{n + 1} = 1 + \frac{1}{x_n}" :display-mode="true" />
+          <katex-element expression="x_2 = 1 + \frac{1}{2}" :display-mode="true" />
+          <katex-element expression="x_2 = 1.5" :display-mode="true" />
+        </p>
+        <p class="subtitle">
+          Now, calculate <katex-element expression="f(x_2)" /> using the expression
+          <katex-element expression="f" /> where <katex-element expression="x_2 = 1.5" />
+          <katex-element expression="f(x) = x^2 - x - 1" :display-mode="true" />
+          <katex-element expression="f(1.5) = 1.5^2 - 1.5 - 1" :display-mode="true" />
+          <katex-element expression="f(1.5) = -0.25" :display-mode="true" />
+        </p>
+        <grapher :id="'fixed-point-iteration-start-graph'" expression="x^2 - x - 1" :start="2" :points="[ { x: 1.5, y: -0.25 } ]" />
+        <p class="subtitle is-indented">
+          From the first iteration, you will get 1 point. Which is <katex-element expression="(1.5, -0.25)" />.
+          The point trend will keep going towards the <katex-element expression="x" /> line.
+          Now, rinse and repeat until you get the <b>point</b> (haha, get it? sorry that's bad)
+        </p>
+        <b-button class="is-sailor-blue" @click="toggleAnswer" style="margin-bottom: 1.5rem;">Toggle calculations</b-button>
+        <div v-show="katexAnswerDiv" class="box-overflow">
+          <div v-for="(eachAnswer, i) in katexAnswerArray" :key="'expression: ' + i">
+            <div v-for="expression in eachAnswer" :key="'sub-expression: ' + expression">
+              <katex-element :expression="expression" :display-mode="true" />
+            </div>
+            <hr class="linebreak">
+          </div>
+        </div>
+        <grapher :id="'fixed-point-iteration-final-graph'" expression="x^2 - x - 1" :start="2" :points="points" />
+      </div>
+    </div>
+  </section>
+  <section id="calculate" class="hero">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title is-2">
+          Calculate
+        </h1>
       </div>
     </div>
   </section>
