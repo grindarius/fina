@@ -7,6 +7,18 @@ import { Coordinate } from '@/types'
 
 const margins = { top: 40, right: 40, bottom: 40, left: 40 }
 
+/**
+ * A component to generate a d3 graph.
+ * Criteria:
+ * - Generates a line graph with points for you to put in as an array of coordinate.
+ * - Currently support only contiuous graph.
+ * - For any points that are `null`, `undefined`, `NaN`, `Infinity` or `-Infinity`, will not be rendered.
+ * The point will just disappear.
+ * - For the line, if there is those values inside, those values will be changed to 0.
+ * (I am working on a system to chop the values to support multiple graph types.)
+ * - This component uses `math.evaluate()` to calculate its expression.
+ * (looking forward to switch to `math.parse().evaluate()`)
+ */
 @Component
 export default class Grapher extends Vue {
   /**
@@ -120,9 +132,7 @@ export default class Grapher extends Vue {
     this.drawLine(this.x, this.y)
     this.drawZeroLine()
 
-    if (this.start != null && this.end != null) {
-      this.drawStartEndLine(this.x, this.y)
-    }
+    this.drawStartEndLine(this.x, this.y)
 
     const zoom = d3.zoom<SVGRectElement, unknown>()
       .scaleExtent([1, 10_000])
@@ -162,25 +172,29 @@ export default class Grapher extends Vue {
    * @param yScale a y scale
    */
   drawStartEndLine (xScale: d3.ScaleLinear<number, number, never>, yScale: d3.ScaleLinear<number, number, never>): void {
-    this.line.append('line')
-      .classed(`start-range-line-${this.id}`, true)
-      .attr('x1', xScale(this.start ?? 0))
-      .attr('x2', xScale(this.start ?? 0))
-      .attr('y1', yScale(yScale.domain()[1]))
-      .attr('y2', yScale(yScale.domain()[0]))
-      .style('stroke', '#ff3860')
-      .style('shape-rendering', 'crispEdges')
-      .style('stroke-opacity', 0.5)
+    if (this.start != null) {
+      this.line.append('line')
+        .classed(`start-range-line-${this.id}`, true)
+        .attr('x1', xScale(this.isNumberReal(this.start)))
+        .attr('x2', xScale(this.isNumberReal(this.start)))
+        .attr('y1', yScale(yScale.domain()[1]))
+        .attr('y2', yScale(yScale.domain()[0]))
+        .style('stroke', '#ff3860')
+        .style('shape-rendering', 'crispEdges')
+        .style('stroke-opacity', 0.5)
+    }
 
-    this.line.append('line')
-      .classed(`end-range-line-${this.id}`, true)
-      .attr('x1', xScale(this.end ?? 0))
-      .attr('x2', xScale(this.end ?? 0))
-      .attr('y1', yScale(yScale.domain()[1]))
-      .attr('y2', yScale(yScale.domain()[0]))
-      .style('stroke', '#ff3860')
-      .style('shape-rendering', 'crispEdges')
-      .style('stroke-opacity', 0.5)
+    if (this.end != null) {
+      this.line.append('line')
+        .classed(`end-range-line-${this.id}`, true)
+        .attr('x1', xScale(this.isNumberReal(this.end)))
+        .attr('x2', xScale(this.isNumberReal(this.end)))
+        .attr('y1', yScale(yScale.domain()[1]))
+        .attr('y2', yScale(yScale.domain()[0]))
+        .style('stroke', '#ff3860')
+        .style('shape-rendering', 'crispEdges')
+        .style('stroke-opacity', 0.5)
+    }
   }
 
   /**
@@ -191,8 +205,8 @@ export default class Grapher extends Vue {
       .data(this.points)
       .join('circle')
       .classed(`point-${this.id}`, true)
-      .attr('cx', (d) => this.x(d.x))
-      .attr('cy', (d) => this.y(d.y))
+      .attr('cx', (d) => this.x(this.isNumberReal(d.x)))
+      .attr('cy', (d) => this.y(this.isNumberReal(d.y)))
       .attr('r', 3)
       .style('fill', '#240743')
       .on('mouseover', (event) => {
@@ -262,8 +276,8 @@ export default class Grapher extends Vue {
       .attr('stroke', 'steelblue')
       .attr('stroke-width', 1.5)
       .attr('d', d3.line<Coordinate>()
-        .x(d => xScale(d.x))
-        .y(d => yScale(d.y))
+        .x(d => xScale(this.isNumberReal(d.x)))
+        .y(d => yScale(this.isNumberReal(d.y)))
       )
   }
 
@@ -278,21 +292,19 @@ export default class Grapher extends Vue {
     this.xAxis.call(d3.axisBottom(newX))
     this.yAxis.call(d3.axisLeft(newY))
 
-    if (this.start != null && this.end != null) {
-      this.drawStartEndLine(newX, newY)
-    }
+    this.drawStartEndLine(newX, newY)
     this.drawZeroLine()
 
     const redrawline: d3.Selection<d3.BaseType, Array<Coordinate>, SVGGElement, unknown> = this.line.selectAll(`path.data-line-${this.id}`)
     redrawline.attr('d', d3.line<Coordinate>()
-      .x(d => newX(d.x))
-      .y(d => newY(d.y))
+      .x(d => newX((this.isNumberReal(d.x))))
+      .y(d => newY((this.isNumberReal(d.y))))
     )
 
     const redrawDots: d3.Selection<d3.BaseType, Array<Coordinate>, SVGGElement, unknown> = this.dots.selectAll(`circle.point-${this.id}`)
     redrawDots.data(this.points)
-      .attr('cx', (d) => newX(d.x))
-      .attr('cy', (d) => newY(d.y))
+      .attr('cx', (d) => newX(this.isNumberReal(d.x)))
+      .attr('cy', (d) => newY(this.isNumberReal(d.y)))
   }
 
   /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
@@ -347,5 +359,21 @@ export default class Grapher extends Vue {
 
       return coordinate
     })
+  }
+
+  /**
+   * A function to evaluate the value, this funciton will only let true number pass.
+   * If the number is either `null`, `undefined`, `NaN`, `Infinity` or `-Infinity`, will return 0
+   *
+   * @param input a value that you want to test for faultiness.
+   * @returns 0 if the `input` is either `null`, `undefined`, `NaN`, `Infinity` or `-Infinity`.
+   * Otherwise return 0
+   */
+  isNumberReal (input: number): number {
+    if (input != null && isFinite(input)) {
+      return input
+    } else {
+      return 0
+    }
   }
 }
