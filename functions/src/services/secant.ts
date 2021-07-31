@@ -1,20 +1,21 @@
-import { absoluteError, evaluateFunction, round, SecantResponse, SecantResponseObject } from '@fina/common'
+import { absoluteError, compileFunction, round, SecantResponse, SecantResponseObject } from '@fina/common'
 
 export function secantIteration (expression: string, a: number, b: number, iteration: number, decimalPoint: number): SecantResponse {
   let previousC = 0
   const answerArray: SecantResponse = []
+  const mathCode = compileFunction(expression)
 
   for (let i = 1; i <= iteration; i++) {
     // * find f(a), f(b)
-    const fa = round(evaluateFunction(expression, { x: a }), decimalPoint)
-    const fb = round(evaluateFunction(expression, { x: b }), decimalPoint)
+    const fa = round(mathCode.evaluate({ x: a }), decimalPoint)
+    const fb = round(mathCode.evaluate({ x: b }), decimalPoint)
 
     // * find c
     const cExpression = ((a * fb) - (b * fa)) / (fb - fa)
     const c = round(cExpression, decimalPoint)
 
     // * find f(c)
-    const fc = round(evaluateFunction(expression, { x: c }), decimalPoint)
+    const fc = round(mathCode.evaluate({ x: c }), decimalPoint)
 
     // * find error
     const error = round(absoluteError(c, previousC), decimalPoint)
