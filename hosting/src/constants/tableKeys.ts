@@ -75,3 +75,30 @@ export const falsePositionTableKeys: Array<TableKey> = [
     label: 'error'
   }
 ]
+
+export const fixedPointIterationTableKeys: Array<TableKey> = [
+  {
+    field: 'i',
+    label: 'i'
+  },
+  {
+    field: 'x_n',
+    label: 'a'
+  },
+  {
+    field: 'f(x_n)',
+    label: 'fa'
+  },
+  {
+    field: 'x_{n + 1}',
+    label: 'c'
+  },
+  {
+    field: 'f(x_{n + 1})',
+    label: 'fc'
+  },
+  {
+    field: 'Error',
+    label: 'error'
+  }
+]
