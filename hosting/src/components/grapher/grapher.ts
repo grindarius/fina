@@ -1,7 +1,7 @@
 import * as d3 from 'd3'
 import { Component, Prop, Ref, Vue } from 'vue-property-decorator'
 
-import { evaluateFunction, round } from '@fina/common'
+import { compileFunction, round } from '@fina/common'
 
 import { Coordinate } from '@/types'
 
@@ -347,14 +347,13 @@ export default class Grapher extends Vue {
     const multipliedLeft = round(left, 5) * this.timeFactor
     const multipliedRight = round(right, 5) * this.timeFactor
 
-    const dummyArray = Array.from<number, number>({ length: (multipliedRight - multipliedLeft + 1) }, (_, i) => multipliedLeft + i)
-
-    return dummyArray.map((element) => {
-      const x = element / this.timeFactor
+    const mathCode = compileFunction(this.expression)
+    return Array.from({ length: (multipliedRight - multipliedLeft + 1) }, (_, i) => {
+      const x = (multipliedLeft + i) / this.timeFactor
 
       const coordinate: Coordinate = {
-        x: x,
-        y: evaluateFunction(this.expression, { x })
+        x,
+        y: mathCode.evaluate({ x })
       }
 
       return coordinate
