@@ -1,7 +1,7 @@
 import * as math from 'mathjs'
 
 /**
- * A function to evaluate the value of `x` in a function
+ * A function to evaluate the value of any variable in a function
  *
  * @param expression an expression to be calculated
  * @param variables a record of variables to put in the function.
@@ -9,6 +9,17 @@ import * as math from 'mathjs'
  */
 export function evaluateFunction (expression: string, variables: Record<string, number>): number {
   return math.evaluate(expression, variables)
+}
+
+/**
+ * A function to compile an expression string into JavaScript code for faster
+ * calculations over many iterations.
+ *
+ * @param expression an expression to be calculated
+ * @returns a math object with an `evaluate()` function to calculate
+ */
+export function compileFunction (expression: string): math.EvalFunction {
+  return math.compile(expression)
 }
 
 /**
