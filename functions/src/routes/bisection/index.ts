@@ -1,6 +1,6 @@
 import { FastifyInstance, FastifyPluginOptions, FastifySchema } from 'fastify'
 
-import { BisectionQuerystring, BisectionQuerystringSchema, BisectionResponse, BisectionResponseSchema, evaluateFunction, round } from '@fina/common'
+import { BisectionQuerystring, BisectionQuerystringSchema, BisectionResponse, BisectionResponseSchema, compileFunction, round } from '@fina/common'
 
 import { bisectionIteration } from '../../services/bisection'
 
@@ -27,17 +27,27 @@ export default async function (instance: FastifyInstance, _: FastifyPluginOption
         }
       },
       async (request, reply, done) => {
-        const fa = round(evaluateFunction(request.query.expression, { x: request.query.start }), request.query.dp ?? 5)
-        const fb = round(evaluateFunction(request.query.expression, { x: request.query.end }), request.query.dp ?? 5)
+        try {
+          const mathCode = compileFunction(request.query.expression)
 
-        if (fa * fb >= 0) {
-          await reply.code(400).send({
-            statusCode: 400,
-            error: 'Bad request',
-            message: `f(a) and f(b) does not have opposing signs, f(a) = ${fa}, f(b) = ${fb}`
+          const fa = round(mathCode.evaluate({ x: request.query.start }), request.query.dp ?? 5)
+          const fb = round(mathCode.evaluate({ x: request.query.end }), request.query.dp ?? 5)
+
+          if (fa * fb >= 0) {
+            await reply.code(400).send({
+              statusCode: 400,
+              error: 'Bad request',
+              message: `f(a) and f(b) does not have opposing signs, f(a) = ${fa}, f(b) = ${fb}`
+            })
+          } else {
+            done()
+          }
+        } catch (error) {
+          await reply.code(500).send({
+            statusCode: 500,
+            error: 'Internal Server Error',
+            message: error.message as string
           })
-        } else {
-          done()
         }
       }
     ]
