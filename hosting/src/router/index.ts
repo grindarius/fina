@@ -66,6 +66,11 @@ const routes: Array<RouteConfig> = [
         component: Pages.FixedPointIteration
       },
       {
+        path: 'calculate-fixed-point-iteration',
+        name: 'Calculate Fixed Point Iteration',
+        component: Pages.CalculateFixedPointIteration
+      },
+      {
         path: 'missing-querystring',
         name: 'Missing Querystring',
         component: Pages.MissingQuerystring
