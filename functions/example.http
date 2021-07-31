@@ -64,5 +64,5 @@ Content-Type: application/json
 ### Fixed Point Iteration
 
 ###
-GET {{ host }}/fixed-point-iteration?expression=x^2 - x - 1&fixedExpression=1 %2b %281 %2F x%29&start=2 HTTP/1.1
+GET {{ host }}/fixed-point-iteration?expression=x^2 - x - 1&fixedExpression=1 %2b %281 %2F x%29&start=2&iteration=20&dp=7 HTTP/1.1
 Content-Type: application/json
