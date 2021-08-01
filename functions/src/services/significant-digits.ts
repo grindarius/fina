@@ -13,19 +13,14 @@ export function findSignificantDigits (input: string): SignificantDigitsResponse
       }
     } else if (parseFloat(input) === 0) {
       return {
-        output: '0',
-        amount: 1
+        output: '',
+        amount: 0
       }
     } else {
       return {
         output: input,
         amount: input.replace(dotRegExp, '').length
       }
-    }
-  } else if (input === '0') {
-    return {
-      output: '0',
-      amount: 1
     }
   } else {
     const removedTrailingZeros: string = input.replace(trailingZerosRegExp, '')
