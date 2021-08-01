@@ -19,11 +19,14 @@
         </ul>
       </ul>
     </div>
+    <div class="scroll-to-top">
+      <b-button icon-left="arrow-expand-up" type="is-ghost" @click="scrollToTopPage">Back to top</b-button>
+    </div>
   </nav>
 
   <main>
     <router-view />
-    <breadcrumb-footer />
+    <breadcrumb-footer class="breadcrumb-footer" />
   </main>
 
 </div>

@@ -2,17 +2,14 @@
 
 $max-width-mobile: 770px;
 
-.menu {
-  margin-top: 2rem;
+.docs-landing-page {
+  display: flex;
 }
 
 .docs-sidebar {
-  width: 20rem;
-  position: fixed;
+  padding: 1rem 1rem 3rem 1rem;
   height: 100vh;
   background-color: rgb(255, 255, 255);
-  overflow-y: auto;
-  padding-bottom: 3rem;
 }
 
 .docs-inner-list {
@@ -50,19 +47,42 @@ $max-width-mobile: 770px;
   align-items: flex-start;
 }
 
+.scroll-to-top {
+  padding-bottom: 1rem;
+}
+
+// this is when it's mobile
 @media only screen and (max-width: $max-width-mobile) {
+  .docs-landing-page {
+    flex-direction: column-reverse;
+  }
+
   .docs-sidebar {
-    display: none;
+    border-top: 2px solid $gray-border;
+    padding: 2rem;
+    width: 100vw;
   }
 
   main {
     margin-left: 0;
   }
+
+  .breadcrumb-footer {
+    padding: 3rem 1.5rem 3rem;
+  }
 }
 
+// this is when it's on pc
 @media only screen and (min-width: $max-width-mobile) {
+  .docs-landing-page {
+    flex-direction: row;
+  }
+
   .docs-sidebar {
+    width: 20rem;
     display: block;
+    position: fixed;
+    overflow-y: auto;
   }
 
   main {
