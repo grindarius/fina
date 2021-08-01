@@ -5,6 +5,7 @@ import CalculateFalsePosition from './first-semester/false-position/calculate-fa
 import FalsePosition from './first-semester/false-position/false-position.vue'
 import CalculateFixedPointIteration from './first-semester/fixed-point-iteration/calculate-fixed-point-iteration/calculate-fixed-point-iteration.vue'
 import FixedPointIteration from './first-semester/fixed-point-iteration/fixed-point-iteration.vue'
+import Newton from './first-semester/newton/newton.vue'
 import SignificantDigits from './first-semester/significant-digits/significant-digits.vue'
 import MissingQuerystring from './globals/404s/missing-querystring.vue'
 import About from './globals/about/about.vue'
@@ -26,6 +27,7 @@ export {
   GettingStarted,
   Home,
   MissingQuerystring,
+  Newton,
   SignificantDigits,
   Sources
 }

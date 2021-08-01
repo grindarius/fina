@@ -71,6 +71,11 @@ const routes: Array<RouteConfig> = [
         component: Pages.CalculateFixedPointIteration
       },
       {
+        path: 'newton',
+        name: 'Newton',
+        component: Pages.Newton
+      },
+      {
         path: 'missing-querystring',
         name: 'Missing Querystring',
         component: Pages.MissingQuerystring
