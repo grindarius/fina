@@ -8,6 +8,7 @@ import FixedPointIteration from './first-semester/fixed-point-iteration/fixed-po
 import Newton from './first-semester/newton/newton.vue'
 import SignificantDigits from './first-semester/significant-digits/significant-digits.vue'
 import MissingQuerystring from './globals/404s/missing-querystring.vue'
+import NotFound from './globals/404s/not-found.vue'
 import About from './globals/about/about.vue'
 import Docs from './globals/docs/docs.vue'
 import GettingStarted from './globals/docs/getting-started/getting-started.vue'
@@ -28,6 +29,7 @@ export {
   Home,
   MissingQuerystring,
   Newton,
+  NotFound,
   SignificantDigits,
   Sources
 }
