@@ -32,7 +32,7 @@ export default class FooterComponent extends Vue {}
 </script>
 
 <style scoped lang="scss">
-$gray-border: rgb(230, 230, 230);
+@import '../../variables';
 
 .footer {
   background-color: rgb(255, 255, 255);
