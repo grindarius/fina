@@ -1,6 +1,6 @@
 <template>
   <div class="missing-query-in-answer-page">
-    <section class="hero is-fullheight">
+    <section class="hero is-fullheight is-sailor-blue">
       <div class="hero-body">
         <div class="container has-text-centered">
           <h1 class="title is-1">
@@ -11,7 +11,7 @@
             The page you are trying to access needs a <b>querystring</b> to work properly.
           </h1>
           <h1 class="subtitle is-4">
-            Choose from the menu on the left side to keep navigating further :)
+            Choose from the menu on the top to keep navigating further :)
           </h1>
         </div>
       </div>
@@ -22,10 +22,12 @@
 
 import { Component, Vue } from 'vue-property-decorator'
 
+import { getRandomIntInclusive } from '@fina/common'
+
 @Component({
   metaInfo () {
     return {
-      title: 'You shall not pass! | FINA'
+      title: 'Where is your querystring? | FINA'
     }
   }
 })
@@ -40,7 +42,7 @@ export default class MissingQueryInAnswerPage extends Vue {
   ]
 
   get pun (): string {
-    return this.puns[Math.floor(Math.random() * this.puns.length - 1)]
+    return this.puns[getRandomIntInclusive(0, this.puns.length - 1)]
   }
 }
 </script>

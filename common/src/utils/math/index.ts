@@ -88,3 +88,20 @@ export function expressionToTex (expression: string): string {
 export function deriveFunction (expression: string, respect: string): math.MathNode {
   return math.derivative(expression, respect)
 }
+
+/**
+ * A function to generate random number between 2 integers (inclusive).
+ * ```ts
+ * const random = getRandomIntInclusive(1, 5)
+ * random // any number between 1-5
+ * ```
+ *
+ * @param min minimum range.
+ * @param max maximum range
+ * @returns random integer inside the range.
+ */
+export function getRandomIntInclusive (min: number, max: number): number {
+  min = Math.ceil(min)
+  max = Math.floor(max)
+  return Math.floor(Math.random() * (max - min + 1) + min)
+}

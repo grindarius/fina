@@ -12,7 +12,7 @@ import { Coordinate, TableKey } from '@/types'
   beforeRouteEnter (from, _, next) {
     if (Object.keys(from.query).length === 0) {
       next({
-        path: '/docs/missing-querystring'
+        path: 'missing-querystring'
       })
     } else {
       next()

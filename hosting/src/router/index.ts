@@ -46,7 +46,7 @@ const routes: Array<RouteConfig> = [
         component: Pages.Bisection
       },
       {
-        path: 'calculate-bisection',
+        path: 'bisection/calculate',
         name: 'Calculate Bisection',
         component: Pages.CalculateBisection
       },
@@ -56,7 +56,7 @@ const routes: Array<RouteConfig> = [
         component: Pages.FalsePosition
       },
       {
-        path: 'calculate-false-position',
+        path: 'false-position/calculate',
         name: 'Calculate False Position',
         component: Pages.CalculateFalsePosition
       },
@@ -66,7 +66,7 @@ const routes: Array<RouteConfig> = [
         component: Pages.FixedPointIteration
       },
       {
-        path: 'calculate-fixed-point-iteration',
+        path: 'fixed-point-iteration/calculate',
         name: 'Calculate Fixed Point Iteration',
         component: Pages.CalculateFixedPointIteration
       },
@@ -74,13 +74,13 @@ const routes: Array<RouteConfig> = [
         path: 'newton',
         name: 'Newton',
         component: Pages.Newton
-      },
-      {
-        path: 'missing-querystring',
-        name: 'Missing Querystring',
-        component: Pages.MissingQuerystring
       }
     ]
+  },
+  {
+    path: '/missing-querystring',
+    name: 'Missing Querystring',
+    component: Pages.MissingQuerystring
   },
   {
     path: '*',

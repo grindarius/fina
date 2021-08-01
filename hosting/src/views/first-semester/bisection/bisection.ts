@@ -290,7 +290,7 @@ export default class BisectionPage extends Vue {
     }
 
     this.$router.push({
-      path: 'calculate-bisection',
+      path: 'bisection/calculate',
       query: {
         expression: this.bisectionInput.expression,
         start: this.bisectionInput.start.toString(),
