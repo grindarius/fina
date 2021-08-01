@@ -122,5 +122,9 @@ input.input[type="number"]::-webkit-outer-spin-button, input.input[type="number"
   margin: 0;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 @import '~bulma';
 @import '~buefy/src/scss/buefy';
