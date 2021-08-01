@@ -84,7 +84,8 @@ const routes: Array<RouteConfig> = [
   },
   {
     path: '*',
-    redirect: '/'
+    name: 'Not Found',
+    component: Pages.NotFound
   }
 ]
 
