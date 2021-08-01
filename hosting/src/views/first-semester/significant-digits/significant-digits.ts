@@ -27,7 +27,7 @@ interface RoundToSDInput {
 })
 export default class SignificantDigitsPage extends Vue {
   numberToFindSDAmount = '4920'
-  numberToFindSDAmountAnswer: string = 'There are 3 significant digits in here (492)'
+  numberToFindSDAmountAnswer: string = 'There are 3 significant digits in here (4 9 2)'
 
   roundToSD: RoundToSDInput = {
     input: 305.459,

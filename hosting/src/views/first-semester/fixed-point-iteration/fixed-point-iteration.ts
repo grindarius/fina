@@ -193,10 +193,10 @@ export default class FixedPointIterationPage extends Vue {
     return this.answer.map(answer => {
       return [
         `i = ${answer.i}`,
-        `x_${answer.i} = ${answer.a}`,
-        `f(x_${answer.i}) = (${answer.a})^2 - ${answer.a} - 1 = ${answer.fa}`,
-        `x_${answer.i + 1} = 1 + \\frac{1}{${answer.a}} = ${answer.c}`,
-        `f(x_${answer.i + 1}) = (${answer.c})^2 - ${answer.c} - 1 = ${answer.fc}`
+        `x_{${answer.i}} = ${answer.a}`,
+        `f(x_{${answer.i}}) = (${answer.a})^2 - ${answer.a} - 1 = ${answer.fa}`,
+        `x_{${answer.i + 1}} = 1 + \\frac{1}{${answer.a}} = ${answer.c}`,
+        `f(x_{${answer.i + 1}}) = (${answer.c})^2 - ${answer.c} - 1 = ${answer.fc}`
       ]
     })
   }
