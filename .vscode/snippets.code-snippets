@@ -21,5 +21,22 @@
       "export default class $0 extends Vue {}",
       ""
     ]
+  },
+  "New vue file setup without scss": {
+    "prefix": "vuesetup",
+    "body": [
+      "<template src=\"$0.html\"></template>",
+      "<script lang=\"ts\" src=\"$0.ts\"></script>",
+      ""
+    ]
+  },
+  "New vue file setup with scss": {
+    "prefix": "vuescsssetup",
+    "body": [
+      "<template src=\"$0.html\"></template>",
+      "<script lang=\"ts\" src=\"$0.ts\"></script>",
+      "<style lang=\"scss\" src=\"$0.scss\"></style>",
+      ""
+    ]
   }
 }
