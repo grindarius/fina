@@ -7,7 +7,8 @@ const path = {
   decimalPoints: `${pathPrefix}/decimal-points`,
   bisection: `${pathPrefix}/bisection`,
   falsePosition: `${pathPrefix}/false-position`,
-  fixedPointIteration: `${pathPrefix}/fixed-point-iteration`
+  fixedPointIteration: `${pathPrefix}/fixed-point-iteration`,
+  newton: `${pathPrefix}/newton`
 }
 
 export const firstSemesterPages: Array<Page> = [
@@ -160,9 +161,30 @@ export const firstSemesterPages: Array<Page> = [
     ]
   },
   {
-    name: 'Newton\'s',
-    path: '/docs/newton',
-    components: []
+    name: 'Newton',
+    path: path.newton,
+    components: [
+      {
+        name: 'Description',
+        path: `${path.newton}#description`
+      },
+      {
+        name: 'Input Constraints',
+        path: `${path.newton}#constraints`
+      },
+      {
+        name: 'Steps to Reproduce',
+        path: `${path.newton}#steps`
+      },
+      {
+        name: 'Examples',
+        path: `${path.newton}#examples`
+      },
+      {
+        name: 'Calculate',
+        path: `${path.newton}#calculate`
+      }
+    ]
   },
   {
     name: 'Secant',
