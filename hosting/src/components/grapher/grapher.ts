@@ -16,8 +16,7 @@ const margins = { top: 40, right: 40, bottom: 40, left: 40 }
  * The point will just disappear.
  * - For the line, if there is those values inside, those values will be changed to 0.
  * (I am working on a system to chop the values to support multiple graph types.)
- * - This component uses `math.evaluate()` to calculate its expression.
- * (looking forward to switch to `math.parse().evaluate()`)
+ * - This component uses `math.compile()` to calculate its expression.
  */
 @Component
 export default class Grapher extends Vue {
@@ -74,6 +73,8 @@ export default class Grapher extends Vue {
   @Ref('container') readonly container!: HTMLDivElement
   @Ref('tooltip-ref') readonly tooltip!: HTMLDivElement
 
+  mathCode: math.EvalFunction
+
   svg: d3.Selection<SVGSVGElement, unknown, HTMLElement, unknown>
   g: d3.Selection<SVGGElement, unknown, HTMLElement, unknown>
   line: d3.Selection<SVGGElement, unknown, HTMLElement, unknown>
@@ -87,6 +88,7 @@ export default class Grapher extends Vue {
   mounted (): void {
     this.width = this.propWidth - margins.left - margins.right
     this.height = this.propHeight - margins.top - margins.bottom
+    this.mathCode = compileFunction(this.expression)
     this.data = this.calculateData(-5, 5)
     this.generateChart()
   }
@@ -347,13 +349,12 @@ export default class Grapher extends Vue {
     const multipliedLeft = round(left, 5) * this.timeFactor
     const multipliedRight = round(right, 5) * this.timeFactor
 
-    const mathCode = compileFunction(this.expression)
     return Array.from({ length: (multipliedRight - multipliedLeft + 1) }, (_, i) => {
       const x = (multipliedLeft + i) / this.timeFactor
 
       const coordinate: Coordinate = {
         x,
-        y: mathCode.evaluate({ x })
+        y: this.mathCode.evaluate({ x })
       }
 
       return coordinate
