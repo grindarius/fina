@@ -258,7 +258,7 @@ export default class BisectionPage extends Vue {
       return true
     }
 
-    if (this.bisectionInput.iteration < 0) {
+    if (this.bisectionInput.iteration < 0 || this.bisectionInput.iteration > 100) {
       return true
     }
 

@@ -5,7 +5,8 @@ export const BisectionQuerystringSchema = Type.Object({
   start: Type.Number(),
   end: Type.Number(),
   iteration: Type.Optional(Type.Number({
-    minimum: 1
+    minimum: 1,
+    maximum: 100
   })),
   dp: Type.Optional(Type.Number({
     minimum: 1,

@@ -224,6 +224,10 @@ export default class FixedPointIterationPage extends Vue {
       return true
     }
 
+    if (this.fixedPointIterationInput.iteration < 0 || this.fixedPointIterationInput.iteration > 100) {
+      return true
+    }
+
     // eslint-disable-next-line yoda
     if (!(0 <= this.fixedPointIterationInput.dp && this.fixedPointIterationInput.dp <= 15)) {
       return true

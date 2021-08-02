@@ -8,7 +8,8 @@ export const FixedPointIterationQuerystringSchema = Type.Object({
     default: true
   }),
   iteration: Type.Optional(Type.Number({
-    minimum: 1
+    minimum: 1,
+    maximum: 100
   })),
   dp: Type.Optional(Type.Number({
     minimum: 1,

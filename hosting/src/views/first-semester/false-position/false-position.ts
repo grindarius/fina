@@ -247,7 +247,7 @@ export default class FalsePositionPage extends Vue {
       return true
     }
 
-    if (this.falsePositionInput.iteration < 0) {
+    if (this.falsePositionInput.iteration < 0 || this.falsePositionInput.iteration > 100) {
       return true
     }
 
