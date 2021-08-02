@@ -1,29 +1,28 @@
 import * as math from 'mathjs'
 
-import { absoluteError, evaluateFunction, NewtonResponse, NewtonResponseObject, round } from '@fina/common'
+import { absoluteError, compileFunction, evaluateFunction, NewtonResponse, NewtonResponseObject, round } from '@fina/common'
 
-export function newtonIteration (expression: string, diffedExpression: string, a: number, iteration: number, decimalPoint: number): NewtonResponse {
+export function newtonIteration (expression: string, diffedExpression: math.MathNode | string, respect: string, a: number, iteration: number, decimalPoint: number): NewtonResponse {
   let previousC = 0
   const answerArray: NewtonResponse = []
+  const mathCode = compileFunction(expression)
 
   for (let i = 1; i <= iteration; i++) {
     // * find f(a)
-    const fa = round(evaluateFunction(expression, { x: a }), decimalPoint)
+    const fa = round(mathCode.evaluate({ [respect]: a }), decimalPoint)
 
-    // * find f'(a),
-    // * if no expression is passed in: we differentiate the function ourself and evaluate automatically.
-    // * if function is passed in, we use that function.
-
-    // TODO Art: Allow user to change respect of the function
-    const fpa = diffedExpression === 'unknown'
-      ? round(math.derivative(expression, 'x').evaluate({ x: a }), decimalPoint)
-      : round(evaluateFunction(diffedExpression, { x: a }), decimalPoint)
+    let fpa: number = 0
+    if (typeof diffedExpression === 'string') {
+      fpa = round(evaluateFunction(diffedExpression, { [respect]: a }), decimalPoint)
+    } else {
+      fpa = round(diffedExpression.evaluate({ [respect]: a }), decimalPoint)
+    }
 
     // * find c
     const c = round(a - (fa / fpa), decimalPoint)
 
     // * finc f(c)
-    const fc = round(evaluateFunction(expression, { x: c }), decimalPoint)
+    const fc = round(evaluateFunction(expression, { [respect]: c }), decimalPoint)
 
     // * find error
     const error = round(absoluteError(c, previousC), decimalPoint)

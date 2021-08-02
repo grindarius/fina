@@ -66,3 +66,17 @@ Content-Type: application/json
 ###
 GET {{ host }}/fixed-point-iteration?expression=x^2 - x - 1&fixedExpression=1 %2b %281 %2F x%29&start=2&iteration=20&dp=7 HTTP/1.1
 Content-Type: application/json
+
+### Newton
+
+### Normal route
+GET {{ host }}/newton?expression=x^3 - 4x^2 %2B 1&diffedExpression=3x^2 - 8x&respect=x&start=0.5&iteration=20&dp=7 HTTP/1.1
+Content-Type: application/json
+
+### Also works without diffedExpression
+GET {{ host }}/newton?expression=x^3 - 4x^2 %2B 1&respect=x&start=0.5&iteration=20&dp=7 HTTP/1.1
+Content-Type: application/json
+
+### Also works without respect
+GET {{ host }}/newton?expression=x^3 - 4x^2 %2B 1&respect=x&start=0.5&iteration=20&dp=7 HTTP/1.1
+Content-Type: application/json

@@ -35,3 +35,9 @@ export const calculateFixedPointIteration: Endpoint = {
   url: `${apiRootUrl}/fixed-point-iteration`,
   headers
 }
+
+export const calculateNewton: Endpoint = {
+  method: 'GET',
+  url: `${apiRootUrl}/newton`,
+  headers
+}

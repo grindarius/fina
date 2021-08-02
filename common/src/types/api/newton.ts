@@ -3,6 +3,7 @@ import { Static, Type } from '@sinclair/typebox'
 export const NewtonQuerystringSchema = Type.Object({
   expression: Type.String(),
   diffedExpression: Type.Optional(Type.String()),
+  respect: Type.String(),
   start: Type.Number(),
   iteration: Type.Optional(Type.Number({
     minimum: 1,
