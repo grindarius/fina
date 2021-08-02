@@ -61,6 +61,7 @@ export default class CalculateFixedPointIterationPage extends Vue {
       expression: this.$route.query.expression.toString(),
       fixedExpression: this.$route.query.fixedExpression.toString(),
       start: Number(this.$route.query.start),
+      checkConvergence: this.$route.query.checkConvergence.toString().toLowerCase() === 'true',
       iteration: Number(this.$route.query.iteration),
       dp: Number(this.$route.query.dp)
     }

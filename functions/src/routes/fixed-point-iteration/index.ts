@@ -15,14 +15,18 @@ export default async function (instance: FastifyInstance, _: FastifyPluginOption
   instance.get<{ Querystring: FixedPointIterationQuerystring }>('/', {
     schema,
     preValidation: async (request, reply, done) => {
-      const gpa = round(deriveFunction(request.query.fixedExpression, 'x').evaluate({ x: request.query.start }), request.query.dp ?? 5)
+      if (request.query.checkConvergence) {
+        const gpa = round(deriveFunction(request.query.fixedExpression, 'x').evaluate({ x: request.query.start }), request.query.dp ?? 5)
 
-      if (Math.abs(gpa) > 1) {
-        await reply.code(400).send({
-          statusCode: 400,
-          error: 'Bad request',
-          message: `fixed expression does not converge since |g'(x)| = ${gpa}`
-        })
+        if (Math.abs(gpa) > 1) {
+          await reply.code(400).send({
+            statusCode: 400,
+            error: 'Bad request',
+            message: `fixed expression does not converge since |g'(x)| = ${gpa}`
+          })
+        } else {
+          done()
+        }
       } else {
         done()
       }
