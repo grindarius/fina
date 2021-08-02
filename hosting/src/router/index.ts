@@ -74,6 +74,11 @@ const routes: Array<RouteConfig> = [
         path: 'newton',
         name: 'Newton',
         component: Pages.Newton
+      },
+      {
+        path: 'newton/calculate',
+        name: 'Calculate Newton',
+        component: Pages.CalculateNewton
       }
     ]
   },
