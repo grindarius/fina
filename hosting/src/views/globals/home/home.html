@@ -22,7 +22,7 @@
       </div>
     </div>
   </section>
-  <section class="hero is-white is-medium">
+  <section class="hero is-white is-fullheight">
     <div class="hero-body">
       <div class="container">
         <h1 class="title is-1 has-text-centered">
@@ -39,7 +39,7 @@
           and
           <katex-element expression="2" />
         </h3>
-        <grapher :id="'home-graph'" :expression="expression" :points="points" :start="1" :end="2" />
+        <grapher :id="'home-graph'" :propWidth="550" :propHeight="550" :expression="expression" :points="points" :start="1" :end="2" />
       </div>
     </div>
   </section>
