@@ -38,5 +38,18 @@
       "<style lang=\"scss\" src=\"$0.scss\"></style>",
       ""
     ]
+  },
+  "New fastify endpoint": {
+    "prefix": "ffsetup",
+    "body": [
+      "import { FastifyInstance, FastifyPluginOptions } from 'fastify'",
+      "",
+      "export default async function (instance: FastifyInstance, _: FastifyPluginOptions): Promise<void> {",
+      "  instance.get('/', async (request, _) => {",
+      "    $0",
+      "  })",
+      "}",
+      ""
+    ]
   }
 }
