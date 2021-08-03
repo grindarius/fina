@@ -1,4 +1,4 @@
-import { Component, Vue } from 'vue-property-decorator'
+import { Component, Vue, Watch } from 'vue-property-decorator'
 
 import { NewtonQuerystring, NewtonResponse } from '@fina/common'
 
@@ -204,6 +204,7 @@ export default class NewtonPage extends Vue {
   ]
 
   katexAnswerDiv = false
+  knowDiffedExpression = true
 
   get validateInputs (): boolean {
     if (this.newtonInput.expression == null || this.newtonInput.expression === '') {
@@ -247,11 +248,19 @@ export default class NewtonPage extends Vue {
     })
   }
 
+  @Watch('knowDiffedExpression')
+  onKnowDiffedExpressionChange (): void {
+    if (!this.knowDiffedExpression) {
+      this.newtonInput.diffedExpression = ''
+    }
+  }
+
   toggleAnswer (): void {
     this.katexAnswerDiv = !this.katexAnswerDiv
   }
 
   resetInputsToDefault (): void {
+    this.knowDiffedExpression = true
     this.newtonInput = {
       expression: 'x^3 - 4x^2 + 1',
       diffedExpression: '3x^2 - 8x',

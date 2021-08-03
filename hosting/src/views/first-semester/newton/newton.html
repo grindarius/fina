@@ -177,6 +177,23 @@
         </div>
         <div class="field is-horizontal">
           <div class="field-label is-normal">
+            <label for="newton-do-you-know-fprimex" class="label">Do you know differentiated expression?</label>
+          </div>
+          <div class="field-body">
+            <div class="control">
+              <div class="block">
+                <b-radio v-model="knowDiffedExpression" :native-value="true">
+                  Yes
+                </b-radio>
+                <b-radio v-model="knowDiffedExpression" :native-value="false">
+                  No
+                </b-radio>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="field is-horizontal" v-show="knowDiffedExpression">
+          <div class="field-label is-normal">
             <label for="newton-diffed-expression" class="label">Differentiated expression</label>
           </div>
           <div class="field-body">
