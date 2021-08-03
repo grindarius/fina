@@ -20,7 +20,7 @@ export default class FixedPointIterationPage extends Vue {
     expression: 'x^2 - x - 1',
     fixedExpression: '1 + (1/x)',
     start: 2,
-    checkConvergence: true,
+    checkConvergence: 'true',
     iteration: 5,
     dp: 5
   }
@@ -245,7 +245,7 @@ export default class FixedPointIterationPage extends Vue {
       expression: 'x^2 - x - 1',
       fixedExpression: '1 + (1/x)',
       start: 2,
-      checkConvergence: true,
+      checkConvergence: 'true',
       iteration: 5,
       dp: 5
     }
@@ -257,7 +257,7 @@ export default class FixedPointIterationPage extends Vue {
     }
 
     this.$router.push({
-      path: 'calculate-fixed-point-iteration',
+      path: 'fixed-point-iteration/calculate',
       query: {
         expression: this.fixedPointIterationInput.expression,
         fixedExpression: this.fixedPointIterationInput.fixedExpression,
