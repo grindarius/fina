@@ -84,3 +84,10 @@ Content-Type: application/json
 ### Also works without respect
 GET {{ host }}/newton?expression=x^3 - 4x^2 %2B 1&respect=x&start=0.5&iteration=20&dp=7 HTTP/1.1
 Content-Type: application/json
+
+
+### Secant 
+
+###
+GET {{ host }}/secant?expression=x^7 - 1000&start=2&end=4&iteration=20&dp=7 HTTP/1.1
+Content-Type: application/json
