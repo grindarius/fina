@@ -1,7 +1,7 @@
 import { Component, Vue } from 'vue-property-decorator'
 
 import FooterComponent from '@/components/footer/footer.vue'
-import { firstSemesterPages, secondSemesterPages } from '@/constants'
+import { firstSemesterPages } from '@/constants'
 import { getFirstLevelPage } from '@/services'
 import { Page, PageComponent } from '@/types'
 
@@ -12,7 +12,7 @@ import { Page, PageComponent } from '@/types'
 })
 export default class DocsLandingPage extends Vue {
   get allSidebarItems (): Array<Page> {
-    return [...firstSemesterPages, ...secondSemesterPages]
+    return [...firstSemesterPages]
   }
 
   get mainKeys (): Array<PageComponent> {

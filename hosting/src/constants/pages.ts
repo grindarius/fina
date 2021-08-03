@@ -8,7 +8,8 @@ const path = {
   bisection: `${pathPrefix}/bisection`,
   falsePosition: `${pathPrefix}/false-position`,
   fixedPointIteration: `${pathPrefix}/fixed-point-iteration`,
-  newton: `${pathPrefix}/newton`
+  newton: `${pathPrefix}/newton`,
+  secant: `${pathPrefix}/secant`
 }
 
 export const firstSemesterPages: Array<Page> = [
@@ -188,17 +189,38 @@ export const firstSemesterPages: Array<Page> = [
   },
   {
     name: 'Secant',
-    path: '/docs/secant',
-    components: []
-  },
-  {
-    name: 'Gauss Seidel',
-    path: '/docs/gauss-seidel',
-    components: []
+    path: path.secant,
+    components: [
+      {
+        name: 'Description',
+        path: `${path.secant}#description`
+      },
+      {
+        name: 'Input Constraints',
+        path: `${path.secant}#constraints`
+      },
+      {
+        name: 'Steps to Reproduce',
+        path: `${path.secant}#steps`
+      },
+      {
+        name: 'Examples',
+        path: `${path.secant}#examples`
+      },
+      {
+        name: 'Calculate',
+        path: `${path.secant}#calculate`
+      }
+    ]
   }
 ]
 
 export const secondSemesterPages: Array<Page> = [
+  {
+    name: 'Gauss Seidel',
+    path: '/docs/gauss-seidel',
+    components: []
+  },
   {
     name: 'Jacobi',
     path: '/docs/jacobi',
