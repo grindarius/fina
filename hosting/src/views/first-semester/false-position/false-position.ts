@@ -286,7 +286,7 @@ export default class FalsePositionPage extends Vue {
     }
 
     this.$router.push({
-      path: 'calculate-false-position',
+      path: 'false-position/calculate',
       query: {
         expression: this.falsePositionInput.expression,
         start: this.falsePositionInput.start.toString(),
