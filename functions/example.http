@@ -63,9 +63,14 @@ Content-Type: application/json
 
 ### Fixed Point Iteration
 
-###
+### This one is missing checkConvergence variable
 GET {{ host }}/fixed-point-iteration?expression=x^2 - x - 1&fixedExpression=1 %2b %281 %2F x%29&start=2&iteration=20&dp=7 HTTP/1.1
 Content-Type: application/json
+
+###
+GET {{ host }}/fixed-point-iteration?expression=x%5E2%20-%20x%20-%201&fixedExpression=1%20%2F%20%28x%20-%201%29&start=2&checkConvergence=false&iteration=5&dp=5 HTTP/1.1
+Content-Type: application/json
+
 
 ### Newton
 
