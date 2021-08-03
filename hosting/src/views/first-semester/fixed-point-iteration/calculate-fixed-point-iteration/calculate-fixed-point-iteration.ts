@@ -61,7 +61,7 @@ export default class CalculateFixedPointIterationPage extends Vue {
       expression: this.$route.query.expression.toString(),
       fixedExpression: this.$route.query.fixedExpression.toString(),
       start: Number(this.$route.query.start),
-      checkConvergence: this.$route.query.checkConvergence.toString().toLowerCase() === 'true',
+      checkConvergence: this.$route.query.checkConvergence.toString(),
       iteration: Number(this.$route.query.iteration),
       dp: Number(this.$route.query.dp)
     }
@@ -80,7 +80,7 @@ export default class CalculateFixedPointIterationPage extends Vue {
       this.isFetching = false
       return response.data
     } catch (error) {
-      this.errorMessage = (error.response.data.error as string) + ': ' + (error.response.data.message as string)
+      this.errorMessage = JSON.stringify(error.response.data)
       return []
     }
   }
