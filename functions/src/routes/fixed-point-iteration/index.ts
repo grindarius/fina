@@ -15,10 +15,10 @@ export default async function (instance: FastifyInstance, _: FastifyPluginOption
   instance.get<{ Querystring: FixedPointIterationQuerystring }>('/', {
     schema,
     preValidation: async (request, reply, done) => {
-      if (request.query.checkConvergence) {
+      if (request.query.checkConvergence === 'true') {
         const gpa = round(deriveFunction(request.query.fixedExpression, 'x').evaluate({ x: request.query.start }), request.query.dp ?? 5)
 
-        if (Math.abs(gpa) > 1) {
+        if (Math.abs(gpa) >= 1) {
           await reply.code(400).send({
             statusCode: 400,
             error: 'Bad request',
