@@ -1,6 +1,6 @@
 import { FastifyInstance, FastifyPluginOptions, FastifySchema } from 'fastify'
 
-import { evaluateFunction, FalsePositionQuerystring, FalsePositionQuerystringSchema, FalsePositionResponse, FalsePositionResponseSchema, round } from '@fina/common'
+import { compileFunction, evaluateFunction, FalsePositionQuerystring, FalsePositionQuerystringSchema, FalsePositionResponse, FalsePositionResponseSchema, round } from '@fina/common'
 
 import { falsePositionIteration } from '../../services'
 
@@ -16,7 +16,7 @@ export default async function (instance: FastifyInstance, _: FastifyPluginOption
     schema,
     preValidation: [
       async (request, reply, done) => {
-        if (request.query.start > request.query.end) {
+        if (Number(request.query.start) > Number(request.query.end)) {
           await reply.code(400).send({
             statusCode: 400,
             error: 'Bad request',
@@ -27,8 +27,23 @@ export default async function (instance: FastifyInstance, _: FastifyPluginOption
         }
       },
       async (request, reply, done) => {
-        const fa = round(evaluateFunction(request.query.expression, { x: request.query.start }), request.query.dp ?? 5)
-        const fb = round(evaluateFunction(request.query.expression, { x: request.query.end }), request.query.dp ?? 5)
+        try {
+          evaluateFunction(request.query.expression, { x: Number(request.query.start) })
+          const mathCode = compileFunction(request.query.expression)
+          mathCode.evaluate({ x: Number(request.query.start) })
+        } catch (error) {
+          await reply.code(400).send({
+            statusCode: 400,
+            error: 'Bad request',
+            message: `the given expression: ${request.query.expression} cannot be evaluated.`
+          })
+        }
+
+        done()
+      },
+      async (request, reply, done) => {
+        const fa = round(evaluateFunction(request.query.expression, { x: Number(request.query.start) }), Number(request.query.dp) ?? 5)
+        const fb = round(evaluateFunction(request.query.expression, { x: Number(request.query.end) }), Number(request.query.dp) ?? 5)
 
         if (fa * fb >= 0) {
           await reply.code(400).send({
@@ -46,9 +61,9 @@ export default async function (instance: FastifyInstance, _: FastifyPluginOption
     const a = request.query.start
     const b = request.query.end
     const iteration = request.query.iteration ?? 5
-    const decimalPoint = request.query.dp ?? 5
+    const dp = request.query.dp ?? 5
 
-    const answer: FalsePositionResponse = falsePositionIteration(expression, a, b, iteration, decimalPoint)
+    const answer: FalsePositionResponse = falsePositionIteration(expression, a, b, iteration, dp)
 
     return answer
   })
