@@ -1,4 +1,4 @@
-import { absoluteError, BisectionResponse, BisectionResponseObject, compileFunction, round } from '@fina/common'
+import { absoluteError, BisectionResponse, BisectionResponseObject, compileFunction, isNumberReal, round } from '@fina/common'
 
 export function bisectionIteration (expression: string, a: number, b: number, iteration: number, decimalPoint: number): BisectionResponse {
   let previousC = 0
@@ -13,6 +13,10 @@ export function bisectionIteration (expression: string, a: number, b: number, it
     // * find c
     const cExpression = (a + b) / 2
     const c = round(cExpression, decimalPoint)
+
+    if (!isNumberReal(c)) {
+      break
+    }
 
     // * find f(c)
     const fc = round(mathCode.evaluate({ x: c }), decimalPoint)

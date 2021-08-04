@@ -1,8 +1,8 @@
-import * as math from 'mathjs'
+import { MathNode } from 'mathjs'
 
 import { absoluteError, compileFunction, evaluateFunction, NewtonResponse, NewtonResponseObject, round } from '@fina/common'
 
-export function newtonIteration (expression: string, diffedExpression: math.MathNode | string, respect: string, a: number, iteration: number, decimalPoint: number): NewtonResponse {
+export function newtonIteration (expression: string, diffedExpression: MathNode | string, respect: string, a: number, iteration: number, decimalPoint: number): NewtonResponse {
   let previousC = 0
   const answerArray: NewtonResponse = []
   const mathCode = compileFunction(expression)
@@ -22,7 +22,7 @@ export function newtonIteration (expression: string, diffedExpression: math.Math
     const c = round(a - (fa / fpa), decimalPoint)
 
     // * finc f(c)
-    const fc = round(evaluateFunction(expression, { [respect]: c }), decimalPoint)
+    const fc = round(mathCode.evaluate({ [respect]: c }), decimalPoint)
 
     // * find error
     const error = round(absoluteError(c, previousC), decimalPoint)

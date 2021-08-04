@@ -1,4 +1,4 @@
-import { absoluteError, compileFunction, FalsePositionResponse, FalsePositionResponseObject, round } from '@fina/common'
+import { absoluteError, compileFunction, FalsePositionResponse, FalsePositionResponseObject, isNumberReal, round } from '@fina/common'
 
 export function falsePositionIteration (expression: string, a: number, b: number, iteration: number, decimalPoint: number): FalsePositionResponse {
   let previousC = 0
@@ -13,6 +13,10 @@ export function falsePositionIteration (expression: string, a: number, b: number
     // * find c
     const cExpression = ((a * fb) - (b * fa)) / (fb - fa)
     const c = round(cExpression, decimalPoint)
+
+    if (!isNumberReal(c)) {
+      break
+    }
 
     // * find f(c)
     const fc = round(mathCode.evaluate({ x: c }), decimalPoint)

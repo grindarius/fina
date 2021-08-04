@@ -1,4 +1,4 @@
-import { absoluteError, compileFunction, FixedPointIterationResponse, FixedPointIterationResponseObject, round } from '@fina/common'
+import { absoluteError, compileFunction, FixedPointIterationResponse, FixedPointIterationResponseObject, isNumberReal, round } from '@fina/common'
 
 export function fixedPointIterationIteration (expression: string, fixedExpression: string, a: number, iteration: number, decimalPoint: number): FixedPointIterationResponse {
   let previousC = 0
@@ -12,6 +12,10 @@ export function fixedPointIterationIteration (expression: string, fixedExpressio
 
     // * find c
     const c = round(mathCodeFixedFunction.evaluate({ x: a }), decimalPoint)
+
+    if (!isNumberReal(c)) {
+      break
+    }
 
     // * finc f(c)
     const fc = round(mathCodeBaseFunction.evaluate({ x: c }), decimalPoint)

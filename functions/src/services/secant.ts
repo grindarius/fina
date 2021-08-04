@@ -14,7 +14,7 @@ export function secantIteration (expression: string, a: number, b: number, itera
     const cExpression = ((a * fb) - (b * fa)) / (fb - fa)
     const c = round(cExpression, decimalPoint)
 
-    if (isNumberReal(c)) {
+    if (!isNumberReal(c)) {
       break
     }
 
