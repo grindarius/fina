@@ -1,4 +1,4 @@
-import { Component, Vue, Watch } from 'vue-property-decorator'
+import { Component, Vue } from 'vue-property-decorator'
 
 import { BisectionResponse } from '@fina/common'
 
@@ -254,25 +254,20 @@ export default class BisectionPage extends Vue {
       return true
     }
 
-    if (parseInt(this.bisectionInput.end) < parseInt(this.bisectionInput.start)) {
+    if (Number(this.bisectionInput.end) < Number(this.bisectionInput.start)) {
       return true
     }
 
-    if (parseInt(this.bisectionInput.iteration) < 0 || parseInt(this.bisectionInput.iteration) > 100) {
+    if (Number(this.bisectionInput.iteration) < 0 || Number(this.bisectionInput.iteration) > 100) {
       return true
     }
 
     // eslint-disable-next-line yoda
-    if (!(0 <= parseInt(this.bisectionInput.dp) && parseInt(this.bisectionInput.dp) <= 15)) {
+    if (!(0 <= Number(this.bisectionInput.dp) && Number(this.bisectionInput.dp) <= 15)) {
       return true
     }
 
     return false
-  }
-
-  @Watch('bisectionInput', { deep: true })
-  onBisectionInputChange (): void {
-    console.log(this.bisectionInput)
   }
 
   toggleAnswer (): void {

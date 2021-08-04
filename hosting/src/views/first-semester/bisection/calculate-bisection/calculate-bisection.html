@@ -4,8 +4,8 @@
       <div class="container">
         <h1 class="title is-2">
           Find the root of the function <katex-element :expression="parsedExpression" />
-          where the root lies between <katex-element :expression="getRouteQueries().start.toString()" /> and
-          <katex-element :expression="getRouteQueries().end.toString()" />
+          where the root lies between <katex-element :expression="routeQueries.start.toString()" /> and
+          <katex-element :expression="routeQueries.end.toString()" />
         </h1>
       </div>
     </div>
@@ -18,7 +18,7 @@
           <h1 class="title is-2">
             Graph visualization
           </h1>
-          <grapher :id="'bisection-answer-graph'" :expression="getRouteQueries().expression" :start="getRouteQueries().start" :end="getRouteQueries().end" :points="points" />
+          <grapher :id="'bisection-answer-graph'" :expression="routeQueries.expression" :start="routeQueries.start" :end="routeQueries.end" :points="points" />
         </div>
       </div>
     </section>

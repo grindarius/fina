@@ -1,6 +1,6 @@
 import { Component, Vue, Watch } from 'vue-property-decorator'
 
-import { NewtonQuerystring, NewtonResponse } from '@fina/common'
+import { NewtonResponse } from '@fina/common'
 
 import GrapherComponent from '@/components/grapher/grapher.vue'
 import { Coordinate } from '@/types'
@@ -16,13 +16,13 @@ import { Coordinate } from '@/types'
   }
 })
 export default class NewtonPage extends Vue {
-  newtonInput: NewtonQuerystring = {
+  newtonInput = {
     expression: 'x^3 - 4x^2 + 1',
     diffedExpression: '3x^2 - 8x',
     respect: 'x',
-    start: 0.5,
-    iteration: 5,
-    dp: 5
+    start: '0.5',
+    iteration: '5',
+    dp: '5'
   }
 
   answer: NewtonResponse = [
@@ -209,23 +209,23 @@ export default class NewtonPage extends Vue {
   ]
 
   katexAnswerDiv = false
-  knowDiffedExpression = true
+  knowDiffedExpression: 'true' | 'false' = 'true'
 
   get validateInputs (): boolean {
-    if (this.newtonInput.expression == null || this.newtonInput.expression === '') {
+    if (this.newtonInput.expression === '' || this.newtonInput.start === '' || this.newtonInput.respect === '') {
       return true
     }
 
-    if (this.newtonInput.iteration == null || this.newtonInput.dp == null) {
+    if (this.knowDiffedExpression === 'true' && this.newtonInput.diffedExpression === '') {
       return true
     }
 
-    if (this.newtonInput.iteration < 0 || this.newtonInput.iteration > 100) {
+    if (Number(this.newtonInput.iteration) < 0 || Number(this.newtonInput.iteration) > 100) {
       return true
     }
 
     // eslint-disable-next-line yoda
-    if (!(0 <= this.newtonInput.dp && this.newtonInput.dp <= 15)) {
+    if (!(0 <= Number(this.newtonInput.dp) && Number(this.newtonInput.dp) <= 15)) {
       return true
     }
 
@@ -255,7 +255,7 @@ export default class NewtonPage extends Vue {
 
   @Watch('knowDiffedExpression')
   onKnowDiffedExpressionChange (): void {
-    if (!this.knowDiffedExpression) {
+    if (this.knowDiffedExpression === 'false') {
       this.newtonInput.diffedExpression = ''
     }
   }
@@ -265,14 +265,14 @@ export default class NewtonPage extends Vue {
   }
 
   resetInputsToDefault (): void {
-    this.knowDiffedExpression = true
+    this.knowDiffedExpression = 'true'
     this.newtonInput = {
       expression: 'x^3 - 4x^2 + 1',
       diffedExpression: '3x^2 - 8x',
       respect: 'x',
-      start: 0.5,
-      iteration: 5,
-      dp: 5
+      start: '0.5',
+      iteration: '5',
+      dp: '5'
     }
   }
 
@@ -283,14 +283,7 @@ export default class NewtonPage extends Vue {
 
     this.$router.push({
       path: 'newton/calculate',
-      query: {
-        expression: this.newtonInput.expression,
-        diffedExpression: this.newtonInput.diffedExpression ?? '',
-        respect: this.newtonInput.respect,
-        start: this.newtonInput.start.toString(),
-        iteration: this.newtonInput.iteration.toString(),
-        dp: this.newtonInput.dp.toString()
-      }
+      query: this.newtonInput
     },
     () => {
       console.log('Calculate Newton Route Done')

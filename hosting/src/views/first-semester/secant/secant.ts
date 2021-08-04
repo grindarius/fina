@@ -1,6 +1,6 @@
 import { Component, Vue } from 'vue-property-decorator'
 
-import { SecantQuerystring, SecantResponse } from '@fina/common'
+import { SecantResponse } from '@fina/common'
 
 import GrapherComponent from '@/components/grapher/grapher.vue'
 import { Coordinate } from '@/types'
@@ -16,12 +16,12 @@ import { Coordinate } from '@/types'
   }
 })
 export default class SecantPage extends Vue {
-  secantInput: SecantQuerystring = {
+  secantInput = {
     expression: 'x^3 - x^2 - 1',
-    start: 0,
-    end: 5,
-    iteration: 5,
-    dp: 5
+    start: '0',
+    end: '5',
+    iteration: '5',
+    dp: '5'
   }
 
   answer: SecantResponse = [
@@ -160,6 +160,27 @@ export default class SecantPage extends Vue {
     })
   }
 
+  get validateInputs (): boolean {
+    if (this.secantInput.expression === '' || this.secantInput.start === '' || this.secantInput.end === '') {
+      return true
+    }
+
+    if (Number(this.secantInput.end) < Number(this.secantInput.start)) {
+      return true
+    }
+
+    if (Number(this.secantInput.iteration) < 0 || Number(this.secantInput.iteration) > 100) {
+      return true
+    }
+
+    // eslint-disable-next-line yoda
+    if (!(0 <= Number(this.secantInput.dp) && Number(this.secantInput.dp) <= 15)) {
+      return true
+    }
+
+    return false
+  }
+
   toggleAnswer (): void {
     this.katexAnswerDiv = !this.katexAnswerDiv
   }
@@ -167,35 +188,23 @@ export default class SecantPage extends Vue {
   resetInputsToDefault (): void {
     this.secantInput = {
       expression: 'x^3 - x^2 - 1',
-      start: 0,
-      end: 5,
-      iteration: 5,
-      dp: 5
+      start: '0',
+      end: '5',
+      iteration: '5',
+      dp: '5'
     }
   }
 
   calculateSecant (): void {
-    if (this.secantInput.iteration == null || this.secantInput.dp == null) {
-      return
-    }
-
-    console.log(this.secantInput)
-
-    // this.$router.push({
-    //   path: 'secant/calculate',
-    //   query: {
-    //     expression: this.secantInput.expression,
-    //     start: this.secantInput.start.toString(),
-    //     end: this.secantInput.end.toString(),
-    //     iteration: this.secantInput.iteration.toString(),
-    //     dp: this.secantInput.dp.toString()
-    //   }
-    // },
-    // () => {
-    //   console.log('Calculate Secant Route Done')
-    // },
-    // (error) => {
-    //   console.error(error)
-    // })
+    this.$router.push({
+      path: 'secant/calculate',
+      query: this.secantInput
+    },
+    () => {
+      console.log('Calculate Secant Route Done')
+    },
+    (error) => {
+      console.error(error)
+    })
   }
 }

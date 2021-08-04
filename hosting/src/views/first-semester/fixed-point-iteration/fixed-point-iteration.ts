@@ -1,6 +1,6 @@
-import { Component, Vue } from 'vue-property-decorator'
+import { Component, Vue, Watch } from 'vue-property-decorator'
 
-import { FixedPointIterationQuerystring, FixedPointIterationResponse } from '@fina/common'
+import { FixedPointIterationResponse } from '@fina/common'
 
 import GrapherComponent from '@/components/grapher/grapher.vue'
 import { Coordinate } from '@/types'
@@ -16,13 +16,14 @@ import { Coordinate } from '@/types'
   }
 })
 export default class FixedPointIterationPage extends Vue {
-  fixedPointIterationInput: FixedPointIterationQuerystring = {
+  fixedPointIterationInput = {
     expression: 'x^2 - x - 1',
     fixedExpression: '1 + (1/x)',
-    start: 2,
+    respect: 'x',
+    start: '2',
     checkConvergence: 'true',
-    iteration: 5,
-    dp: 5
+    iteration: '5',
+    dp: '5'
   }
 
   answer: FixedPointIterationResponse = [
@@ -212,28 +213,33 @@ export default class FixedPointIterationPage extends Vue {
   }
 
   get validateInputs (): boolean {
-    if (this.fixedPointIterationInput.expression == null || this.fixedPointIterationInput.expression === '') {
+    if (
+      this.fixedPointIterationInput.expression === '' ||
+      this.fixedPointIterationInput.fixedExpression === '' ||
+      this.fixedPointIterationInput.start === ''
+    ) {
       return true
     }
 
-    if (this.fixedPointIterationInput.fixedExpression == null || this.fixedPointIterationInput.fixedExpression === '') {
+    if (this.fixedPointIterationInput.checkConvergence === 'true' && this.fixedPointIterationInput.respect === '') {
       return true
     }
 
-    if (this.fixedPointIterationInput.iteration == null || this.fixedPointIterationInput.dp == null) {
-      return true
-    }
-
-    if (this.fixedPointIterationInput.iteration < 0 || this.fixedPointIterationInput.iteration > 100) {
+    if (Number(this.fixedPointIterationInput.iteration) < 0 || Number(this.fixedPointIterationInput.iteration) > 100) {
       return true
     }
 
     // eslint-disable-next-line yoda
-    if (!(0 <= this.fixedPointIterationInput.dp && this.fixedPointIterationInput.dp <= 15)) {
+    if (!(0 <= Number(this.fixedPointIterationInput.dp) && Number(this.fixedPointIterationInput.dp) <= 15)) {
       return true
     }
 
     return false
+  }
+
+  @Watch('fixedPointIterationInput', { deep: true })
+  p (): void {
+    console.log(this.fixedPointIterationInput)
   }
 
   toggleAnswer (): void {
@@ -244,28 +250,18 @@ export default class FixedPointIterationPage extends Vue {
     this.fixedPointIterationInput = {
       expression: 'x^2 - x - 1',
       fixedExpression: '1 + (1/x)',
-      start: 2,
+      respect: 'x',
+      start: '2',
       checkConvergence: 'true',
-      iteration: 5,
-      dp: 5
+      iteration: '5',
+      dp: '5'
     }
   }
 
   calculateFixedPointIteration (): void {
-    if (this.fixedPointIterationInput.iteration == null || this.fixedPointIterationInput.dp == null) {
-      return
-    }
-
     this.$router.push({
       path: 'fixed-point-iteration/calculate',
-      query: {
-        expression: this.fixedPointIterationInput.expression,
-        fixedExpression: this.fixedPointIterationInput.fixedExpression,
-        start: this.fixedPointIterationInput.start.toString(),
-        checkConvergence: this.fixedPointIterationInput.checkConvergence.toString(),
-        iteration: this.fixedPointIterationInput.iteration.toString(),
-        dp: this.fixedPointIterationInput.dp.toString()
-      }
+      query: this.fixedPointIterationInput
     },
     () => {
       console.log('Calculate Fixed Point Iteration Route Done')

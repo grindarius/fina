@@ -182,17 +182,17 @@
           <div class="field-body">
             <div class="control">
               <div class="block">
-                <b-radio v-model="knowDiffedExpression" :native-value="true">
+                <b-radio v-model="knowDiffedExpression" :native-value="'true'">
                   Yes
                 </b-radio>
-                <b-radio v-model="knowDiffedExpression" :native-value="false">
+                <b-radio v-model="knowDiffedExpression" :native-value="'false'">
                   No
                 </b-radio>
               </div>
             </div>
           </div>
         </div>
-        <div class="field is-horizontal" v-show="knowDiffedExpression">
+        <div class="field is-horizontal" v-show="knowDiffedExpression === 'true'">
           <div class="field-label is-normal">
             <label for="newton-diffed-expression" class="label">Differentiated expression</label>
           </div>

@@ -1,6 +1,6 @@
 import { Component, Vue } from 'vue-property-decorator'
 
-import { FalsePositionQuerystring, FalsePositionResponse } from '@fina/common'
+import { FalsePositionResponse } from '@fina/common'
 
 import GrapherComponent from '@/components/grapher/grapher.vue'
 import { Coordinate } from '@/types'
@@ -16,12 +16,12 @@ import { Coordinate } from '@/types'
   }
 })
 export default class FalsePositionPage extends Vue {
-  falsePositionInput: FalsePositionQuerystring = {
+  falsePositionInput = {
     expression: 'x^2 - 2x - 3',
-    start: 2,
-    end: 3.2,
-    iteration: 5,
-    dp: 5
+    start: '2',
+    end: '3.2',
+    iteration: '5',
+    dp: '5'
   }
 
   answer: FalsePositionResponse = [
@@ -239,20 +239,20 @@ export default class FalsePositionPage extends Vue {
   }
 
   get validateInputs (): boolean {
-    if (this.falsePositionInput.expression == null || this.falsePositionInput.expression === '') {
+    if (this.falsePositionInput.expression === '' || this.falsePositionInput.start === '' || this.falsePositionInput.end === '') {
       return true
     }
 
-    if (this.falsePositionInput.iteration == null || this.falsePositionInput.dp == null) {
+    if (Number(this.falsePositionInput.end) < Number(this.falsePositionInput.start)) {
       return true
     }
 
-    if (this.falsePositionInput.iteration < 0 || this.falsePositionInput.iteration > 100) {
+    if (Number(this.falsePositionInput.iteration) < 0 || Number(this.falsePositionInput.iteration) > 100) {
       return true
     }
 
     // eslint-disable-next-line yoda
-    if (!(0 <= this.falsePositionInput.dp && this.falsePositionInput.dp <= 15)) {
+    if (!(0 <= Number(this.falsePositionInput.dp) && Number(this.falsePositionInput.dp) <= 15)) {
       return true
     }
 
@@ -273,27 +273,17 @@ export default class FalsePositionPage extends Vue {
   resetInputsToDefault (): void {
     this.falsePositionInput = {
       expression: 'x^2 - 2x - 3',
-      start: 2,
-      end: 3.2,
-      iteration: 5,
-      dp: 5
+      start: '2',
+      end: '3.2',
+      iteration: '5',
+      dp: '5'
     }
   }
 
   calculateFalsePosition (): void {
-    if (this.falsePositionInput.iteration == null || this.falsePositionInput.dp == null) {
-      return
-    }
-
     this.$router.push({
       path: 'false-position/calculate',
-      query: {
-        expression: this.falsePositionInput.expression,
-        start: this.falsePositionInput.start.toString(),
-        end: this.falsePositionInput.end.toString(),
-        iteration: this.falsePositionInput.iteration.toString(),
-        dp: this.falsePositionInput.dp.toString()
-      }
+      query: this.falsePositionInput
     },
     () => {
       console.log('Calculate False Position Route Done')

@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { Component, Vue } from 'vue-property-decorator'
 
-import { expressionToTex, SecantQuerystring, SecantResponse } from '@fina/common'
+import { expressionToTex, SecantResponse } from '@fina/common'
 
 import { calculateSecant } from '@/api'
 import GrapherComponent from '@/components/grapher/grapher.vue'
@@ -42,7 +42,7 @@ export default class CalculateSecantPage extends Vue {
   }
 
   get parsedExpression (): string {
-    return expressionToTex(this.getRouteQueries().expression)
+    return expressionToTex(this.routeQueries.expression.toString())
   }
 
   getPoints (answer: SecantResponse): Array<Coordinate> {
@@ -56,13 +56,14 @@ export default class CalculateSecantPage extends Vue {
     })
   }
 
-  getRouteQueries (): SecantQuerystring {
+  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+  get routeQueries () {
     return {
-      expression: this.$route.query.expression.toString(),
-      start: Number(this.$route.query.start),
-      end: Number(this.$route.query.end),
-      iteration: Number(this.$route.query.iteration),
-      dp: Number(this.$route.query.dp)
+      expression: this.$route.query.expression,
+      start: this.$route.query.start,
+      end: this.$route.query.end,
+      iteration: this.$route.query.iteration,
+      dp: this.$route.query.dp
     }
   }
 
@@ -71,7 +72,7 @@ export default class CalculateSecantPage extends Vue {
 
     try {
       const response = await axios.request<SecantResponse>({
-        method, url, headers, params: this.getRouteQueries()
+        method, url, headers, params: this.routeQueries
       })
 
       this.points = this.getPoints(response.data)

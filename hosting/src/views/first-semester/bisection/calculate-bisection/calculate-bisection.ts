@@ -42,7 +42,7 @@ export default class CalculateBisectionPage extends Vue {
   }
 
   get parsedExpression (): string {
-    return expressionToTex(this.getRouteQueries().expression)
+    return expressionToTex(this.routeQueries.expression)
   }
 
   getPoints (answer: BisectionResponse): Array<Coordinate> {
@@ -56,7 +56,7 @@ export default class CalculateBisectionPage extends Vue {
     })
   }
 
-  getRouteQueries (): BisectionQuerystring {
+  get routeQueries (): BisectionQuerystring {
     return {
       expression: this.$route.query.expression.toString(),
       start: Number(this.$route.query.start),
@@ -71,7 +71,7 @@ export default class CalculateBisectionPage extends Vue {
 
     try {
       const response = await axios.request<BisectionResponse>({
-        method, url, headers, params: this.getRouteQueries()
+        method, url, headers, params: this.routeQueries
       })
 
       this.points = this.getPoints(response.data)

@@ -282,6 +282,19 @@
         </div>
         <div class="field is-horizontal">
           <div class="field-label is-normal">
+            <label for="fixed-point-iteration-fixed-expression-respect" class="label">Fixed expression's respect</label>
+          </div>
+          <div class="field-body">
+            <div class="field">
+              <div class="control has-icons-right">
+                <input class="input" name="fixed-point-iteration-fixed-expression-respect" type="text"
+                  v-model="fixedPointIterationInput.respect">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="field is-horizontal">
+          <div class="field-label is-normal">
             <label for="fixed-point-iteration-start" class="label">Start</label>
           </div>
           <div class="field-body">
@@ -300,10 +313,10 @@
             <div class="field">
               <div class="control has-icons-right">
                 <div class="block">
-                  <b-radio v-model="fixedPointIterationInput.checkConvergence" :native-value="true">
+                  <b-radio v-model="fixedPointIterationInput.checkConvergence" :native-value="'true'">
                     Yes
                   </b-radio>
-                  <b-radio v-model="fixedPointIterationInput.checkConvergence" :native-value="false">
+                  <b-radio v-model="fixedPointIterationInput.checkConvergence" :native-value="'false'">
                     No
                   </b-radio>
                 </div>
