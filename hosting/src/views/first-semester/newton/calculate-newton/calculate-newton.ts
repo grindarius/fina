@@ -78,7 +78,7 @@ export default class CalculateNewtonPage extends Vue {
       this.isFetching = false
       return response.data
     } catch (error) {
-      this.errorMessage = (error.response.data.error as string) + ': ' + (error.response.data.message as string)
+      this.errorMessage = JSON.stringify(error.response.data)
       return []
     }
   }
