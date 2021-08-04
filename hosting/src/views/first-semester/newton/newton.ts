@@ -6,6 +6,11 @@ import GrapherComponent from '@/components/grapher/grapher.vue'
 import { Coordinate } from '@/types'
 
 @Component({
+  metaInfo () {
+    return {
+      title: 'Newton | FINA'
+    }
+  },
   components: {
     grapher: GrapherComponent
   }
