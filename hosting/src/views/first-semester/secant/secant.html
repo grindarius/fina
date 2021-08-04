@@ -122,10 +122,34 @@
           and 2 initial values <katex-element expression="a" /> and <katex-element expression="b" />. Since
           we need <katex-element expression="f(a)" /> and <katex-element expression="f(b)" /> first
           before we start finding <katex-element expression="c" />.
-          <katex-element expression="" :display-mode="true" />
-          we start finding <katex-element expression="c" /> immediately.
+          <katex-element expression="f(a) = a^7 - 1000" :display-mode="true" />
+          <katex-element expression="f(2) = 2^7 - 1000" :display-mode="true" />
+          <katex-element expression="f(2) = -872" :display-mode="true" />
+          <katex-element expression="f(b) = b^7 - 1000" :display-mode="true" />
+          <katex-element expression="f(4) = 4^7 - 1000" :display-mode="true" />
+          <katex-element expression="f(4) = 15384" :display-mode="true" />
+          Then we start finding <katex-element expression="c" />
           <katex-element expression="c = \frac{(a \cdot f(b)) - (b \cdot f(a))}{f(b) - f(a)}" :display-mode="true" />
+          <katex-element expression="c = \frac{(2 \cdot 15384) - (4 \cdot -872)}{15384 - (-872)}" :display-mode="true" />
+          <katex-element expression="c = 2.1072835" :display-mode="true" />
+          Find <katex-element expression="f(c)" /> and you get yourself the first point!
+          <katex-element expression="f(c) = c^7 - 1000" :display-mode="true" />
+          <katex-element expression="f(2.1072835) = 2.1072835^7 - 1000" :display-mode="true" />
+          <katex-element expression="f(2.1072835) = -815.4726408" :display-mode="true" />
         </p>
+        <p class="subtitle">
+          Rinse and repeat and you will get the answer
+        </p>
+        <b-button class="is-sailor-blue" @click="toggleAnswer" style="margin-bottom: 1.5rem;">Toggle calculations</b-button>
+        <div v-show="katexAnswerDiv" class="box-overflow">
+          <div v-for="(eachAnswer, i) in katexAnswerArray" :key="'expression: ' + i">
+            <div v-for="expression in eachAnswer" :key="'sub-expression: ' + expression">
+              <katex-element :expression="expression" :display-mode="true" />
+            </div>
+            <hr class="linebreak">
+          </div>
+        </div>
+        <grapher :id="'secant-final-graph'" :expression="'x^7 - 1000'" :start="2" :end="4" :points="points" />
       </div>
     </div>
   </section>

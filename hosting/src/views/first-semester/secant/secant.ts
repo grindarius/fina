@@ -2,11 +2,17 @@ import { Component, Vue } from 'vue-property-decorator'
 
 import { SecantResponse } from '@fina/common'
 
+import GrapherComponent from '@/components/grapher/grapher.vue'
+import { Coordinate } from '@/types'
+
 @Component({
   metaInfo () {
     return {
       title: 'Secant | FINA'
     }
+  },
+  components: {
+    grapher: GrapherComponent
   }
 })
 export default class SecantPage extends Vue {
@@ -122,4 +128,31 @@ export default class SecantPage extends Vue {
       error: 0
     }
   ]
+
+  katexAnswerDiv = false
+
+  get points (): Array<Coordinate> {
+    return this.answer.map(answer => {
+      return {
+        x: answer.c,
+        y: answer.fc
+      }
+    })
+  }
+
+  get katexAnswerArray (): Array<Array<string>> {
+    return this.answer.map(answer => {
+      return [
+        `i = ${answer.i}`,
+        `f(a) = (${answer.a})^7 - 1000 = ${answer.fa}`,
+        `f(b) = (${answer.b})^7 - 1000 = ${answer.fb}`,
+        `c = \\frac{(${answer.a} \\cdot ${answer.fb}) - (${answer.b} \\cdot ${answer.fa})}{${answer.fb} - (${answer.fa})} = ${answer.c}`,
+        `f(c) = (${answer.c})^7 - 1000 = ${answer.fc}`
+      ]
+    })
+  }
+
+  toggleAnswer (): void {
+    this.katexAnswerDiv = !this.katexAnswerDiv
+  }
 }
