@@ -51,5 +51,18 @@
       "}",
       ""
     ]
+  },
+  "Section is small": {
+    "prefix": "section:small",
+    "body": [
+      "<section class=\"hero is-small\">",
+      "  <div class=\"hero-body\">",
+      "    <div class=\"container\">",
+      "      $0",
+      "    </div>",
+      "  </div>",
+      "</section>",
+      ""
+    ]
   }
 }

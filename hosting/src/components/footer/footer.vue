@@ -18,6 +18,12 @@
           <li>
             <a href="https://www.fastify.io/">Fastify</a>
           </li>
+          <li>
+            <a href="https://buefy.org">Buefy</a>
+          </li>
+          <li>
+            <a href="https://d3js.org">d3</a>
+            </li>
         </ul>
       </nav>
     </div>
