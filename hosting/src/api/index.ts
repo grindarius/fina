@@ -41,3 +41,9 @@ export const calculateNewton: Endpoint = {
   url: `${apiRootUrl}/newton`,
   headers
 }
+
+export const calculateSecant: Endpoint = {
+  method: 'GET',
+  url: `${apiRootUrl}/secant`,
+  headers
+}

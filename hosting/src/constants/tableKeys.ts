@@ -133,3 +133,38 @@ export const newtonTableKeys: Array<TableKey> = [
     label: 'error'
   }
 ]
+
+export const secantTableKeys: Array<TableKey> = [
+  {
+    field: 'i',
+    label: 'i'
+  },
+  {
+    field: 'a',
+    label: 'a'
+  },
+  {
+    field: 'b',
+    label: 'b'
+  },
+  {
+    field: 'f(a)',
+    label: 'fa'
+  },
+  {
+    field: 'f(b)',
+    label: 'fb'
+  },
+  {
+    field: 'c',
+    label: 'c'
+  },
+  {
+    field: 'f(c)',
+    label: 'fc'
+  },
+  {
+    field: 'Error',
+    label: 'error'
+  }
+]

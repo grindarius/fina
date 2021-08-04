@@ -7,6 +7,7 @@ import CalculateFixedPointIteration from './first-semester/fixed-point-iteration
 import FixedPointIteration from './first-semester/fixed-point-iteration/fixed-point-iteration.vue'
 import CalculateNewton from './first-semester/newton/calculate-newton/calculate-newton.vue'
 import Newton from './first-semester/newton/newton.vue'
+import CalculateSecant from './first-semester/secant/calculate-secant/calculate-secant.vue'
 import Secant from './first-semester/secant/secant.vue'
 import SignificantDigits from './first-semester/significant-digits/significant-digits.vue'
 import MissingQuerystring from './globals/404s/missing-querystring.vue'
@@ -24,6 +25,7 @@ export {
   CalculateFalsePosition,
   CalculateFixedPointIteration,
   CalculateNewton,
+  CalculateSecant,
   DecimalPoints,
   Docs,
   FalsePosition,

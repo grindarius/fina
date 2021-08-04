@@ -87,7 +87,8 @@ const routes: Array<RouteConfig> = [
       },
       {
         path: 'secant/calculate',
-        name: 'Calculate Secant'
+        name: 'Calculate Secant',
+        component: Pages.CalculateSecant
       }
     ]
   },

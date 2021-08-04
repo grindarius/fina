@@ -153,4 +153,79 @@
       </div>
     </div>
   </section>
+  <section id="calculate" class="hero">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title is-2">
+          Calculate
+        </h1>
+        <div class="field is-horizontal">
+          <div class="field-label is-normal">
+            <label for="secant-function-expression" class="label">Function expression</label>
+          </div>
+          <div class="field-body">
+            <div class="field">
+              <div class="control has-icons-right">
+                <input class="input" name="secant-function-expression" type="text" v-model="secantInput.expression">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="field is-horizontal">
+          <div class="field-label is-normal">
+            <label for="secant-start" class="label">Start</label>
+          </div>
+          <div class="field-body">
+            <div class="field">
+              <div class="control has-icons-right">
+                <input class="input" name="secant-start" type="number" step="any" v-model="secantInput.start">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="field is-horizontal">
+          <div class="field-label is-normal">
+            <label for="secant-end" class="label">End</label>
+          </div>
+          <div class="field-body">
+            <div class="field">
+              <div class="control has-icons-right">
+                <input class="input" name="secant-end" type="number" step="any" v-model="secantInput.end">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="field is-horizontal">
+          <div class="field-label is-normal">
+            <label for="secant-iteration" class="label">Iteration times</label>
+          </div>
+          <div class="field-body">
+            <div class="field">
+              <div class="control has-icons-right">
+                <input class="input" name="secant-iteration" type="number" min="1" max="100" step="1"
+                  v-model="secantInput.iteration">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="field is-horizontal">
+          <div class="field-label is-normal">
+            <label for="secant-dp" class="label">Decimal points</label>
+          </div>
+          <div class="field-body">
+            <div class="field">
+              <div class="control has-icons-right">
+                <input class="input" name="secant-dp" type="number" min="1" max="15" step="1"
+                  v-model="secantInput.dp">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="buttons">
+          <b-button type="is-sailor-blue" @click="calculateSecant" :disabled="validateInputs">Calculate</b-button>
+          <b-button @click="resetInputsToDefault">Reset to default</b-button>
+        </div>
+      </div>
+    </div>
+  </section>
 </div>
