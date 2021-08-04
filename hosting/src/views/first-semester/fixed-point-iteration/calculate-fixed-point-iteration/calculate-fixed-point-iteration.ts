@@ -46,10 +46,10 @@ export default class CalculateFixedPointIterationPage extends Vue {
   }
 
   getPoints (answer: FixedPointIterationResponse): Array<Coordinate> {
-    return answer.map(iteration => {
+    return answer.map(answer => {
       const coordinate: Coordinate = {
-        x: iteration.c,
-        y: iteration.fc
+        x: answer.c,
+        y: answer.fc
       }
 
       return coordinate
@@ -60,6 +60,7 @@ export default class CalculateFixedPointIterationPage extends Vue {
     return {
       expression: this.$route.query.expression.toString(),
       fixedExpression: this.$route.query.fixedExpression.toString(),
+      respect: this.$route.query.respect.toString(),
       start: Number(this.$route.query.start),
       checkConvergence: this.$route.query.checkConvergence.toString(),
       iteration: Number(this.$route.query.iteration),
