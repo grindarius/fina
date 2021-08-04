@@ -15,11 +15,12 @@ const jokes = [
 const randomJoke = jokes[Math.floor(Math.random() * jokes.length)]
 
 console.log(`
+  ${randomJoke}
              __
             /(\`o
       ,-,  //  \\\\
      (,,,) ||   V
-    (,,,,)\\//     ${randomJoke}
+    (,,,,)\\//
     (,,, /w)-'
     \\,, /w)
      \`V/uu
