@@ -253,6 +253,17 @@ export default class NewtonPage extends Vue {
     })
   }
 
+  get assertedDefaults (): Record<string, string> {
+    return {
+      expression: this.newtonInput.expression,
+      diffedExpression: this.newtonInput.diffedExpression,
+      respect: this.newtonInput.respect,
+      start: this.newtonInput.start,
+      iteration: this.newtonInput.iteration === '' ? '5' : this.newtonInput.iteration,
+      dp: this.newtonInput.dp === '' ? '5' : this.newtonInput.dp
+    }
+  }
+
   @Watch('knowDiffedExpression')
   onKnowDiffedExpressionChange (): void {
     if (this.knowDiffedExpression === 'false') {
@@ -283,7 +294,7 @@ export default class NewtonPage extends Vue {
 
     this.$router.push({
       path: 'newton/calculate',
-      query: this.newtonInput
+      query: this.assertedDefaults
     },
     () => {
       console.log('Calculate Newton Route Done')

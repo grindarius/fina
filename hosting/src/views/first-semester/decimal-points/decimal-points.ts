@@ -22,7 +22,7 @@ export default class DecimalPointsPage extends Vue {
 
   onFindDPAmount (): void {
     if (this.numberToFindDPAmount.input.toString().match(validateNumberRegExp) == null) {
-      this.numberToFindDPAmountAnswer = 'Invalid input'
+      this.numberToFindDPAmountAnswer = 'Invalid input: That\'s not a number???'
       return
     }
 

@@ -1,4 +1,4 @@
-import { Component, Vue, Watch } from 'vue-property-decorator'
+import { Component, Vue } from 'vue-property-decorator'
 
 import { FixedPointIterationResponse } from '@fina/common'
 
@@ -237,9 +237,16 @@ export default class FixedPointIterationPage extends Vue {
     return false
   }
 
-  @Watch('fixedPointIterationInput', { deep: true })
-  p (): void {
-    console.log(this.fixedPointIterationInput)
+  get assertedDefaults (): Record<string, string> {
+    return {
+      expression: this.fixedPointIterationInput.expression,
+      fixedExpression: this.fixedPointIterationInput.fixedExpression,
+      respect: this.fixedPointIterationInput.respect,
+      start: this.fixedPointIterationInput.start,
+      checkConvergence: this.fixedPointIterationInput.checkConvergence,
+      iteration: this.fixedPointIterationInput.iteration === '' ? '5' : this.fixedPointIterationInput.iteration,
+      dp: this.fixedPointIterationInput.dp === '' ? '5' : this.fixedPointIterationInput.dp
+    }
   }
 
   toggleAnswer (): void {
@@ -261,7 +268,7 @@ export default class FixedPointIterationPage extends Vue {
   calculateFixedPointIteration (): void {
     this.$router.push({
       path: 'fixed-point-iteration/calculate',
-      query: this.fixedPointIterationInput
+      query: this.assertedDefaults
     },
     () => {
       console.log('Calculate Fixed Point Iteration Route Done')

@@ -270,6 +270,16 @@ export default class FalsePositionPage extends Vue {
     })
   }
 
+  get assertedDefaults (): Record<string, string> {
+    return {
+      expression: this.falsePositionInput.expression,
+      start: this.falsePositionInput.start,
+      end: this.falsePositionInput.end,
+      iteration: this.falsePositionInput.iteration === '' ? '5' : this.falsePositionInput.iteration,
+      dp: this.falsePositionInput.dp === '' ? '5' : this.falsePositionInput.dp
+    }
+  }
+
   resetInputsToDefault (): void {
     this.falsePositionInput = {
       expression: 'x^2 - 2x - 3',
@@ -283,7 +293,7 @@ export default class FalsePositionPage extends Vue {
   calculateFalsePosition (): void {
     this.$router.push({
       path: 'false-position/calculate',
-      query: this.falsePositionInput
+      query: this.assertedDefaults
     },
     () => {
       console.log('Calculate False Position Route Done')

@@ -181,6 +181,16 @@ export default class SecantPage extends Vue {
     return false
   }
 
+  get assertedDefaults (): Record<string, string> {
+    return {
+      expression: this.secantInput.expression,
+      start: this.secantInput.start,
+      end: this.secantInput.end,
+      iteration: this.secantInput.iteration === '' ? '5' : this.secantInput.iteration,
+      dp: this.secantInput.dp === '' ? '5' : this.secantInput.dp
+    }
+  }
+
   toggleAnswer (): void {
     this.katexAnswerDiv = !this.katexAnswerDiv
   }
@@ -198,7 +208,7 @@ export default class SecantPage extends Vue {
   calculateSecant (): void {
     this.$router.push({
       path: 'secant/calculate',
-      query: this.secantInput
+      query: this.assertedDefaults
     },
     () => {
       console.log('Calculate Secant Route Done')

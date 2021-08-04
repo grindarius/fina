@@ -270,6 +270,16 @@ export default class BisectionPage extends Vue {
     return false
   }
 
+  get assertedDefaults (): Record<string, string> {
+    return {
+      expression: this.bisectionInput.expression,
+      start: this.bisectionInput.start,
+      end: this.bisectionInput.end,
+      iteration: this.bisectionInput.iteration === '' ? '5' : this.bisectionInput.iteration,
+      dp: this.bisectionInput.dp === '' ? '5' : this.bisectionInput.dp
+    }
+  }
+
   toggleAnswer (): void {
     this.katexAnswerDiv = !this.katexAnswerDiv
   }
@@ -287,7 +297,7 @@ export default class BisectionPage extends Vue {
   calculateBisection (): void {
     this.$router.push({
       path: 'bisection/calculate',
-      query: this.bisectionInput
+      query: this.assertedDefaults
     },
     () => {
       console.log('Calculate Bisection Route Done')
