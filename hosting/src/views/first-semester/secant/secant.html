@@ -1,3 +1,132 @@
 <div class="secant-page">
-
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title is-1">
+          Secant
+        </h1>
+        <h1 class="subtitle is-3">
+          The alternative to <router-link :to="{ path: '/docs/newton' }">Newton's Method</router-link>
+        </h1>
+      </div>
+    </div>
+  </section>
+  <section id="description" class="hero">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title is-2">
+          Description
+        </h1>
+        <p class="subtitle is-indented">
+          You should've seen how Newton's Method works already. There are some
+          drawbacks with Newton's Method, the main drawback is that some functions
+          are not easy to do a derivative on. Some functions have a super long
+          derivative function. If you don't want to use Newton's Method but still
+          wants a method faster than Bisection Method, then this is the one.
+        </p>
+      </div>
+    </div>
+  </section>
+  <section id="constraints" class="hero">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title is-2">
+          Input Constraints
+        </h1>
+        <div class="content">
+          <ul>
+            <li>
+              <p class="subtitle">
+                The expression <b>must</b> be evaluable.
+              </p>
+            </li>
+            <li>
+              <p class="subtitle">
+                Both starting value
+                <katex-element expression="f(a)" /> and
+                <katex-element expression="f(b)" /> must have opposing signs, meaning the line of the expression in between
+                <b>must</b> cross the
+                <katex-element expression="x = 0" /> line.
+              </p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="steps" class="hero">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title is-2">
+          Steps to Reproduce
+        </h1>
+        <div class="content">
+          <ol>
+            <li>
+              <p class="subtitle">
+                Starts with an expression
+                <katex-element expression="f" />, starting value of the interval
+                <katex-element expression="a" />
+                and the end of the interval
+                <katex-element expression="b" />.
+              </p>
+            </li>
+            <li>
+              <p class="subtitle">
+                Find the next interval point
+                <katex-element expression="c" /> and <katex-element expression="f(c)" /> using the formula
+                <katex-element expression="c = \frac{(a \cdot f(b)) - (b \cdot f(a))}{f(b) - f(a)}" :display-mode="true" />
+              </p>
+            </li>
+            <li>
+              <p class="subtitle">
+                The value for the next iteration is that <br>
+                <p class="subtitle has-text-centered">
+                  <katex-element expression="a" /> becomes <katex-element expression="b" />, and <br>
+                </p>
+                <p class="subtitle has-text-centered">
+                  <katex-element expression="b" /> becomes <katex-element expression="c" />.
+                </p>
+                <p class="subtitle">
+                  So the next interval is <katex-element expression="[b, c]" />
+                </p>
+              </p>
+            </li>
+            <li>
+              <p class="subtitle">
+                Repeat step 2. to 4. until you've found the root value or it's under your acceptable
+                error. The root value or the answer is going to be the last
+                <katex-element expression="c" /> that you can find
+                when
+                <katex-element expression="f(c)" /> equals
+                <katex-element expression="0" />.
+              </p>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="examples" class="hero">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title is-2">
+          Examples
+        </h1>
+        <h3 class="subtitle is-3">
+          Find the root of the function <katex-element expression="x^7 - 1000" /> where the
+          root lies between <katex-element expression="2" /> and <katex-element expression="4" />
+        </h3>
+        <p class="subtitle">
+          Ok, so what we do is that, we start off with an expression <katex-element expression="f" />,
+          and 2 initial values <katex-element expression="a" /> and <katex-element expression="b" />. Since
+          we need <katex-element expression="f(a)" /> and <katex-element expression="f(b)" /> first
+          before we start finding <katex-element expression="c" />.
+          <katex-element expression="" :display-mode="true" />
+          we start finding <katex-element expression="c" /> immediately.
+          <katex-element expression="c = \frac{(a \cdot f(b)) - (b \cdot f(a))}{f(b) - f(a)}" :display-mode="true" />
+        </p>
+      </div>
+    </div>
+  </section>
 </div>

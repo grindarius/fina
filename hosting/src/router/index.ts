@@ -79,6 +79,15 @@ const routes: Array<RouteConfig> = [
         path: 'newton/calculate',
         name: 'Calculate Newton',
         component: Pages.CalculateNewton
+      },
+      {
+        path: 'secant',
+        name: 'Secant',
+        component: Pages.Secant
+      },
+      {
+        path: 'secant/calculate',
+        name: 'Calculate Secant'
       }
     ]
   },
