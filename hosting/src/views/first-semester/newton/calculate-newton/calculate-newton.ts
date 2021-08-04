@@ -57,7 +57,7 @@ export default class CalculateNewtonPage extends Vue {
   getRouteQueries (): NewtonQuerystring {
     return {
       expression: this.$route.query.expression.toString(),
-      diffedExpression: this.$route.query.diffedExpression.toString(),
+      diffedExpression: this.$route.query.diffedExpression === '' ? undefined : this.$route.query.diffedExpression.toString(),
       respect: this.$route.query.respect.toString(),
       start: Number(this.$route.query.start),
       iteration: Number(this.$route.query.iteration),
