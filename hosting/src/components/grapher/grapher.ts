@@ -366,8 +366,8 @@ export default class Grapher extends Vue {
    * If the number is either `null`, `undefined`, `NaN`, `Infinity` or `-Infinity`, will return 0
    *
    * @param input a value that you want to test for faultiness.
-   * @returns 0 if the `input` is either `null`, `undefined`, `NaN`, `Infinity` or `-Infinity`.
-   * Otherwise return 0
+   * @returns 0 if the `input` is either `null`, `undefined`, `NaN`, `Infinity` or `-Infinity`,
+   * otherwise return 0
    */
   isNumberReal (input: number): number {
     if (isNumberReal(input)) {
