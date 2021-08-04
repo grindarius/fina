@@ -1,7 +1,7 @@
 import * as d3 from 'd3'
 import { Component, Prop, Ref, Vue } from 'vue-property-decorator'
 
-import { compileFunction, round } from '@fina/common'
+import { compileFunction, isNumberReal, round } from '@fina/common'
 
 import { Coordinate } from '@/types'
 
@@ -370,7 +370,7 @@ export default class Grapher extends Vue {
    * Otherwise return 0
    */
   isNumberReal (input: number): number {
-    if (input != null && isFinite(input)) {
+    if (isNumberReal(input)) {
       return input
     } else {
       return 0

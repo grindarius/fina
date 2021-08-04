@@ -105,3 +105,15 @@ export function getRandomIntInclusive (min: number, max: number): number {
   max = Math.floor(max)
   return Math.floor(Math.random() * (max - min + 1) + min)
 }
+
+/**
+ * A function to evaluate the value, this funciton will only let true number pass
+ * if the number is either `null`, `undefined`, `NaN`, `Infinity` or `-Infinity`, will return `true`
+ *
+ * @param input a value that you want to test for faultiness.
+ * @returns 0 if the `input` is either `null`, `undefined`, `NaN`, `Infinity` or `-Infinity`.
+ * Otherwise return `false`
+ */
+export function isNumberReal (input: number): boolean {
+  return input != null && isFinite(input)
+}
