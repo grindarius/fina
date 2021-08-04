@@ -42,7 +42,7 @@ export default class CalculateNewtonPage extends Vue {
   }
 
   get parsedExpression (): string {
-    return expressionToTex(this.getRouteQueries().expression)
+    return expressionToTex(this.routeQueries.expression)
   }
 
   getPoints (answer: NewtonResponse): Array<Coordinate> {
@@ -54,7 +54,7 @@ export default class CalculateNewtonPage extends Vue {
     })
   }
 
-  getRouteQueries (): NewtonQuerystring {
+  get routeQueries (): NewtonQuerystring {
     return {
       expression: this.$route.query.expression.toString(),
       diffedExpression: this.$route.query.diffedExpression === '' ? undefined : this.$route.query.diffedExpression.toString(),
@@ -70,7 +70,7 @@ export default class CalculateNewtonPage extends Vue {
 
     try {
       const response = await axios.request<NewtonResponse>({
-        method, url, headers, params: this.getRouteQueries()
+        method, url, headers, params: this.routeQueries
       })
 
       this.points = this.getPoints(response.data)

@@ -42,7 +42,7 @@ export default class CalculateFalsePositionPage extends Vue {
   }
 
   get parsedExpression (): string {
-    return expressionToTex(this.getRouteQueries().expression)
+    return expressionToTex(this.routeQueries.expression)
   }
 
   getPoints (answer: FalsePositionResponse): Array<Coordinate> {
@@ -56,7 +56,7 @@ export default class CalculateFalsePositionPage extends Vue {
     })
   }
 
-  getRouteQueries (): FalsePositionQuerystring {
+  get routeQueries (): FalsePositionQuerystring {
     return {
       expression: this.$route.query.expression.toString(),
       start: Number(this.$route.query.start),
@@ -71,7 +71,7 @@ export default class CalculateFalsePositionPage extends Vue {
 
     try {
       const response = await axios.request<FalsePositionResponse>({
-        method, url, headers, params: this.getRouteQueries()
+        method, url, headers, params: this.routeQueries
       })
 
       this.points = this.getPoints(response.data)

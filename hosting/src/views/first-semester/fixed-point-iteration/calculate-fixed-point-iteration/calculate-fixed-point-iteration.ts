@@ -42,7 +42,7 @@ export default class CalculateFixedPointIterationPage extends Vue {
   }
 
   get parsedExpression (): string {
-    return expressionToTex(this.getRouteQueries().expression)
+    return expressionToTex(this.routeQueries.expression)
   }
 
   getPoints (answer: FixedPointIterationResponse): Array<Coordinate> {
@@ -56,7 +56,7 @@ export default class CalculateFixedPointIterationPage extends Vue {
     })
   }
 
-  getRouteQueries (): FixedPointIterationQuerystring {
+  get routeQueries (): FixedPointIterationQuerystring {
     return {
       expression: this.$route.query.expression.toString(),
       fixedExpression: this.$route.query.fixedExpression.toString(),
@@ -73,7 +73,7 @@ export default class CalculateFixedPointIterationPage extends Vue {
 
     try {
       const response = await axios.request<FixedPointIterationResponse>({
-        method, url, headers, params: this.getRouteQueries()
+        method, url, headers, params: this.routeQueries
       })
 
       this.points = this.getPoints(response.data)

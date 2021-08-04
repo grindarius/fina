@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { Component, Vue } from 'vue-property-decorator'
 
-import { expressionToTex, SecantResponse } from '@fina/common'
+import { expressionToTex, SecantQuerystring, SecantResponse } from '@fina/common'
 
 import { calculateSecant } from '@/api'
 import GrapherComponent from '@/components/grapher/grapher.vue'
@@ -57,13 +57,13 @@ export default class CalculateSecantPage extends Vue {
   }
 
   // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-  get routeQueries () {
+  get routeQueries (): SecantQuerystring {
     return {
-      expression: this.$route.query.expression,
-      start: this.$route.query.start,
-      end: this.$route.query.end,
-      iteration: this.$route.query.iteration,
-      dp: this.$route.query.dp
+      expression: this.$route.query.expression.toString(),
+      start: Number(this.$route.query.start),
+      end: Number(this.$route.query.end),
+      iteration: Number(this.$route.query.iteration),
+      dp: Number(this.$route.query.dp)
     }
   }
 
