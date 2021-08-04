@@ -5,6 +5,7 @@ export const FixedPointIterationQuerystringSchema = Type.Object({
   fixedExpression: Type.String(),
   start: Type.Number(),
   checkConvergence: Type.String(),
+  respect: Type.Optional(Type.String()),
   iteration: Type.Optional(Type.Number({
     minimum: 1,
     maximum: 100
