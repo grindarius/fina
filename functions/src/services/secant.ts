@@ -1,4 +1,4 @@
-import { absoluteError, compileFunction, round, SecantResponse, SecantResponseObject } from '@fina/common'
+import { absoluteError, compileFunction, isNumberReal, round, SecantResponse, SecantResponseObject } from '@fina/common'
 
 export function secantIteration (expression: string, a: number, b: number, iteration: number, decimalPoint: number): SecantResponse {
   let previousC = 0
@@ -13,6 +13,10 @@ export function secantIteration (expression: string, a: number, b: number, itera
     // * find c
     const cExpression = ((a * fb) - (b * fa)) / (fb - fa)
     const c = round(cExpression, decimalPoint)
+
+    if (isNumberReal(c)) {
+      break
+    }
 
     // * find f(c)
     const fc = round(mathCode.evaluate({ x: c }), decimalPoint)
