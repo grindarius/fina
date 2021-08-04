@@ -1,6 +1,6 @@
-import { Component, Vue } from 'vue-property-decorator'
+import { Component, Vue, Watch } from 'vue-property-decorator'
 
-import { BisectionQuerystring, BisectionResponse } from '@fina/common'
+import { BisectionResponse } from '@fina/common'
 
 import GrapherComponent from '@/components/grapher/grapher.vue'
 import { Coordinate } from '@/types'
@@ -16,12 +16,12 @@ import { Coordinate } from '@/types'
   }
 })
 export default class BisectionPage extends Vue {
-  bisectionInput: BisectionQuerystring = {
+  bisectionInput = {
     expression: 'x^3 - x - 1',
-    start: 1,
-    end: 3,
-    iteration: 5,
-    dp: 5
+    start: '1',
+    end: '3',
+    iteration: '5',
+    dp: '5'
   }
 
   answer: BisectionResponse = [
@@ -250,24 +250,29 @@ export default class BisectionPage extends Vue {
   }
 
   get validateInputs (): boolean {
-    if (this.bisectionInput.expression == null || this.bisectionInput.expression === '') {
+    if (this.bisectionInput.expression === '' || this.bisectionInput.start === '' || this.bisectionInput.end === '') {
       return true
     }
 
-    if (this.bisectionInput.iteration == null || this.bisectionInput.dp == null) {
+    if (parseInt(this.bisectionInput.end) < parseInt(this.bisectionInput.start)) {
       return true
     }
 
-    if (this.bisectionInput.iteration < 0 || this.bisectionInput.iteration > 100) {
+    if (parseInt(this.bisectionInput.iteration) < 0 || parseInt(this.bisectionInput.iteration) > 100) {
       return true
     }
 
     // eslint-disable-next-line yoda
-    if (!(0 <= this.bisectionInput.dp && this.bisectionInput.dp <= 15)) {
+    if (!(0 <= parseInt(this.bisectionInput.dp) && parseInt(this.bisectionInput.dp) <= 15)) {
       return true
     }
 
     return false
+  }
+
+  @Watch('bisectionInput', { deep: true })
+  onBisectionInputChange (): void {
+    console.log(this.bisectionInput)
   }
 
   toggleAnswer (): void {
@@ -277,27 +282,17 @@ export default class BisectionPage extends Vue {
   resetInputsToDefault (): void {
     this.bisectionInput = {
       expression: 'x^3 - x - 1',
-      start: 1,
-      end: 3,
-      iteration: 5,
-      dp: 5
+      start: '1',
+      end: '3',
+      iteration: '5',
+      dp: '5'
     }
   }
 
   calculateBisection (): void {
-    if (this.bisectionInput.iteration == null || this.bisectionInput.dp == null) {
-      return
-    }
-
     this.$router.push({
       path: 'bisection/calculate',
-      query: {
-        expression: this.bisectionInput.expression,
-        start: this.bisectionInput.start.toString(),
-        end: this.bisectionInput.end.toString(),
-        iteration: this.bisectionInput.iteration.toString(),
-        dp: this.bisectionInput.dp.toString()
-      }
+      query: this.bisectionInput
     },
     () => {
       console.log('Calculate Bisection Route Done')
