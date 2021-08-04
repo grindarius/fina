@@ -130,7 +130,7 @@ html {
 
 @media only screen and (max-width: $max-width-widescreen) {
   .answer-table {
-    overflow-x: scroll !important;
+    overflow-x: auto !important;
     max-width: 1000px !important;
   }
 }
