@@ -1,6 +1,6 @@
 import { FastifyInstance, FastifyPluginOptions, FastifySchema } from 'fastify'
 
-import { BisectionQuerystring, BisectionQuerystringSchema, BisectionResponse, BisectionResponseSchema, compileFunction, evaluateFunction, round } from '@fina/common'
+import { BisectionQuerystring, BisectionQuerystringSchema, BisectionResponse, BisectionResponseSchema, compileFunction, evaluateFunction } from '@fina/common'
 
 import { bisectionIteration } from '../../services/bisection'
 
@@ -44,8 +44,8 @@ export default async function (instance: FastifyInstance, _: FastifyPluginOption
       async (request, reply, done): Promise<void> => {
         const mathCode = compileFunction(request.query.expression)
 
-        const fa = round(mathCode.evaluate({ x: Number(request.query.start) }), Number(request.query.dp) ?? 5)
-        const fb = round(mathCode.evaluate({ x: Number(request.query.end) }), Number(request.query.dp) ?? 5)
+        const fa: number = mathCode.evaluate({ x: Number(request.query.start) })
+        const fb: number = mathCode.evaluate({ x: Number(request.query.end) })
 
         if (fa * fb >= 0) {
           await reply.code(400).send({
