@@ -48,6 +48,60 @@
                 Easy to use UI
               </p>
             </li>
+            <li>
+              <p class="subtitle">
+                You can send a link to your friend to show them the answer. Just copy the link
+                that ends with <code>/calculate</code> <b>with all the querystring</b> to your friend
+                and they can see the result immediately.                
+              </p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="caveats" class="hero">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title is-2">
+          Caveats
+        </h1>
+        <p class="subtitle">
+          This website is <b>far</b> from being done, and there are some points I wanted
+          to tell you guys before you start taking a look on it.
+        </p>
+        <div class="content">
+          <ul>
+            <li>
+              <p class="subtitle">
+                The graph component that's used to draw the graph can display false
+                data when your function is not continuous, meaning it has some gaps in the function,
+                or some values results in Infinity or -Infinity. If those things are found in the
+                function. our grapher component will change the infected value to 0.
+              </p>
+            </li>
+            <li>
+              <p class="subtitle">
+                There is a settings in the code where when <katex-element expression="c" /> is not any type of finite number,
+                it will break the calculation loop. That condition might result in sometimes the API would send nothing back from the calculation.
+              </p>
+            </li>
+            <li>
+              <p class="subtitle">
+                Stuffs for second semester are in development. But all PRs welcome though if you wanted to
+                be a part of us.
+              </p>
+            </li>
+            <li>
+              <p class="subtitle">
+                Calling API straight without the server could give you a funky error.
+              </p>
+            </li>
+            <li>
+              <p class="subtitle">
+                The errors aren't pretty.
+              </p>
+            </li>
           </ul>
         </div>
       </div>

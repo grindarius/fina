@@ -15,11 +15,11 @@
             {{ navbar.name }}
           </b-navbar-item>
         </b-navbar-dropdown>
-        <b-navbar-dropdown label="Second semester">
+        <!-- <b-navbar-dropdown label="Second semester">
           <b-navbar-item v-for="navbar in secondSemesterNavbarMenu" :key="navbar.name + navbar.path" tag="router-link" :to="{ path: navbar.path }">
             {{ navbar.name }}
           </b-navbar-item>
-        </b-navbar-dropdown>
+        </b-navbar-dropdown> -->
       </template>
 
       <template #end>

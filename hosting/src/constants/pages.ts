@@ -24,6 +24,10 @@ export const firstSemesterPages: Array<Page> = [
       {
         name: 'Features',
         path: `${path.gettingStarted}#features`
+      },
+      {
+        name: 'Caveats',
+        path: `${path.gettingStarted}#caveats`
       }
     ]
   },
