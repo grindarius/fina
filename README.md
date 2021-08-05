@@ -37,22 +37,22 @@ Our main language of development is [TypeScript](https://www.typescriptlang.org/
 ## Long term goals
 
 ### Grapher component
-- [] Provides support for graphing incontinuous graph like $ f(x) = \frac{1}{x} $
-- [] Provides better graph scaling. Currently it's not very consistent when you are plotting high frequency graph.
+- [ ] Provides support for graphing incontinuous graph like $ f(x) = \frac{1}{x} $
+- [ ] Provides better graph scaling. Currently it's not very consistent when you are plotting high frequency graph.
 
 ### Frontend
-- [] **Adds second semester's topics.**
-- [] Provides consistent error message that have meanings.
-- [] Implements refresh-proven form input, or store user inputs in cookie.
-- [] Implements membership system.
-- [] Provides [i18n](https://en.wikipedia.org/wiki/Internationalization_and_localization) support for multiple languages website using [vue-i18n](https://kazupon.github.io/vue-i18n/)
-- [] Improves page layout and explanations.
+- [ ] **Adds second semester's topics.**
+- [ ] Provides consistent error message that have meanings.
+- [ ] Implements refresh-proven form input, or store user inputs in cookie.
+- [ ] Implements membership system.
+- [ ] Provides [i18n](https://en.wikipedia.org/wiki/Internationalization_and_localization) support for multiple languages website using [vue-i18n](https://kazupon.github.io/vue-i18n/)
+- [ ] Improves page layout and explanations.
 
 ### Backend
-- [] Extract redundant `preValidation` hook into separate file or global hooks.
-- [] Refactor some of controversial `preValidation` hooks.
-- [] Adds at least Basic auth for calling the API.
-- [] Host the API in Google Cloud Run.
+- [ ] Extract redundant `preValidation` hook into separate file or global hooks.
+- [ ] Refactor some of controversial `preValidation` hooks.
+- [ ] Adds at least Basic auth for calling the API.
+- [ ] Host the API in Google Cloud Run.
 
 ## Deployments
 // TODO: Add deployment notes
