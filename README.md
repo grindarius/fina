@@ -6,7 +6,7 @@
 ## Project setup
 Install firebase CLI tools
 ```
-npm i - g firebase-tools
+npm i -g firebase-tools
 firebase login
 ```
 Install project's dependencies
