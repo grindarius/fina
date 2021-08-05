@@ -4,6 +4,12 @@
 ### Fabulous and Interactive Numerical Analysis Calculator
 
 ## ติดตั้งโปรเจกต์
+ติดตั้ง Firebase CLI
+```
+npm i -g firebase-tools
+firebase login
+```
+ติดตั้งแพคเกจต่าง ๆ ของโปรเจกต์
 ```
 npm install
 ```
@@ -59,6 +65,7 @@ npm install --legacy-peer-deps
 - [ ] พัฒนาระบบสมัครสมาชิก
 - [ ] รองรับ [i18n](https://en.wikipedia.org/wiki/Internationalization_and_localization) สำหรับเว็บไซต์หลายภาษาโดยใช้ [vue-i18n](https://kazupon.github.io/vue-i18n/)
 - [ ] พัฒนาหน้าตาของเว็บไซต์ และคำอธิบายต่าง ๆ
+- [ ] นำเว็บไซต์ขึ้น Firebase
 
 ### Backend
 - [ ] เอา `preValidation` hook ที่ซ้ำซ้อน แยกไปเป็นไฟล์ต่างหาก

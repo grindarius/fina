@@ -4,6 +4,12 @@
 ### Fabulous and Interactive Numerical Analysis Calculator
 
 ## Project setup
+Install firebase CLI tools
+```
+npm i - g firebase-tools
+firebase login
+```
+Install project's dependencies
 ```
 npm install
 ```
@@ -59,6 +65,7 @@ Our main language of development is [TypeScript](https://www.typescriptlang.org/
 - [ ] Implements membership system.
 - [ ] Provides [i18n](https://en.wikipedia.org/wiki/Internationalization_and_localization) support for multiple languages website using [vue-i18n](https://kazupon.github.io/vue-i18n/)
 - [ ] Improves page layout and explanations.
+- [ ] Deploy the website on Firebase
 
 ### Backend
 - [ ] Extract redundant `preValidation` hook into separate file or global hooks.
