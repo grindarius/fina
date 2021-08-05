@@ -97,6 +97,7 @@ $max-width-mobile: 770px;
     order: 1;
     width: 20rem;
     height: 100vh;
+    scroll-behavior: smooth;
     display: block;
     position: fixed;
     overflow-y: auto;
