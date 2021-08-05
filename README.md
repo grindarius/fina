@@ -41,6 +41,7 @@ Our main language of development is [TypeScript](https://www.typescriptlang.org/
 - [] Provides better graph scaling. Currently it's not very consistent when you are plotting high frequency graph.
 
 ### Frontend
+- [] **Adds second semester's topics.**
 - [] Provides consistent error message that have meanings.
 - [] Implements refresh-proven form input, or store user inputs in cookie.
 - [] Implements membership system.
