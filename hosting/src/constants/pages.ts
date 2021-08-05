@@ -284,6 +284,11 @@ export const secondSemesterPages: Array<Page> = [
 
 export const miscellaneousPages: Array<Page> = [
   {
+    name: 'Examples',
+    path: '/global-examples',
+    components: []
+  },
+  {
     name: 'About',
     path: '/about',
     components: []

@@ -22,6 +22,11 @@ const routes: Array<RouteConfig> = [
     component: Pages.Sources
   },
   {
+    path: '/global-examples',
+    name: 'Global Examples',
+    component: Pages.GlobalExamples
+  },
+  {
     path: '/docs',
     component: Pages.Docs,
     children: [

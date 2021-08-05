@@ -15,6 +15,7 @@ import NotFound from './globals/404s/not-found.vue'
 import About from './globals/about/about.vue'
 import Docs from './globals/docs/docs.vue'
 import GettingStarted from './globals/docs/getting-started/getting-started.vue'
+import GlobalExamples from './globals/global-examples/global-examples.vue'
 import Home from './globals/home/home.vue'
 import Sources from './globals/sources/sources.vue'
 
@@ -31,6 +32,7 @@ export {
   FalsePosition,
   FixedPointIteration,
   GettingStarted,
+  GlobalExamples,
   Home,
   MissingQuerystring,
   Newton,
