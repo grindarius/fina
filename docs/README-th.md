@@ -37,22 +37,22 @@ npm install --legacy-peer-deps
 ## เป้าหมายระยะยาว
 
 ### Grapher component
-- [] รองรับการวาดกราฟที่ไม่ต่อเนื่อง เช่น $ f(x) = \frac{1}{x} $
-- [] รองรับการสเกลของกราฟให้ดีขึ้น ขณะนี้ ภาพของกราฟจะค่อย ๆ ชัดขึ้นตามการซูม
+- [ ] รองรับการวาดกราฟที่ไม่ต่อเนื่อง เช่น $ f(x) = \frac{1}{x} $
+- [ ] รองรับการสเกลของกราฟให้ดีขึ้น ขณะนี้ ภาพของกราฟจะค่อย ๆ ชัดขึ้นตามการซูม
 
 ### Frontend
-- [] **เพิ่มเนื้อหาของเทอมสอง**
-- [] แสดง error ที่มีความหมาย
-- [] พัฒนาการเก็บ input ไว้เหมือน Google Forms ที่ refresh แล้วไม่หาย
-- [] พัฒนาระบบสมัครสมาชิก
-- [] รองรับ [i18n](https://en.wikipedia.org/wiki/Internationalization_and_localization) สำหรับเว็บไซต์หลายภาษาโดยใช้ [vue-i18n](https://kazupon.github.io/vue-i18n/)
-- [] พัฒนาหน้าตาของเว็บไซต์ และคำอธิบายต่าง ๆ
+- [ ] **เพิ่มเนื้อหาของเทอมสอง**
+- [ ] แสดง error ที่มีความหมาย
+- [ ] พัฒนาการเก็บ input ไว้เหมือน Google Forms ที่ refresh แล้วไม่หาย
+- [ ] พัฒนาระบบสมัครสมาชิก
+- [ ] รองรับ [i18n](https://en.wikipedia.org/wiki/Internationalization_and_localization) สำหรับเว็บไซต์หลายภาษาโดยใช้ [vue-i18n](https://kazupon.github.io/vue-i18n/)
+- [ ] พัฒนาหน้าตาของเว็บไซต์ และคำอธิบายต่าง ๆ
 
 ### Backend
-- [] เอา `preValidation` hook ที่ซ้ำซ้อน แยกไปเป็นไฟล์ต่างหาก
-- [] เรียบเรียง `preValidation` hook บางตัวใหม่
-- [] เพื่ม Authorization ให้กับ API (Bearer)
-- [] นำ API ขึ้น Cloud Run
+- [ ] เอา `preValidation` hook ที่ซ้ำซ้อน แยกไปเป็นไฟล์ต่างหาก
+- [ ] เรียบเรียง `preValidation` hook บางตัวใหม่
+- [ ] เพื่ม Authorization ให้กับ API (Bearer)
+- [ ] นำ API ขึ้น Cloud Run
 
 ## นำขึ้นสู่สาธารณะ
 // TODO: Add deployment notes
