@@ -42,6 +42,18 @@ Our main language of development is [TypeScript](https://www.typescriptlang.org/
 
 ### Frontend
 - [ ] **Adds second semester's topics.**
+  - [ ] Gauss Seidel.
+  - [ ] Jacobi.
+  - [ ] Newton's Divided Difference
+  - [ ] Newton's Forward Difference
+  - [ ] Newton's Backward Difference
+  - [ ] Lagrange Polynomial
+  - [ ] Regression Equation
+  - [ ] Trapezoidal Rule
+  - [ ] Simpson's 1/3 Rule
+  - [ ] Simpson's 3/8 Rule
+  - [ ] Romberg
+  - [ ] Euler
 - [ ] Provides consistent error message that have meanings.
 - [ ] Implements refresh-proven form input, or store user inputs in cookie.
 - [ ] Implements membership system.
