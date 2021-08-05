@@ -66,6 +66,8 @@ npm install --legacy-peer-deps
 - [ ] รองรับ [i18n](https://en.wikipedia.org/wiki/Internationalization_and_localization) สำหรับเว็บไซต์หลายภาษาโดยใช้ [vue-i18n](https://kazupon.github.io/vue-i18n/)
 - [ ] พัฒนาหน้าตาของเว็บไซต์ และคำอธิบายต่าง ๆ
 - [ ] นำเว็บไซต์ขึ้น Firebase
+- [ ] เพื่มหน้าผู้ร่วมพัฒนา
+- [ ] รวมหน้าแสดงคำตอบเป็นหนึ่งเดียว
 
 ### Backend
 - [ ] เอา `preValidation` hook ที่ซ้ำซ้อน แยกไปเป็นไฟล์ต่างหาก

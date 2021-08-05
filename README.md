@@ -66,6 +66,8 @@ Our main language of development is [TypeScript](https://www.typescriptlang.org/
 - [ ] Provides [i18n](https://en.wikipedia.org/wiki/Internationalization_and_localization) support for multiple languages website using [vue-i18n](https://kazupon.github.io/vue-i18n/)
 - [ ] Improves page layout and explanations.
 - [ ] Deploy the website on Firebase
+- [ ] Adds contributors page.
+- [ ] Combines answer pages into one.
 
 ### Backend
 - [ ] Extract redundant `preValidation` hook into separate file or global hooks.
