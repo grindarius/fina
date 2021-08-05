@@ -11,4 +11,33 @@
       </div>
     </div>
   </section>
+  <section class="hero" v-for="[method, equations] in separatedTwoPointEquations" :key="method">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title is-2">
+          {{ method }}
+        </h1>
+        <p class="subtitle" v-for="(equation, index) in equations.questions" :key="equation.equation + index">
+          Find the root value of <katex-element :expression="equation.equationLatex" /> 
+          where the root lies between <katex-element :expression="equation.start" /> and
+          <katex-element :expression="equation.end" /> <br>
+          <b-button class="is-sailor-blue" tag="router-link" :to="{ path: equations.url, query: { expression: equation.equation, start: equation.start, end: equation.end, iteration: '5', dp: '5' } }">Calculate</b-button>
+        </p>
+      </div>
+    </div>
+  </section>
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title is-2">
+          Newton
+        </h1>
+        <p class="subtitle"  v-for="(equation, index) in newtonEquations.questions" :key="equation.equation + index">
+          Find the root value of <katex-element :expression="equation.equationLatex" /> where the root lies
+          around <katex-element :expression="equation.start" /> <br>
+          <b-button class="is-sailor-blue" tag="router-link" :to="{ path: newtonEquations.url, query: { expression: equation.equation, diffedExpression: equation.diffedEquation, respect: 'x', start: equation.start, iteration: '5', dp: '5' } }" >calculate</b-button>
+        </p>
+      </div>
+    </div>
+  </section>
 </div>
