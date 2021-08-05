@@ -1,5 +1,7 @@
 import { Component, Vue } from 'vue-property-decorator'
 
+import FooterComponent from '@/components/footer/footer.vue'
+
 interface TwoPointEquation {
   equation: string
   equationLatex: string
@@ -35,6 +37,9 @@ interface NewtonEquationCollection {
     return {
       title: 'Examples | FINA'
     }
+  },
+  components: {
+    'breadcrumb-footer': FooterComponent
   }
 })
 export default class GlobalExamplesPage extends Vue {
