@@ -3,6 +3,19 @@
 # FINA
 ### Fabulous and Interactive Numerical Analysis Calculator
 
+## เครื่องมือที่ใช้
+ใน FINA เราใช้
+- [Vuejs](https://vuejs.org/) เพื่อจัดการ Web Application ของเรา
+- [Buefy](https://buefy.org/) เพื่อจัดการเลย์เอาท์ต่าง ๆ ของ Web Application ของเรา
+- [mathjs](https://mathjs.org/) เพื่อจัดการโจทย์ต่าง ๆ ให้สามารถคำนวณได้
+- [d3](https://d3js.org/) เพื่อสร้างกราฟสวย ๆ
+- [ESLint](https://eslint.org/) เพื่อจัดการสไตล์การเขียน TypeScript ของโปรเจกต์
+- [Stylelint](https://stylelint.io/) เพื่อจัดการสไตล์การเขียน SCSS ของโปรเจกต์
+- [Vue Katex](https://github.com/lucpotage/vue-katex#readme) เพื่อแสดงสูตรทางคณิตศาสตร์
+- [Fastify](https://fastify.io/) เพื่อจัดการ API ของเรา
+
+ภาษาหลักในการพัฒนาคือภาษา [TypeScript](https://www.typescriptlang.org/)
+
 ## ติดตั้งโปรเจกต์
 ติดตั้ง Firebase CLI
 ```
@@ -26,19 +39,6 @@ npm install --legacy-peer-deps
 | `npm run serve:common`      | `npm run serve:functions`   | `npm run serve` |
 
 เว็บแอพพลิเคชั่นจะปรากฏตัวที่ `http://localhost:8080` ส่วน API จะปรากฏตัวที่นี่ `http://localhost:3000`
-
-## เครื่องมือที่ใช้
-ใน FINA เราใช้
-- [Vuejs](https://vuejs.org/) เพื่อจัดการ Web Application ของเรา
-- [Buefy](https://buefy.org/) เพื่อจัดการเลย์เอาท์ต่าง ๆ ของ Web Application ของเรา
-- [mathjs](https://mathjs.org/) เพื่อจัดการโจทย์ต่าง ๆ ให้สามารถคำนวณได้
-- [d3](https://d3js.org/) เพื่อสร้างกราฟสวย ๆ
-- [ESLint](https://eslint.org/) เพื่อจัดการสไตล์การเขียน TypeScript ของโปรเจกต์
-- [Stylelint](https://stylelint.io/) เพื่อจัดการสไตล์การเขียน SCSS ของโปรเจกต์
-- [Vue Katex](https://github.com/lucpotage/vue-katex#readme) เพื่อแสดงสูตรทางคณิตศาสตร์
-- [Fastify](https://fastify.io/) เพื่อจัดการ API ของเรา
-
-ภาษาหลักในการพัฒนาคือภาษา [TypeScript](https://www.typescriptlang.org/)
 
 ## เป้าหมายระยะยาว
 
