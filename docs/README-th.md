@@ -1,4 +1,4 @@
-| [Home](README.md) | [ภาษาไทย](docs/README-th.md) |
+| [Home](../README.md) | [ภาษาไทย](docs/README-th.md) |
 
 # FINA
 ### Fabulous and Interactive Numerical Analysis Calculator
