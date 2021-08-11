@@ -17,11 +17,6 @@ In FINA, we use
 Our main language of development is [TypeScript](https://www.typescriptlang.org/)
 
 ## Project setup
-Install firebase CLI tools
-```
-npm i -g firebase-tools
-firebase login
-```
 Install project's dependencies
 ```
 npm install
@@ -76,7 +71,11 @@ The web application will pop up at `http://localhost:8080` and the API will pop 
 - [ ] Host the API in Google Cloud Run.
 
 ## Deployments
-// TODO: Add deployment notes
+install Firebase CLI
+```
+npm i -g firebase-tools
+firebase login
+```
 
 ## Lints and fixes files
 Run

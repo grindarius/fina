@@ -17,11 +17,6 @@
 ภาษาหลักในการพัฒนาคือภาษา [TypeScript](https://www.typescriptlang.org/)
 
 ## ติดตั้งโปรเจกต์
-ติดตั้ง Firebase CLI
-```
-npm i -g firebase-tools
-firebase login
-```
 ติดตั้งแพคเกจต่าง ๆ ของโปรเจกต์
 ```
 npm install
@@ -76,7 +71,11 @@ npm install --legacy-peer-deps
 - [ ] นำ API ขึ้น Cloud Run
 
 ## นำขึ้นสู่สาธารณะ
-// TODO: Add deployment notes
+ติดตั้ง Firebase CLI
+```
+npm i -g firebase-tools
+firebase login
+```
 
 ## การจัดการรูปแบบโค้ด
 Run
