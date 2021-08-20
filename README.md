@@ -17,14 +17,27 @@ In FINA, we use
 Our main language of development is [TypeScript](https://www.typescriptlang.org/)
 
 ## Project setup
+This project needs minimum of
+- Nodejs v12,
+- npm v7
+
+You can download and install Nodejs from its website [here](https://nodejs.org/).
+
+You can install `npm` v7 by running the following command.
+```
+npm install -g npm@7.17.0
+```
+
+You also need `@vue/cli`
+```
+npm install -g @vue/cli
+```
+
 Install project's dependencies
-```
-npm install
-```
-from the root of the project. If the above command did not succeed, try
 ```
 npm install --legacy-peer-deps
 ```
+from the root of the project
 
 ## Getting started
 Run these commands to start developing from the root directory.
