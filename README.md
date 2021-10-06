@@ -17,7 +17,7 @@ In FINA, we use
 Our main language of development is [TypeScript](https://www.typescriptlang.org/)
 
 ## Project setup
-This project needs minimum of
+This project requires minimum of
 - Nodejs v12,
 - npm v7
 

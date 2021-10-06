@@ -1,4 +1,4 @@
-import Fastify, { FastifyInstance } from 'fastify'
+import fastify, { FastifyInstance } from 'fastify'
 import autoload from 'fastify-autoload'
 import cors from 'fastify-cors'
 import path from 'path'
@@ -6,15 +6,17 @@ import path from 'path'
 const PORT = 3000
 
 const createServer = (): FastifyInstance => {
-  const fastify = Fastify()
+  const server = fastify({
+    logger: true
+  })
 
-  void fastify.register(cors)
+  void server.register(cors)
 
-  void fastify.register(autoload, {
+  void server.register(autoload, {
     dir: path.join(__dirname, 'routes')
   })
 
-  return fastify
+  return server
 }
 
 createServer().listen(PORT).then((address) => {
