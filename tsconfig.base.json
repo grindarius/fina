@@ -36,7 +36,7 @@
     "useDefineForClassFields": true,
     "paths": {
       "@fina/common/*": [
-        "common/dist/*"
+        "common/src/*"
       ]
     }
   },
