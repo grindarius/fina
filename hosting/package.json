@@ -15,7 +15,7 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "fix": "vue-cli-service lint --fix",
-    "clean": "npx rimraf dist && npx rimraf node_modules"
+    "clean": "pnpm dlx rimraf dist && pnpm dlx rimraf node_modules"
   },
   "dependencies": {
     "@fina/common": "^0.0.1",

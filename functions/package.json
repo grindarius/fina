@@ -14,11 +14,11 @@
   "scripts": {
     "serve": "node dist/index.js",
     "build": "tsc -p ./tsconfig.json",
-    "kill": "npx kill-port 3000",
+    "kill": "pnpm dlx kill-port 3000",
     "watch": "nodemon",
     "watch:ts": "tsc -w",
-    "clean": "npx rimraf dist && npx rimraf node_modules",
-    "rebuild": "npm run clean && npm run watch:ts",
+    "clean": "pnpm dlx rimraf dist && pnpm dlx rimraf node_modules",
+    "rebuild": "pnpm clean && pnpm watch:ts",
     "fix": "eslint **/*.ts --fix"
   },
   "dependencies": {
